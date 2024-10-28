@@ -1,0 +1,25 @@
+# .gitattributes for JavaFX project
+
+# Treat all Java files as text
+*.java text
+
+# Treat all FXML files as text
+*.fxml text
+
+# Treat all properties files as text
+*.properties text
+
+# Treat all CSS files as text
+*.css text
+
+# Treat all image files as binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+
+# Treat all compiled class files as binary
+*.class binary
+
+# Treat all JAR files as binary
+*.jar binary
