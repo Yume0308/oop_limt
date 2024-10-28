@@ -1,0 +1,17 @@
+{
+    "name": "oop_library_management",
+    "version": "1.0.0",
+    "description": "A library management system using OOP principles and JavaFX for the GUI.",
+    "author": "Adeyemi Oluwaseyi <23020704@vnu.edu.vn>",
+    "keywords": [
+        "library",
+        "management",
+        "system",
+        "OOP",
+        "JavaFX"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Yume0308/OOP_LibraryManagement"
+    }
+}
