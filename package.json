@@ -1,8 +1,26 @@
 {
-    "name": "oop_library_management",
+    "name": "OOP_LibraryManagement",
     "version": "1.0.0",
     "description": "A library management system using OOP principles and JavaFX for the GUI.",
-    "author": "Adeyemi Oluwaseyi <23020704@vnu.edu.vn>",
+    "author": "Phạm Anh Tuấn",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Phạm Anh Tuấn",
+            "email": "23020704@vnu.edu.vn",
+            "github_url": "https://github.com/Yume0308"
+        },
+        {
+            "name": "Tạ Duy Khánh",
+            "email": "23020677@vnu.edu.vn",
+            "github_url": "https://github.com/khanhtaduy2k5"
+        },
+        {
+            "name": "Phan Xuân Hiếu",
+            "email": "23020665@vnu.edu.vns",
+            "github_url": "https://github.com/mrshallow2k5"
+        }
+    ],
     "keywords": [
         "library",
         "management",
@@ -14,4 +32,5 @@
         "type": "git",
         "url": "https://github.com/Yume0308/OOP_LibraryManagement"
     }
+
 }

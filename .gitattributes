@@ -22,4 +22,4 @@
 *.class binary
 
 # Treat all JAR files as binary
-*.jar binary
+*.jar binaryg
