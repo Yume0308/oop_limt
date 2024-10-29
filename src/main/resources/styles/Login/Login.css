@@ -1,0 +1,70 @@
+* {
+    -fx-font-family: "Inter", sans-serif;
+    -fx-font-style: normal;
+    -fx-font-variant: normal;
+}
+
+.login {
+    -fx-background-color: #EEEEEE !important;
+}
+
+.login_image {
+    -fx-background-color: linear-gradient(to left top, #d6a8c2, #c8a4c4, #b9a1c4, #a99ec2, #999bbf, #92a1c5, #8ca8c9, #86aecc, #88c0d9, #8ed2e3, #97e3ea, #a6f4ef);
+    -fx-content-display: center;
+    -fx-alignment: center;
+    -fx-display-caret: true;
+}
+
+.login_image Text {
+    -fx-font-size: 2em;
+    -fx-fill: #F9F9F9;
+    -fx-content-display: center;
+}
+.login_image FontAwesomeIconView {
+    -fx-fill: #F9F9F9;
+}
+
+.login_form
+{
+    -fx-spacing: 15;
+    -fx-alignment: left;
+    -fx-background-color: #EEEEEE !important;
+}
+
+.login_form Label {
+    -fx-font-weight: 900;
+    -fx-text-fill: #4E4E67;
+    -fx-font-size: 1.2em;
+}
+
+.login_form TextField {
+    -fx-background-color: white;
+    -fx-border-radius: 0.9rem;
+    -fx-border-style: 2px solid transparent;
+    -fx-animated: inherit;
+    -fx-font-size: 1.2em;
+    -fx-padding: 0.4em 0 0.4em 1em;
+}
+
+.login_form PasswordField {
+    -fx-background-color: white;
+    -fx-border-radius: 0.9rem;
+    -fx-border-style: 2px solid transparent;
+    -fx-animated: inherit;
+    -fx-font-size: 1.2em;
+    -fx-padding: 0.4em 0 0.4em 1em;
+}
+
+.login_form .submit_button {
+    -fx-background-color: #F3F7FE;
+    -fx-text-fill: #3B82F6;
+    -fx-border-style: none;
+    -fx-cursor: pointer;
+    -fx-border-radius: 1em;
+    -fx-animated: true;
+}
+.login_form .submit_button:hover {
+    -fx-background-color: #3B82F6;
+    -fx-text-fill: #F3F7FE;
+}
+

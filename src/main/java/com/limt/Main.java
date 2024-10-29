@@ -1,4 +1,18 @@
 package com.limt;
 
-public class Main {
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+public class Main extends Application {
+    @Override
+    public void start(Stage thisStage) throws Exception {
+        String fxmlPath = "/Fxml/Login/Login.fxml";
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
+        Scene scene = new Scene(fxmlLoader.load());
+        thisStage.setScene(scene);
+        thisStage.show();
+    }
 }

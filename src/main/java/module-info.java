@@ -18,4 +18,5 @@ module com.limt {
     exports com.limt.Controllers.Login;
     exports com.limt.Models;
     exports com.limt.Views;
+//    exports com.limt.Constants;
 }
