@@ -13,7 +13,9 @@ module com.limt {
 
     opens com.limt to javafx.fxml;
     exports com.limt;
-    exports com.limt.Controllers;
+    exports com.limt.Controllers.Admin;
+    exports com.limt.Controllers.Client;
+    exports com.limt.Controllers.Login;
     exports com.limt.Models;
     exports com.limt.Views;
 }
