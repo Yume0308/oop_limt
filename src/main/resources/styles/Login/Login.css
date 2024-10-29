@@ -27,7 +27,7 @@
 .login_form
 {
     -fx-spacing: 15;
-    -fx-alignment: left;
+    -fx-alignment: center;
     -fx-background-color: #EEEEEE !important;
 }
 
@@ -42,7 +42,7 @@
     -fx-border-radius: 0.9rem;
     -fx-border-style: 2px solid transparent;
     -fx-animated: inherit;
-    -fx-font-size: 1.2em;
+    -fx-font-size: 1.0em;
     -fx-padding: 0.4em 0 0.4em 1em;
 }
 
@@ -51,7 +51,7 @@
     -fx-border-radius: 0.9rem;
     -fx-border-style: 2px solid transparent;
     -fx-animated: inherit;
-    -fx-font-size: 1.2em;
+    -fx-font-size: 1.0em;
     -fx-padding: 0.4em 0 0.4em 1em;
 }
 
@@ -60,11 +60,17 @@
     -fx-text-fill: #3B82F6;
     -fx-border-style: none;
     -fx-cursor: pointer;
-    -fx-border-radius: 1em;
-    -fx-animated: true;
+    -fx-border-radius: 1.5em;
+    -fx-font-size: 1.2em;
+    -fx-animated: 0.4s;
 }
 .login_form .submit_button:hover {
+    -fx-background-position: center;
     -fx-background-color: #3B82F6;
     -fx-text-fill: #F3F7FE;
+
+}
+.login_form HyperLink {
+    -fx-text-fill: 
 }
 
