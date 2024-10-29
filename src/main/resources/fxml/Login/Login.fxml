@@ -55,7 +55,7 @@
          <font>
             <Font size="15.0" />
          </font></Text>
-      <Hyperlink text="Sign in">
+      <Hyperlink text="Sign in" underline="true">
          <font>
             <Font size="15.0" />
          </font></Hyperlink>
