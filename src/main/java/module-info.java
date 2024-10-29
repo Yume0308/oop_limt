@@ -1,4 +1,4 @@
-module com.example.oop_librarymanagement {
+module com.limt {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
@@ -11,6 +11,9 @@ module com.example.oop_librarymanagement {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
 
-    opens com.example.oop_librarymanagement to javafx.fxml;
-    exports com.example.oop_librarymanagement;
+    opens com.limt to javafx.fxml;
+    exports com.limt;
+    exports com.limt.Controllers;
+    exports com.limt.Models;
+    exports com.limt.Views;
 }
