@@ -39,8 +39,7 @@
 
 .login_form TextField {
     -fx-background-color: white;
-    -fx-border-radius: 0.9rem;
-    -fx-border-style: 2px solid transparent;
+    -fx-background-radius: 30px;
     -fx-animated: inherit;
     -fx-font-size: 1.0em;
     -fx-padding: 0.8em 0.5em 0.8em 1em;
@@ -48,8 +47,7 @@
 
 .login_form PasswordField {
     -fx-background-color: white;
-    -fx-border-radius: 0.9rem;
-    -fx-border-style: 2px solid transparent;
+    -fx-background-radius: 30px;
     -fx-animated: inherit;
     -fx-font-size: 1.0em;
     -fx-padding: 0.8em 0.5em 0.8em 1em;
@@ -70,16 +68,3 @@
     -fx-text-fill: #F3F7FE;
 
 }
-.login_form HyperLink {
-    -fx-font-size: 1.2em;
-    -fx-text-fill: #3B82F6;
-}
-.login_form HyperLink:hover {
-    -fx-background-color: transparent;
-    -fx-text-fill: #3B82F6;
-    -fx-border-style: none;
-    -fx-cursor: pointer;
-    -fx-border-radius: 1.5em;
-    -fx-font-size: 1.2em;
-}
-
