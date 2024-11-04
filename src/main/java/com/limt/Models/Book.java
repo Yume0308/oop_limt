@@ -5,7 +5,7 @@ import com.limt.Lib.Utils;
 import java.util.Date;
 
 public class Book {
-    private final Integer bookId;
+    private final Long bookId;
     private String ISBN;
     private String title;
     private String author;
@@ -27,7 +27,7 @@ public class Book {
         this.bookId = Utils.generateBookID();
     }
 
-    public Integer getBookId() {
+    public Long getBookId() {
         return bookId;
     }
 

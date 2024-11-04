@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.Random;
 
 public class User {
-    private final Integer userID;
+    private final Long userID;
     private String userName;
     private String password;
     private String email;
@@ -25,7 +25,7 @@ public class User {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public int getUserID() {
+    public Long getUserID() {
         return userID;
     }
 

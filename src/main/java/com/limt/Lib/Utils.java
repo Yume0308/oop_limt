@@ -6,18 +6,18 @@ import java.util.Random;
 
 public class Utils {
     @NotNull
-    public static Integer generateUserID() {
+    public static Long generateUserID() {
         Random random = new Random();
-        int min = 1000000;
-        int max = 9999999;
-        return random.nextInt((max - min) + 1) + min;
+        long min = 10000000000000000L;
+        long max = 99999999999999999L;
+        return random.nextLong((max - min) + 1) + min;
     }
 
     @NotNull
-    public static Integer generateBookID(){
+    public static Long generateBookID() {
         Random random = new Random();
-        int min = 100000000;
-        int max = 999999999;
-        return random.nextInt((max - min) + 1) + min;
+        long min = 100000000000000000L;
+        long max = 999999999999999999L;
+        return random.nextLong((max - min) + 1) + min;
     }
 }

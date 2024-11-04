@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class BorrowBookInformation
 {
-    private Integer bookID;
+    private Long bookID;
     private String ISBN;
     private Integer userBorrowID;
     private Integer adminLibrarianID;
@@ -12,7 +12,7 @@ public class BorrowBookInformation
     private Date borrowDate;
     private Date expiryDate;
 
-    public BorrowBookInformation(Integer bookID, String ISBN, Date borrowDate, Date expiryDate, Integer userBorrowID, Integer adminLibrarianID){
+    public BorrowBookInformation(Long bookID, String ISBN, Date borrowDate, Date expiryDate, Integer userBorrowID, Integer adminLibrarianID){
         this.bookID = bookID;
         this.ISBN = ISBN;
         this.borrowDate = borrowDate;
@@ -22,10 +22,10 @@ public class BorrowBookInformation
         this.state = true;
     }
 
-    public Integer getBookID() {
+    public Long getBookID() {
         return bookID;
     }
-    public void setBookID(Integer bookID) {
+    public void setBookID(Long bookID) {
         this.bookID = bookID;
     }
 
