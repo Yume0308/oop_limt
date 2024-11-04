@@ -30,13 +30,11 @@
     -fx-alignment: center;
     -fx-background-color: #EEEEEE !important;
 }
-
 .login_form Label {
     -fx-font-weight: 900;
     -fx-text-fill: #4E4E67;
     -fx-font-size: 1.2em;
 }
-
 .login_form TextField {
     -fx-background-color: white;
     -fx-background-radius: 30px;
@@ -44,7 +42,6 @@
     -fx-font-size: 1.0em;
     -fx-padding: 0.8em 0.5em 0.8em 1em;
 }
-
 .login_form PasswordField {
     -fx-background-color: white;
     -fx-background-radius: 30px;
@@ -52,7 +49,6 @@
     -fx-font-size: 1.0em;
     -fx-padding: 0.8em 0.5em 0.8em 1em;
 }
-
 .login_form .submit_button {
     -fx-background-color: #F3F7FE;
     -fx-text-fill: #3B82F6;
@@ -66,4 +62,36 @@
     -fx-background-position: center;
     -fx-background-color: #3B82F6;
     -fx-text-fill: #F3F7FE;
+}
+
+.forgot-password-form {
+    -fx-spacing: 15;
+    -fx-alignment: center;
+    -fx-background-color: #EEEEEE !important;
+}
+.forgot-password-form Label {
+    -fx-font-weight: 900;
+    -fx-text-fill: #4E4E67;
+    -fx-font-size: 1.2em;
+}
+.forgot-password-form TextField {
+    -fx-background-color: white;
+    -fx-background-radius: 30px;
+    -fx-animated: inherit;
+    -fx-font-size: 1.0em;
+    -fx-padding: 0.8em 0.5em 0.8em 1em;
+}
+.forgot-password-form .submit_button:hover {
+    -fx-background-position: center;
+    -fx-background-color: #3B82F6;
+    -fx-text-fill: #F3F7FE;
+}
+.forgot-password-form .submit_button {
+    -fx-background-color: #F3F7FE;
+    -fx-text-fill: #3B82F6;
+    -fx-border-style: none;
+    -fx-cursor: pointer;
+    -fx-border-radius: 1.5em;
+    -fx-font-size: 1.2em;
+    -fx-animated: 0.4s;
 }
