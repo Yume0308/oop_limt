@@ -2,6 +2,7 @@ module com.limt {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
+    requires java.sql;
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
@@ -18,5 +19,6 @@ module com.limt {
     exports com.limt.Controllers.Login;
     exports com.limt.Models;
     exports com.limt.Views;
+    exports com.limt.dbms;
 //    exports com.limt.Constants;
 }
