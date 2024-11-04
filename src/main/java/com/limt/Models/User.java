@@ -1,5 +1,6 @@
 package com.limt.Models;
 
+import com.limt.Lib.Utils;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;
@@ -15,21 +16,13 @@ public class User {
     private Date dateOfBirth;
 
     public User(String userName, String password, String email, String phoneNumber, String addressLine, Date dateOfBirth) {
-        this.userID = this.generateUserID();
+        this.userID = Utils.generateUserID();
         this.userName = userName;
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.addressLine = addressLine;
         this.dateOfBirth = dateOfBirth;
-    }
-
-    @NotNull
-    private Integer generateUserID() {
-        Random random = new Random();
-        int min = 1000000;
-        int max = 9999999;
-        return random.nextInt((max - min) + 1) + min;
     }
 
     public int getUserID() {
