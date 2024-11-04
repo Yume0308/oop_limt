@@ -13,12 +13,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="768.0" styleClass="login" stylesheets="@../../styles/Login/Login.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.limt.Controllers.Login.LoginController">
-    <VBox prefHeight="567.0" prefWidth="210.0" styleClass="login_image" stylesheets="@../../styles/Login/Login.css">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="768.0" styleClass="login" stylesheets="@../../styles/Login/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.limt.Controllers.Login.LoginController">
+    <VBox prefHeight="567.0" prefWidth="210.0" styleClass="login_image" stylesheets="@../../styles/Login/style.css">
         <FontAwesomeIconView glyphName="BOOK" size="35" />
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="OOP_LIMT" />
     </VBox>
-    <AnchorPane layoutX="244.0" layoutY="37.0" prefHeight="506.0" prefWidth="493.0" styleClass="login_form" stylesheets="@../../styles/Login/Login.css">
+    <AnchorPane layoutX="244.0" layoutY="37.0" prefHeight="506.0" prefWidth="493.0" styleClass="login_form" stylesheets="@../../styles/Login/style.css">
         <Text layoutX="179.0" layoutY="47.0" stroke="#e4d7d7" strokeType="OUTSIDE" strokeWidth="2.0" text="LOGIN PAGE" textAlignment="CENTER" wrappingWidth="138.99631690979004">
             <font>
                 <Font name="System Bold Italic" size="20.0" />
