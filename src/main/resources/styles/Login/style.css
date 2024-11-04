@@ -4,52 +4,54 @@
     -fx-font-variant: normal;
 }
 
-.login {
+body {
     -fx-background-color: #EEEEEE !important;
 }
 
-.login_image {
+/* logo-image */
+.page_logo_image {
     -fx-background-color: linear-gradient(to left top, #d6a8c2, #c8a4c4, #b9a1c4, #a99ec2, #999bbf, #92a1c5, #8ca8c9, #86aecc, #88c0d9, #8ed2e3, #97e3ea, #a6f4ef);
     -fx-content-display: center;
     -fx-alignment: center;
     -fx-display-caret: true;
 }
-
-.login_image Text {
+.page_logo_image Text {
     -fx-font-size: 2em;
     -fx-fill: #F9F9F9;
     -fx-content-display: center;
 }
-.login_image FontAwesomeIconView {
+.page_logo_image FontAwesomeIconView {
     -fx-fill: #F9F9F9;
 }
 
-.login_form
-{
+/*page-container*/
+.page_container {
     -fx-spacing: 15;
     -fx-alignment: center;
     -fx-background-color: #EEEEEE !important;
+    -fx-background-radius: 15px;
 }
-.login_form Label {
+.page_container .text_header {
+    -fx-alignment: center;
     -fx-font-weight: 900;
     -fx-text-fill: #4E4E67;
-    -fx-font-size: 1.2em;
+    -fx-font-size: 1.5em;
 }
-.login_form TextField {
+.page_container TextField {
     -fx-background-color: white;
     -fx-background-radius: 30px;
     -fx-animated: inherit;
     -fx-font-size: 1.0em;
     -fx-padding: 0.8em 0.5em 0.8em 1em;
 }
-.login_form PasswordField {
+.page_container PasswordField {
     -fx-background-color: white;
     -fx-background-radius: 30px;
     -fx-animated: inherit;
     -fx-font-size: 1.0em;
     -fx-padding: 0.8em 0.5em 0.8em 1em;
 }
-.login_form .submit_button {
+.page_container .submit_button {
     -fx-background-color: #F3F7FE;
     -fx-text-fill: #3B82F6;
     -fx-border-style: none;
@@ -58,40 +60,8 @@
     -fx-font-size: 1.2em;
     -fx-animated: 0.4s;
 }
-.login_form .submit_button:hover {
+.page_container .submit_button:hover {
     -fx-background-position: center;
     -fx-background-color: #3B82F6;
     -fx-text-fill: #F3F7FE;
-}
-
-.forgot-password-form {
-    -fx-spacing: 15;
-    -fx-alignment: center;
-    -fx-background-color: #EEEEEE !important;
-}
-.forgot-password-form Label {
-    -fx-font-weight: 900;
-    -fx-text-fill: #4E4E67;
-    -fx-font-size: 1.2em;
-}
-.forgot-password-form TextField {
-    -fx-background-color: white;
-    -fx-background-radius: 30px;
-    -fx-animated: inherit;
-    -fx-font-size: 1.0em;
-    -fx-padding: 0.8em 0.5em 0.8em 1em;
-}
-.forgot-password-form .submit_button:hover {
-    -fx-background-position: center;
-    -fx-background-color: #3B82F6;
-    -fx-text-fill: #F3F7FE;
-}
-.forgot-password-form .submit_button {
-    -fx-background-color: #F3F7FE;
-    -fx-text-fill: #3B82F6;
-    -fx-border-style: none;
-    -fx-cursor: pointer;
-    -fx-border-radius: 1.5em;
-    -fx-font-size: 1.2em;
-    -fx-animated: 0.4s;
 }
