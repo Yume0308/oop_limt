@@ -1,4 +1,4 @@
 package com.limt.Models;
 
-public class BorrowBookInfomation {
+public class BorrowBookInformation {
 }
