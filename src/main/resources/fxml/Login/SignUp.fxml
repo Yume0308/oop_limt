@@ -20,7 +20,7 @@
                 <Font size="15.0" />
             </font>
         </Hyperlink>
-        <Text layoutX="168.0" layoutY="56.0" stroke="#e4d7d7" strokeType="OUTSIDE" strokeWidth="2.0" styleClass="text_header" text="Sign in Page" textAlignment="CENTER" wrappingWidth="173.3962802886963">
+        <Text layoutX="168.0" layoutY="56.0" stroke="#e4d7d7" strokeType="OUTSIDE" strokeWidth="2.0" styleClass="text_header" text="Sign Up Page" textAlignment="CENTER" wrappingWidth="173.3962802886963">
             <font>
                 <Font name="System Bold Italic" size="20.0" />
             </font>
