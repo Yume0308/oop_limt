@@ -1,5 +1,8 @@
 package com.limt.Lib;
 
+import javafx.animation.FadeTransition;
+import javafx.scene.Parent;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.text.DateFormat;
@@ -23,17 +26,5 @@ public class Utils {
         long min = 100000000000000000L;
         long max = 999999999999999999L;
         return random.nextLong((max - min) + 1) + min;
-    }
-
-    @NotNull
-    public static String formatDatetime(String dateFormat, Date date) {
-        DateFormat formatter = new SimpleDateFormat(dateFormat);
-        return formatter.format(date);
-    }
-
-    @NotNull
-    public static Date convertStringToDatetime(String dateFormat, String dateString) throws ParseException {
-        DateFormat formatter = new SimpleDateFormat(dateFormat);
-        return formatter.parse(dateString);
     }
 }

@@ -20,18 +20,19 @@
                 <Font size="15.0" />
             </font>
         </Hyperlink>
-        <Text layoutX="168.0" layoutY="56.0" stroke="#e4d7d7" strokeType="OUTSIDE" strokeWidth="2.0" styleClass="text_header" text="Reset password" textAlignment="CENTER" wrappingWidth="173.3962802886963">
+        <Text layoutX="168.0" layoutY="56.0" stroke="#e4d7d7" strokeType="OUTSIDE" strokeWidth="2.0" styleClass="text_header" text="Sign Up Page" textAlignment="CENTER" wrappingWidth="173.3962802886963">
             <font>
                 <Font name="System Bold Italic" size="20.0" />
             </font>
         </Text>
-        <Text layoutX="136.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please enter your new password" textAlignment="CENTER" wrappingWidth="238.455078125">
+        <Text layoutX="136.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Let's create a new account" textAlignment="CENTER" wrappingWidth="238.455078125">
             <font>
                 <Font size="14.0" />
             </font>
         </Text>
-        <TextField layoutX="56.0" layoutY="159.0" prefHeight="38.0" prefWidth="398.0" promptText="New password" />
-      <TextField layoutX="56.0" layoutY="214.0" prefHeight="38.0" prefWidth="398.0" promptText="Confirm password" />
-        <Button layoutX="193.0" layoutY="269.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="123.0" styleClass="submit_button" text="Reset password" />
+        <TextField layoutX="56.0" layoutY="159.0" prefHeight="38.0" prefWidth="398.0" promptText="Username..." />
+      <TextField layoutX="56.0" layoutY="208.0" prefHeight="38.0" prefWidth="398.0" promptText="Password..." />
+        <TextField layoutX="56.0" layoutY="262.0" prefHeight="38.0" prefWidth="398.0" promptText="Confirm password..." />
+        <Button layoutX="193.0" layoutY="315.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="123.0" styleClass="submit_button" text="Reset password" />
     </AnchorPane>
 </AnchorPane>
