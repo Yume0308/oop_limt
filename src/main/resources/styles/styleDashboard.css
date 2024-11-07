@@ -1,0 +1,78 @@
+/*.button*/
+/*{*/
+/*    -fx-background-color : #05071F;*/
+/*    -fx-text-fill : #e7e5e5;*/
+/*}*/
+/*.button:hover{*/
+/*    -fx-background-color : #10165F;*/
+/*}*/
+/*.button:pressed*/
+/*{*/
+/*    -fx-background-color : #1620A1;*/
+/*}*/
+
+/*.scroll-pane {*/
+/*    -fx-background-color: #02030A;*/
+/*}*/
+
+/*.scroll-bar:horizontal, .scroll-bar:vertical{*/
+/*    -fx-background-color:transparent;*/
+/*}*/
+
+/*.increment-button, .decrement-button {*/
+/*    -fx-background-color: transparent;*/
+/*    -fx-border-color: transparent;*/
+/*}*/
+
+/*.scroll-bar:horizontal .track,*/
+/*.scroll-bar:vertical .track{*/
+/*    -fx-background-color: transparent;*/
+/*    -fx-border-color: transparent;*/
+/*    -fx-background-radius: 0em;*/
+/*}*/
+
+/*.scroll-bar:horizontal .thumb,*/
+/*.scroll-bar:vertical .thumb {*/
+/*    -fx-background-color: #10165F;*/
+/*    -fx-background-radius: 5em;*/
+/*}*/
+
+/*.scroll-pane > .corner {*/
+/*    -fx-background-color: black;*/
+/*}*/
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    -fx-background-color: #FFF;
+}
+
+.sidebar {
+    -fx-background-color: #E5E5E5;
+    -fx-spacing: 10;
+}
+
+.sidebar .button {
+    -fx-background-color: #E5E5E5;
+    -fx-text-fill: #383838;
+    -fx-text-alignment: left;
+}
+.sidebar .button ImageView {
+    -fx-fit-to-height: 28px;
+    -fx-fit-to-width: 28px;
+}
+.sidebar .button:hover {
+    -fx-background-color: #E5E5E5;
+    -fx-text-fill: #373636;
+}
+.sidebar .button:pressed {
+    -fx-background-color: #E5E5E5;
+    -fx-text-fill: #364FCD;
+}
+.sidebar .button:focused {
+    -fx-background-color: #D9D9D9;
+    -fx-text-fill: #364FCD;
+}
+.sidebar .button:active {
+    -fx-background-color: #D9D9D9;
+    -fx-text-fill: #364FCD;
+}
