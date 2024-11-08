@@ -238,7 +238,7 @@
       </VBox>
       <HBox layoutX="199.0" prefHeight="70.0" prefWidth="1022.0" spacing="15.0" styleClass="header">
          <children>
-            <Label fx:id="titlepage" prefHeight="27.0" prefWidth="94.0" text="Dashboard" textFill="#2b49d3">
+            <Label fx:id="titlepage" alignment="CENTER" prefHeight="27.0" prefWidth="94.0" text="Dashboard" textFill="#2b49d3">
                <HBox.margin>
                   <Insets left="25.0" top="20.0" />
                </HBox.margin>

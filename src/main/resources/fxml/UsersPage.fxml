@@ -1,14 +1,290 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="fxml.UsersView"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1220.0" stylesheets="@../styles/styleDashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <VBox prefHeight="800.0" prefWidth="200.0" styleClass="sidebar">
+            <children>
+                <ImageView fitHeight="70.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="201.0" text="Dashboard">
+                    <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/dashboard-icon.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <padding>
+                        <Insets left="30.0" />
+                    </padding>
+                </Button>
+                <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="201.0" text="Books">
+                    <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/books-icon.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <padding>
+                        <Insets left="30.0" />
+                    </padding>
+                </Button>
+                <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="201.0" text="Members">
+                    <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/users-icon.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <padding>
+                        <Insets left="30.0" />
+                    </padding>
+                </Button>
+                <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="201.0" text="Staffs">
+                    <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/staff-icon.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <padding>
+                        <Insets left="30.0" />
+                    </padding>
+                </Button>
+                <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="201.0" text="Analysis">
+                    <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/analysis-icon.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <padding>
+                        <Insets left="30.0" />
+                    </padding>
+                </Button>
+                <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="201.0" text="Profile">
+                    <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/profile-icon.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <padding>
+                        <Insets left="30.0" />
+                    </padding>
+                </Button>
+                <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="201.0" text="Setting">
+                    <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/setting-icon.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <padding>
+                        <Insets left="30.0" />
+                    </padding>
+                </Button>
+                <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="201.0" text="Logout">
+                    <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/logout-icon.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <padding>
+                        <Insets left="30.0" />
+                    </padding>
+                </Button>
+                <Pane prefHeight="306.0" prefWidth="200.0">
+                    <children>
+                        <Line endX="81.40000915527344" endY="-1.1444091796875E-5" layoutX="103.0" layoutY="-1.0" opacity="0.28" startX="-87.40000915527344" startY="-1.1444091796875E-5" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="200.0" text="Today" />
+                        <VBox layoutY="52.0" prefHeight="123.0" prefWidth="200.0" style="-fx-spacing: 10;">
+                            <children>
+                                <HBox prefHeight="18.0" prefWidth="200.0">
+                                    <children>
+                                        <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Members" wrappingWidth="180.5367088317871">
+                                            <HBox.margin>
+                                                <Insets left="8.0" />
+                                            </HBox.margin>
+                                        </Text>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="18.0" prefWidth="200.0">
+                                    <children>
+                                        <Circle fill="WHITE" radius="7.0" stroke="#1cdc5c" strokeType="INSIDE">
+                                            <HBox.margin>
+                                                <Insets left="39.0" />
+                                            </HBox.margin>
+                                        </Circle>
+                                        <Label text="10 Members">
+                                            <HBox.margin>
+                                                <Insets left="15.0" />
+                                            </HBox.margin>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="18.0" prefWidth="200.0">
+                                    <children>
+                                        <Circle fill="WHITE" radius="7.0" stroke="#fae90a" strokeType="INSIDE">
+                                            <HBox.margin>
+                                                <Insets left="39.0" />
+                                            </HBox.margin>
+                                        </Circle>
+                                        <Label text="2 Members">
+                                            <HBox.margin>
+                                                <Insets left="15.0" />
+                                            </HBox.margin>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="18.0" prefWidth="200.0">
+                                    <children>
+                                        <Circle fill="WHITE" radius="7.0" stroke="#da1e1e" strokeType="INSIDE">
+                                            <HBox.margin>
+                                                <Insets left="39.0" />
+                                            </HBox.margin>
+                                        </Circle>
+                                        <Label text="10 Members">
+                                            <HBox.margin>
+                                                <Insets left="15.0" />
+                                            </HBox.margin>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                        <VBox layoutY="183.0" prefHeight="123.0" prefWidth="200.0" style="-fx-spacing: 10;">
+                            <children>
+                                <HBox prefHeight="18.0" prefWidth="200.0">
+                                    <children>
+                                        <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Books" wrappingWidth="180.5367088317871">
+                                            <HBox.margin>
+                                                <Insets left="8.0" />
+                                            </HBox.margin>
+                                        </Text>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="18.0" prefWidth="200.0">
+                                    <children>
+                                        <Circle fill="WHITE" radius="7.0" stroke="#1cdc5c" strokeType="INSIDE">
+                                            <HBox.margin>
+                                                <Insets left="39.0" />
+                                            </HBox.margin>
+                                        </Circle>
+                                        <Label text="10 Books">
+                                            <HBox.margin>
+                                                <Insets left="15.0" />
+                                            </HBox.margin>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="18.0" prefWidth="200.0">
+                                    <children>
+                                        <Circle fill="WHITE" radius="7.0" stroke="#fae90a" strokeType="INSIDE">
+                                            <HBox.margin>
+                                                <Insets left="39.0" />
+                                            </HBox.margin>
+                                        </Circle>
+                                        <Label text="10 Books">
+                                            <HBox.margin>
+                                                <Insets left="15.0" />
+                                            </HBox.margin>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="18.0" prefWidth="200.0">
+                                    <children>
+                                        <Circle fill="WHITE" radius="7.0" stroke="#da1e1e" strokeType="INSIDE">
+                                            <HBox.margin>
+                                                <Insets left="39.0" />
+                                            </HBox.margin>
+                                        </Circle>
+                                        <Label text="10 Books">
+                                            <HBox.margin>
+                                                <Insets left="15.0" />
+                                            </HBox.margin>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </Pane>
+            </children>
+        </VBox>
+        <HBox layoutX="199.0" prefHeight="70.0" prefWidth="1022.0" spacing="15.0" styleClass="header">
+            <children>
+                <Label fx:id="titlepage" alignment="CENTER" prefHeight="27.0" prefWidth="94.0" text="Users" textFill="#2b49d3">
+                    <HBox.margin>
+                        <Insets left="25.0" top="20.0" />
+                    </HBox.margin>
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Separator orientation="VERTICAL">
+                    <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                    </padding>
+                </Separator>
+                <Label fx:id="Date" prefHeight="27.0" prefWidth="332.0" text="Jan 12, 2023 | Thursday, 11:00 AM" textFill="#282222">
+                    <HBox.margin>
+                        <Insets top="20.0" />
+                    </HBox.margin>
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Pane prefHeight="41.0" prefWidth="294.0">
+                    <children>
+                        <TextField fx:id="search_input" prefHeight="26.0" prefWidth="292.0" promptText="Search the book..." style="-fx-background-radius: 2em; -fx-borde-color: #373636FF;">
+                            <padding>
+                                <Insets left="12.0" right="25.0" />
+                            </padding>
+                        </TextField>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="266.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/search-icon.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                    <HBox.margin>
+                        <Insets left="40.0" top="20.0" />
+                    </HBox.margin>
+                </Pane>
+                <Circle fx:id="avatar" fill="WHITE" radius="15.0" stroke="#c1c1c1" strokeType="INSIDE">
+                    <HBox.margin>
+                        <Insets left="60.0" top="17.0" />
+                    </HBox.margin>
+                </Circle>
+            </children>
+        </HBox>
+    </children>
+    <effect>
+        <DropShadow />
+    </effect>
 </AnchorPane>
