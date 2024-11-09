@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage thisStage) throws Exception {
-        String fxmlPath = "/fxml/Dashboard.fxml";
+        String fxmlPath = "/fxml/BooksPage.fxml";
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
         Scene scene = new Scene(fxmlLoader.load());
