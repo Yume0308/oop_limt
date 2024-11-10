@@ -13,7 +13,7 @@ module com.limt {
     requires com.almasb.fxgl.all;
     requires annotations;
 
-    opens com.limt to javafx.fxml;
+    opens com.limt.Controllers to javafx.fxml;
     exports com.limt;
     exports com.limt.Controllers;
     exports com.limt.Models;

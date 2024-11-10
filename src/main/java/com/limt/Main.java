@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage thisStage) throws Exception {
-        String fxmlPath = "/fxml/BooksPage.fxml";
+        String fxmlPath = "/fxml/LoginPage.fxml";
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
         Scene scene = new Scene(fxmlLoader.load());
