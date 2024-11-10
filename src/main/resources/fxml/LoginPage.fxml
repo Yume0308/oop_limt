@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="768.0" stylesheets="@../styles/styleLoginPage.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.limt.Controllers.Login.LoginController">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="768.0" stylesheets="@../styles/styleLoginPage.css" type="AnchorPane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.limt.Controllers.Login.LoginController">
     <VBox prefHeight="567.0" prefWidth="210.0" styleClass="page_logo_image" stylesheets="@../styles/styleLoginPage.css">
         <FontAwesomeIconView glyphName="BOOK" size="35" />
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="OOP_LIMT" />
@@ -24,7 +24,7 @@
                 <Font name="System Bold Italic" size="20.0" />
             </font>
         </Text>
-      <Text layoutX="141.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign in your account to use program" />
+      <Text layoutX="154.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign in your account to use program" />
         <Label layoutX="18.0" layoutY="116.0" prefHeight="30.0" prefWidth="389.0" text="Username:">
          <graphic>
              <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
@@ -59,4 +59,4 @@
       <Hyperlink fx:id="sign_in_hyperlink" layoutX="148.0" layoutY="299.0" text="Sign up" />
       <Hyperlink fx:id="forgot_password_hyperlink" layoutX="362.0" layoutY="300.0" text="Forgot password?" />
     </AnchorPane>
-</AnchorPane>
+</fx:root>

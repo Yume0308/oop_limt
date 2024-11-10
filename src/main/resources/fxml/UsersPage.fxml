@@ -290,10 +290,23 @@
         <VBox layoutX="199.0" layoutY="70.0" prefHeight="712.0" prefWidth="1022.0" spacing="15.0">
             <children>
                 <Label />
-                <HBox prefHeight="31.0" prefWidth="1022.0" spacing="35.0">
+                <HBox prefHeight="31.0" prefWidth="969.0" spacing="35.0">
                     <children>
-                        <TextField prefHeight="32.0" prefWidth="222.0" />
-                        <MenuButton mnemonicParsing="false" prefHeight="31.0" prefWidth="73.0" text="Export">
+                        <Pane prefHeight="31.0" prefWidth="244.0">
+                            <children>
+                                <TextField prefHeight="32.0" prefWidth="244.0" promptText="Search BookId, ISBN or Title..." style="-fx-background-radius: 2em;">
+                                    <padding>
+                                        <Insets left="20.0" right="15.0" />
+                                    </padding>
+                                </TextField>
+                                <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="220.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/search-icon.png" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                        </Pane>
+                        <MenuButton mnemonicParsing="false" prefHeight="31.0" prefWidth="73.0" style="-fx-background-color: #E5E5E5;" text="Export">
                             <items>
                                 <MenuItem mnemonicParsing="false" text="CSV" />
                                 <MenuItem mnemonicParsing="false" text="JSON" />
@@ -310,22 +323,25 @@
                         <Insets left="20.0" />
                     </VBox.margin>
                 </HBox>
-                <TableView prefHeight="450.0" prefWidth="1022.0">
+                <TableView prefHeight="450.0" prefWidth="1000.0">
                     <columns>
-                        <TableColumn prefWidth="56.0" text="STT" />
-                        <TableColumn prefWidth="80.800048828125" text="BookID" />
-                        <TableColumn prefWidth="135.199951171875" text="Title" />
-                        <TableColumn prefWidth="105.60003662109375" text="ISBN" />
-                        <TableColumn minWidth="0.0" prefWidth="145.5999755859375" text="Author" />
-                        <TableColumn minWidth="2.4000244140625" prefWidth="74.39996337890625" text="Publisher" />
-                        <TableColumn minWidth="4.00006103515625" text="YearOfPublication" />
-                        <TableColumn minWidth="0.0" prefWidth="75.199951171875" text="NumberOfPages" />
-                        <TableColumn minWidth="0.0" prefWidth="75.20001220703125" text="Quantity" />
-                        <TableColumn minWidth="0.0" prefWidth="75.2000732421875" text="ImagePath" />
-                        <TableColumn minWidth="0.0" prefWidth="75.199951171875" text="Action" />
+                        <TableColumn prefWidth="35.19998091459274" text="STT" />
+                        <TableColumn prefWidth="80.8000373840332" text="BookID" />
+                        <TableColumn prefWidth="148.00001525878906" text="Title" />
+                        <TableColumn prefWidth="81.5999755859375" text="ISBN" />
+                        <TableColumn minWidth="0.0" prefWidth="116.0" text="Author" />
+                        <TableColumn minWidth="2.4000244140625" prefWidth="60.79998779296875" text="Publisher" />
+                        <TableColumn minWidth="4.00006103515625" prefWidth="64.800048828125" text="YearOfPublication" />
+                        <TableColumn minWidth="0.0" prefWidth="110.4000244140625" text="NumberOfPages" />
+                        <TableColumn minWidth="0.0" text="Quantity" />
+                        <TableColumn minWidth="0.0" prefWidth="92.00018310546875" text="ImagePath" />
+                        <TableColumn minWidth="0.0" prefWidth="88.0" text="Action" />
                     </columns>
                 </TableView>
             </children>
+            <padding>
+                <Insets left="15.0" right="15.0" />
+            </padding>
         </VBox>
     </children>
     <effect>

@@ -1,5 +1,6 @@
 package com.limt;
 
+import com.limt.dbms.DatabaseManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
