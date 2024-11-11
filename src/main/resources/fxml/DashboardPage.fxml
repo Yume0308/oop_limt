@@ -82,18 +82,6 @@
                        <Insets left="30.0" />
                    </padding>
                </Button>
-               <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="201.0" text="Analysis">
-                   <graphic>
-                       <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                               <Image url="@../images/analysis-icon.png" />
-                           </image>
-                       </ImageView>
-                   </graphic>
-                   <padding>
-                       <Insets left="30.0" />
-                   </padding>
-               </Button>
                <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="201.0" text="Profile">
                    <graphic>
                        <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
