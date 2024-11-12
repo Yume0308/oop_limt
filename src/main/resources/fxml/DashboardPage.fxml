@@ -30,7 +30,7 @@
 <!--                        <FontAwesomeIcon fill="#152032" glyphName="BOOK" size="3em" />-->
             </graphic>
         </Button>
-        <Button fx:id="addStudentBtn" contentDisplay="TOP" layoutX="219.0" layoutY="140.0" mnemonicParsing="false"prefHeight="88.0" prefWidth="114.0" style="-fx-background-color: #c9d1d0; -fx-background-radius: 7;" text="Add Student">
+        <Button fx:id="addStudentBtn" contentDisplay="TOP" layoutX="219.0" layoutY="140.0" mnemonicParsing="false" prefHeight="88.0" prefWidth="114.0" style="-fx-background-color: #c9d1d0; -fx-background-radius: 7;" text="Add Student">
             <graphic>
 <!--                        <FontAwesomeIcon fill="#152032" glyphName="GRADUATION_CAP" size="3em" />-->
             </graphic>

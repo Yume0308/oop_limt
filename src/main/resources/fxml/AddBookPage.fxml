@@ -56,11 +56,10 @@
                         <Font size="13.0" />
                     </font>
                 </Label>
-                <Button fx:id="addbookBtn" layoutX="244.0" layoutY="517.0" mnemonicParsing="false" onAction="#addBook" prefHeight="30.0" prefWidth="142.0" style="-fx-background-color: #FFCF1E; -fx-background-radius: 7;" text="ADD BOOK" textFill="WHITE" />
+                <Button fx:id="addbookBtn" layoutX="244.0" layoutY="517.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="142.0" style="-fx-background-color: #FFCF1E; -fx-background-radius: 7;" text="ADD BOOK" textFill="WHITE" />
                 <AnchorPane layoutX="-2.0" layoutY="78.0" prefHeight="7.0" prefWidth="512.0" style="-fx-background-color: white;" />
                 <Label fx:id="msgLabel" layoutX="78.0" layoutY="480.0" prefHeight="17.0" prefWidth="187.0" textFill="#b96909" />
                 <Button fx:id="backBtn" layoutX="78.0" layoutY="513.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="58.0" style="-fx-background-color: transparent;" />
-                <FontAwesomeIcon fill="#030303" glyphName="ANGLE_DOUBLE_LEFT" layoutX="99.0" layoutY="413.0" size="2.5em" text="" />
             <Label layoutX="80.0" layoutY="378.0" text="Number Of Page">
                <font>
                   <Font size="13.0" />
