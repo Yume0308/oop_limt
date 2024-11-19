@@ -7,67 +7,50 @@ import java.util.Date;
 import java.util.Random;
 
 public class User {
-    private final Long userID;
-    private String userName;
-    private String password;
-    private String email;
-    private String phoneNumber;
-    private String addressLine;
-    private Date dateOfBirth;
+    private Integer UserID;
+    private String Username;
+    private String Password;
+    private String Name;
+    private String Email;
+    private String PhoneNumber;
+    private Date Birthday;
 
-    public User(String userName, String password, String email, String phoneNumber, String addressLine, Date dateOfBirth) {
-        this.userID = Utils.generateUserID();
-        this.userName = userName;
-        this.password = password;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.addressLine = addressLine;
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public Long getUserID() {
-        return userID;
+    public User(Integer UserID, String Username, String Password, String Name, String Email, String PhoneNumber, Date Birthday) {
+        UserID = UserID;
+        Username = Username;
+        Password = Password;
+        Name = Name;
+        Email = Email;
+        PhoneNumber = PhoneNumber;
+        Birthday = Birthday;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
+    public User(String Username, String Password, String Name, String Email, String PhoneNumber, Date Birthday) {
+        Username = Username;
+        Password = Password;
+        Name = Name;
+        Email = Email;
+        PhoneNumber = PhoneNumber;
+        Birthday = Birthday;
     }
 
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public Integer getID() { return UserID; }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+    public String getUsername() { return Username; }
+    public void setUsername(String username) { this.Username = username; }
 
-    public String getAddressLine() {
-        return addressLine;
-    }
-    public void setAddressLine(String addressLine) {
-        this.addressLine = addressLine;
-    }
+    public String getPassword() { return Password; }
+    public void setPassword(String password) { this.Password = password; }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
+    public String getName() { return Name; }
+    public void setName(String name) { Name = name; }
+
+    public String getEmail() { return Email; }
+    public void setEmail(String email) { this.Email = email; }
+
+    public String getPhoneNumber() { return PhoneNumber; }
+    public void setPhoneNumber(String phoneNumber) { this.PhoneNumber = phoneNumber; }
+
+    public Date getBirthday() { return Birthday; }
+    public void setBirthday(Date birthday) { this.Birthday = birthday; }
 }
