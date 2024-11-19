@@ -17,7 +17,5 @@ module com.limt {
     exports com.limt;
     exports com.limt.Controllers;
     exports com.limt.Models;
-//    exports com.limt.Views;
     exports com.limt.dbms;
-//    exports com.limt.enumStates;
 }
