@@ -1,88 +1,104 @@
 package com.limt.Models;
 
-import com.limt.Lib.Utils;
-
-import java.util.Date;
+import javafx.scene.control.CheckBox;
 
 public class Book {
-    private final Long bookId;
+    private final CheckBox checkBox;
+    private String ID;
     private String ISBN;
-    private String title;
-    private String author;
-    private String publisher;
-    private Date yearOfPublication;
-    private Integer numberOfPages;
-    private Integer quantity;
+    private String Title;
+    private String Author;
+    private String Category;
+    private String Publisher;
+    private Integer Quantity;
+    private Integer Remaining;
     private String imagePath;
 
-    public Book(String ISBN, String title, String author, String publisher, Date yearOfPublication, Integer numberOfPages, Integer quantity, String imagePath) {
+    public Book(String ID, String ISBN, String title, String author, String category, String publisher, Integer quantity, Integer remainingBooks, String imagePath) {
+        checkBox = new CheckBox();
+        this.ID = ID;
         this.ISBN = ISBN;
-        this.title = title;
-        this.author = author;
-        this.publisher = publisher;
-        this.yearOfPublication = yearOfPublication;
-        this.numberOfPages = numberOfPages;
-        this.quantity = quantity;
+        Title = title;
+        Author = author;
+        Category = category;
+        Publisher = publisher;
+        Quantity = quantity;
+        Remaining = remainingBooks;
         this.imagePath = imagePath;
-        this.bookId = Utils.generateBookID();
     }
 
-    public Long getBookId() {
-        return bookId;
+    public CheckBox getCheckBox() {
+        return checkBox;
+    }
+
+    public String getID() {
+        return ID;
     }
 
     public String getISBN() {
         return ISBN;
     }
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
-    }
 
     public String getTitle() {
-        return title;
-    }
-    public void setTitle(String title) {
-        this.title = title;
+        return Title;
     }
 
     public String getAuthor() {
-        return author;
+        return Author;
     }
-    public void setAuthor(String author) {
-        this.author = author;
+
+    public String getCategory() {
+        return Category;
     }
 
     public String getPublisher() {
-        return publisher;
-    }
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
-    }
-
-    public Date getYearOfPublication() {
-        return yearOfPublication;
-    }
-    public void setYearOfPublication(Date yearOfPublication) {
-        this.yearOfPublication = yearOfPublication;
-    }
-
-    public Integer getNumberOfPages() {
-        return numberOfPages;
-    }
-    public void setNumberOfPages(Integer numberOfPages) {
-        this.numberOfPages = numberOfPages;
+        return Publisher;
     }
 
     public Integer getQuantity() {
-        return quantity;
+        return Quantity;
     }
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+
+    public Integer getRemaining() {
+        return Remaining;
     }
 
     public String getImagePath() {
         return imagePath;
     }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public void setISBN(String ISBN) {
+        this.ISBN = ISBN;
+    }
+
+    public void setTitle(String title) {
+        Title = title;
+    }
+
+    public void setAuthor(String author) {
+        Author = author;
+    }
+
+    public void setCategory(String category) {
+        Category = category;
+    }
+
+    public void setPublisher(String publisher) {
+        Publisher = publisher;
+    }
+
+    public void setQuantity(Integer quantity) {
+        Quantity = quantity;
+    }
+
+    public void setRemaining(Integer remaining) {
+        Remaining = remaining;
+    }
+
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
