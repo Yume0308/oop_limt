@@ -52,6 +52,9 @@ public class ReturnBookPageController {
     private DatePicker returnDate;
 
     @FXML
+    private Button scanISBNBtn;
+
+    @FXML
     private Button searchBookBtn;
 
     @FXML
@@ -96,6 +99,11 @@ public class ReturnBookPageController {
 
     @FXML
     void HandleReturnBook(ActionEvent event) {
+
+    }
+
+    @FXML
+    void HandleScanISBNBook(ActionEvent event) {
 
     }
 

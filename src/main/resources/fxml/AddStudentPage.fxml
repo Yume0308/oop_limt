@@ -8,69 +8,70 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="439.0" prefWidth="503.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.limt.Controllers.AddStudentPageController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.limt.Controllers.AddStudentPageController">
    <children>
-      <AnchorPane layoutY="5.0" prefHeight="434.0" prefWidth="512.0" style="-fx-background-color: #dce6e5;">
+      <AnchorPane layoutY="-1.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #dce6e5;">
          <children>
-            <AnchorPane layoutY="-6.0" prefHeight="84.0" prefWidth="512.0" style="-fx-background-color: linear-gradient(to left top, #d6a8c2, #c8a4c4, #b9a1c4, #a99ec2, #999bbf, #92a1c5, #8ca8c9, #86aecc, #88c0d9, #8ed2e3, #97e3ea, #a6f4ef);">
+            <AnchorPane layoutY="-7.0" prefHeight="84.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to left top, #d6a8c2, #c8a4c4, #b9a1c4, #a99ec2, #999bbf, #92a1c5, #8ca8c9, #86aecc, #88c0d9, #8ed2e3, #97e3ea, #a6f4ef);">
                <children>
-                  <Label layoutX="182.0" layoutY="30.0" prefHeight="36.0" prefWidth="136.0" text="ADD STUDENT " textFill="WHITE">
+                  <Label layoutX="232.0" layoutY="30.0" prefHeight="36.0" prefWidth="136.0" text="ADD STUDENT " textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
-                  <FontAwesomeIconView fill="WHITE" glyphName="BOOK" layoutX="318.0" layoutY="60.0" size="3em" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="STUDENT" layoutX="360.0" layoutY="54.0" size="3em" />
                   <Button fx:id="backBtn" layoutX="23.0" layoutY="35.0" mnemonicParsing="false" style="-fx-background-color: TRANSPARENT;" textFill="WHITE" />
                </children>
             </AnchorPane>
-            <TextField fx:id="studentIDField" layoutX="148.0" layoutY="103.0" prefHeight="25.0" prefWidth="241.0" promptText="Enter student ID" />
-            <TextField fx:id="studentNameField" layoutX="148.0" layoutY="147.0" prefHeight="25.0" prefWidth="241.0" promptText="Enter student Name" />
-            <TextField fx:id="studentSchoolField" layoutX="148.0" layoutY="191.0" prefHeight="25.0" prefWidth="241.0" promptText="Enter student School" />
-            <TextField fx:id="studentEmailField" layoutX="148.0" layoutY="235.0" prefHeight="25.0" prefWidth="241.0" promptText="Enter student Email" />
-            <TextField fx:id="studentPhoneNumberFIeld" layoutX="148.0" layoutY="278.0" prefHeight="25.0" prefWidth="241.0" promptText="Enter student PhoneNumber" />
-            <TextField fx:id="studentAddressLineField" layoutX="100.0" layoutY="344.0" prefHeight="25.0" prefWidth="241.0" promptText="Enter student AddressLine" />
-            <DatePicker fx:id="studentBirthdayField" layoutX="336.0" layoutY="323.0" promptText="Enter student Birthday" />
-            <Label layoutX="55.0" layoutY="106.0" prefHeight="19.0" prefWidth="40.0" text="ID :">
+            <TextField fx:id="studentIDField" layoutX="275.0" layoutY="105.0" prefHeight="25.0" prefWidth="241.0" promptText="Enter student ID" />
+            <TextField fx:id="studentNameField" layoutX="275.0" layoutY="150.0" prefHeight="25.0" prefWidth="241.0" promptText="Enter student Name" />
+            <TextField fx:id="studentSchoolField" layoutX="275.0" layoutY="195.0" prefHeight="25.0" prefWidth="241.0" promptText="Enter student School" />
+            <TextField fx:id="studentEmailField" layoutX="275.0" layoutY="240.0" prefHeight="25.0" prefWidth="241.0" promptText="Enter student Email" />
+            <TextField fx:id="studentPhoneNumberFIeld" layoutX="275.0" layoutY="285.0" prefHeight="25.0" prefWidth="241.0" promptText="Enter student PhoneNumber" />
+            <TextField fx:id="studentAddressLineField" layoutX="275.0" layoutY="330.0" prefHeight="25.0" prefWidth="241.0" promptText="Enter student AddressLine" />
+            <DatePicker fx:id="studentBirthdayField" layoutX="275.0" layoutY="375.0" prefHeight="26.0" prefWidth="242.0" promptText="Enter student Birthday" />
+            <Label layoutX="100.0" layoutY="107.0" prefHeight="19.0" prefWidth="40.0" text="ID :">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="55.0" layoutY="150.0" text="Name :">
+            <Label layoutX="100.0" layoutY="153.0" text="Name :">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="54.0" layoutY="194.0" text="School :">
+            <Label layoutX="100.0" layoutY="198.0" text="School :">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="53.0" layoutY="238.0" text="Email :">
+            <Label layoutX="100.0" layoutY="243.0" text="Email :">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="55.0" layoutY="281.0" text="PhoneNumber :">
+            <Label layoutX="100.0" layoutY="288.0" text="PhoneNumber :">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="59.0" layoutY="326.0" text="AddressLine">
+            <Label layoutX="100.0" layoutY="333.0" text="AddressLine">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="282.0" layoutY="326.0" text="Birthday :">
+            <Label layoutX="100.0" layoutY="379.0" text="Birthday :">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Button fx:id="clearAllField" layoutX="156.0" layoutY="387.0" mnemonicParsing="false" onAction="#HandleClearAllField" prefHeight="30.0" prefWidth="142.0" style="-fx-background-color: linear-gradient(to left top, #d6a8c2, #c8a4c4, #b9a1c4, #a99ec2, #999bbf, #92a1c5, #8ca8c9, #86aecc, #88c0d9, #8ed2e3, #97e3ea, #a6f4ef); -fx-background-radius: 7;" text="CLEAR" textFill="WHITE" />
-            <Button fx:id="addStudentBtn" layoutX="318.0" layoutY="387.0" mnemonicParsing="false" onAction="#HandleAddStudent" prefHeight="30.0" prefWidth="142.0" style="-fx-background-color: linear-gradient(to left top, #d6a8c2, #c8a4c4, #b9a1c4, #a99ec2, #999bbf, #92a1c5, #8ca8c9, #86aecc, #88c0d9, #8ed2e3, #97e3ea, #a6f4ef); -fx-background-radius: 7;" text="ADD STUDENT" textFill="WHITE" />
-            <AnchorPane layoutX="-2.0" layoutY="78.0" prefHeight="7.0" prefWidth="512.0" style="-fx-background-color: white;" />
-            <Label fx:id="msgLabel" layoutX="41.0" layoutY="374.0" prefHeight="17.0" prefWidth="292.0" textFill="#b96909" />
-            <Button fx:id="backBtn" layoutX="79.0" layoutY="383.0" mnemonicParsing="false" onAction="#backto" prefHeight="38.0" prefWidth="58.0" style="-fx-background-color: transparent;" />
-            <FontAwesomeIconView fill="#030303" glyphName="ANGLE_DOUBLE_LEFT" layoutX="99.0" layoutY="413.0" size="2.5em" text="" />
+            <Button fx:id="clearAllField" layoutX="98.0" layoutY="542.0" mnemonicParsing="false" onAction="#HandleClearAllField" prefHeight="30.0" prefWidth="142.0" style="-fx-background-color: linear-gradient(to left top, #d6a8c2, #c8a4c4, #b9a1c4, #a99ec2, #999bbf, #92a1c5, #8ca8c9, #86aecc, #88c0d9, #8ed2e3, #97e3ea, #a6f4ef); -fx-background-radius: 7;" text="CLEAR" textFill="WHITE" />
+            <Button fx:id="addStudentBtn" layoutX="374.0" layoutY="542.0" mnemonicParsing="false" onAction="#HandleAddStudent" prefHeight="30.0" prefWidth="142.0" style="-fx-background-color: linear-gradient(to left top, #d6a8c2, #c8a4c4, #b9a1c4, #a99ec2, #999bbf, #92a1c5, #8ca8c9, #86aecc, #88c0d9, #8ed2e3, #97e3ea, #a6f4ef); -fx-background-radius: 7;" text="ADD STUDENT" textFill="WHITE" />
+            <Label fx:id="msgLabel" layoutX="97.0" layoutY="509.0" prefHeight="18.0" prefWidth="474.0" textFill="#b96909" />
+            <Button fx:id="backBtn" layoutX="21.0" layoutY="538.0" mnemonicParsing="false" onAction="#backto" prefHeight="38.0" prefWidth="58.0" style="-fx-background-color: transparent;">
+               <graphic>
+                  <FontAwesomeIconView fill="#030303" glyphName="ANGLE_DOUBLE_LEFT" size="2.5em" text="" />
+               </graphic></Button>
          </children>
       </AnchorPane>
    </children>
