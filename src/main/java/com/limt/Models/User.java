@@ -1,10 +1,6 @@
 package com.limt.Models;
 
-import com.limt.Lib.Utils;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Date;
-import java.util.Random;
 
 public class User {
     private Integer UserID;

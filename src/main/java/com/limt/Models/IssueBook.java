@@ -13,10 +13,8 @@ public class IssueBook {
     private String StudentID;
     private String StudentName;
     private Date IssueDate;
-    private Date ReturnDate;
-    private Integer Days;
 
-    public IssueBook(String issueID, String bookID, String bookISBN, String bookTitle, String studentID, String studentName, Date issueDate, Date returnDate, Integer days) {
+    public IssueBook(String issueID, String bookID, String bookISBN, String bookTitle, String studentID, String studentName, Date issueDate) {
         CheckBox = new CheckBox();
         IssueID = issueID;
         BookID = bookID;
@@ -25,8 +23,6 @@ public class IssueBook {
         StudentID = studentID;
         StudentName = studentName;
         IssueDate = issueDate;
-        ReturnDate = returnDate;
-        Days = days;
     }
 
     public CheckBox getCheckBox() {
@@ -87,21 +83,5 @@ public class IssueBook {
 
     public void setIssueDate(Date issueDate) {
         IssueDate = issueDate;
-    }
-
-    public Date getReturnDate() {
-        return ReturnDate;
-    }
-
-    public void setReturnDate(Date returnDate) {
-        ReturnDate = returnDate;
-    }
-
-    public Integer getDays() {
-        return Days;
-    }
-
-    public void setDays(Integer days) {
-        Days = days;
     }
 }

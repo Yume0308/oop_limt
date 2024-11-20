@@ -3,7 +3,7 @@ package com.limt.Models;
 import javafx.scene.control.CheckBox;
 
 public class Book {
-    private final CheckBox checkBox;
+    private final CheckBox CheckBox;
     private String ID;
     private String ISBN;
     private String Title;
@@ -12,10 +12,10 @@ public class Book {
     private String Publisher;
     private Integer Quantity;
     private Integer Remaining;
-    private String imagePath;
+    private String ImagePath;
 
     public Book(String ID, String ISBN, String title, String author, String category, String publisher, Integer quantity, Integer remainingBooks, String imagePath) {
-        checkBox = new CheckBox();
+        CheckBox = new CheckBox();
         this.ID = ID;
         this.ISBN = ISBN;
         Title = title;
@@ -24,11 +24,11 @@ public class Book {
         Publisher = publisher;
         Quantity = quantity;
         Remaining = remainingBooks;
-        this.imagePath = imagePath;
+        this.ImagePath = imagePath;
     }
 
     public CheckBox getCheckBox() {
-        return checkBox;
+        return CheckBox;
     }
 
     public String getID() {
@@ -64,7 +64,7 @@ public class Book {
     }
 
     public String getImagePath() {
-        return imagePath;
+        return ImagePath;
     }
 
     public void setID(String ID) {
@@ -100,6 +100,6 @@ public class Book {
     }
 
     public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+        this.ImagePath = imagePath;
     }
 }

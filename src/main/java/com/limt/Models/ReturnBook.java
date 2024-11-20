@@ -14,8 +14,9 @@ public class ReturnBook {
     private String StudentName;
     private Date IssueDate;
     private Date ReturnDate;
+    private Integer Days;
 
-    public ReturnBook(Integer IssueID, String BookID, String BookISBN, String BookTitle, String StudentID, String StudentName, Date IssueDate, Date ReturnDate) {
+    public ReturnBook(Integer IssueID, String BookID, String BookISBN, String BookTitle, String StudentID, String StudentName, Date IssueDate, Date ReturnDate, Integer Days) {
         CheckBox = new CheckBox();
         this.IssueID = IssueID;
         this.BookID = BookID;
@@ -25,6 +26,7 @@ public class ReturnBook {
         this.StudentName = StudentName;
         this.IssueDate = IssueDate;
         this.ReturnDate = ReturnDate;
+        this.Days = Days;
     }
 
     public Date getReturnDate() {
@@ -93,5 +95,13 @@ public class ReturnBook {
 
     public void setBookISBN(String bookISBN) {
         BookISBN = bookISBN;
+    }
+
+    public Integer getDays() {
+        return Days;
+    }
+
+    public void setDays(Integer days) {
+        Days = days;
     }
 }
