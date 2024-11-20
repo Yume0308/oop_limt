@@ -1,10 +1,15 @@
 package com.limt.Lib;
 
 import javafx.animation.FadeTransition;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
+import java.util.Objects;
 import java.util.Random;
 
 public class Utils {
@@ -32,5 +37,13 @@ public class Utils {
         fadeTransition.setCycleCount(1);
         fadeTransition.setAutoReverse(true);
         fadeTransition.play();
+    }
+
+    public static void HandleAddPage(String URL) throws IOException {
+        Parent view = FXMLLoader.load(Objects.requireNonNull(Utils.class.getResource(URL)));
+        Scene scene = new Scene(view);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
     }
 }

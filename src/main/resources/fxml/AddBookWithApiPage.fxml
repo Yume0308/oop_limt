@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.limt.Controllers.AddBookWithApiPageController">
+   <children>
+      <HBox layoutY="35.0" prefHeight="59.0" prefWidth="600.0">
+         <children>
+            <TextField fx:id="searchBookTitleField" prefHeight="26.0" prefWidth="330.0" />
+            <Button fx:id="submitSearchBtn" mnemonicParsing="false" onAction="#HandleSearchBookTitleWithApi" text="Search">
+               <HBox.margin>
+                  <Insets left="15.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <padding>
+            <Insets left="105.0" top="15.0" />
+         </padding>
+      </HBox>
+      <TableView fx:id="bookTableView" layoutX="25.0" layoutY="111.0" prefHeight="323.0" prefWidth="550.0">
+        <columns>
+          <TableColumn fx:id="isbnCol" prefWidth="71.20001220703125" text="ISBN" />
+          <TableColumn fx:id="titleCol" prefWidth="175.20001220703125" text="Title" />
+            <TableColumn fx:id="authorCol" prefWidth="85.60003662109375" text="Author" />
+            <TableColumn fx:id="categoryCol" prefWidth="90.4000244140625" text="Category" />
+            <TableColumn fx:id="publisherCol" prefWidth="128.79998779296875" text="Publisher" />
+            <TableColumn fx:id="quantityCol" minWidth="0.0" prefWidth="70.0" text="Quantity" />
+            <TableColumn fx:id="remainingCol" minWidth="0.0" prefWidth="70.0" text="Remaining" />
+            <TableColumn fx:id="imagePathCol" minWidth="0.0" prefWidth="130.0" text="ImagePath" />
+        </columns>
+      </TableView>
+      <Button fx:id="addSelectedBoxBtn" layoutX="183.0" layoutY="448.0" mnemonicParsing="false" onAction="#HandleAddSelectedBox" text="Add Selected Book" />
+      <Button fx:id="clearTableView" layoutX="328.0" layoutY="448.0" mnemonicParsing="false" onAction="#HandleClearTableView" prefHeight="26.0" prefWidth="58.0" text="Clear" />
+   </children>
+</AnchorPane>

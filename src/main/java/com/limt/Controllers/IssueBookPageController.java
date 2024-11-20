@@ -3,17 +3,21 @@ package com.limt.Controllers;
 import com.limt.dbms.DatabaseManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
 
-public class IssueBookPageController {
+public class IssueBookPageController implements Initializable {
 
     @FXML
     private Button backBtn;
@@ -90,20 +94,69 @@ public class IssueBookPageController {
     @FXML
     private TextField studentSchoolField;
 
+    private Boolean bookSearchStatus;
+    private Boolean studentSearchStatus;
+
+    void HandleClearMsgLabel() {
+        msgLabel.setText("");
+    }
 
     @FXML
     void HandleClearAllBookField(ActionEvent event) {
-
+        if(bookSearchStatus){
+           bookSearchStatus=false;
+        }
+        bookIDField.clear();
+        bookISBNField.clear();
+        bookTitleField.clear();
+        bookAuthorField.clear();
+        bookCategoryField.clear();
+        bookPublisherField.clear();
+        bookQuantityField.clear();
+        bookImagePathField.clear();
+        HandleSetBehaviourAllBookField(bookSearchStatus);
     }
 
     @FXML
     void HandleClearAllStudentField(ActionEvent event) {
-
+        if(studentSearchStatus) {
+            studentSearchStatus=false;
+        }
+        studentIDField.clear();
+        studentNameField.clear();
+        studentSchoolField.clear();
+        studentEmailField.clear();
+        studentPhoneNumberField.clear();
+        studentAddressLineField.clear();
+        studentBirthdayField.setValue(null);
+        HandleSetBehaviourAllStudentField(studentSearchStatus);
     }
 
-    @FXML
-    void HandleIssueBook(ActionEvent event) {
+    void HandleSetBehaviourAllBookField(Boolean status) {
+        bookIDField.setDisable(status);
+        bookISBNField.setDisable(status);
+        bookTitleField.setDisable(status);
+        bookAuthorField.setDisable(status);
+        bookCategoryField.setDisable(status);
+        bookPublisherField.setDisable(status);
+        bookQuantityField.setDisable(status);
+        bookImagePathField.setDisable(status);
+    }
 
+    void HandleSetBehaviourAllStudentField(Boolean status) {
+        studentIDField.setDisable(status);
+        studentNameField.setDisable(status);
+        studentSchoolField.setDisable(status);
+        studentEmailField.setDisable(status);
+        studentPhoneNumberField.setDisable(status);
+        studentAddressLineField.setDisable(status);
+        studentBirthdayField.setDisable(status);
+    }
+
+    void HandleSetDefaultDateIssue() {
+        if(bookSearchStatus && studentSearchStatus){
+            issueDate.setValue(LocalDate.now());
+        }
     }
 
     @FXML
@@ -121,6 +174,8 @@ public class IssueBookPageController {
             pst.setString(1, BookID);
             rs = pst.executeQuery();
             if (rs.next()) {
+                bookSearchStatus = true;
+                HandleSetBehaviourAllBookField(bookSearchStatus);
                 msgLabel.setText("Book Available");
                 searchBookBtn.setDisable(false);
 
@@ -150,4 +205,19 @@ public class IssueBookPageController {
 
     }
 
+    @FXML
+    void HandleIssueBook(ActionEvent event) {
+
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        bookSearchStatus = false;
+        studentSearchStatus = false;
+        HandleClearAllBookField(null);
+        HandleClearAllStudentField(null);
+        HandleClearMsgLabel();
+        searchBookID.setText(null);
+        searchStudentID.setText(null);
+    }
 }

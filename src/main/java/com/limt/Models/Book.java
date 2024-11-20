@@ -27,6 +27,18 @@ public class Book {
         this.ImagePath = imagePath;
     }
 
+    public Book(String ISBN, String title, String author, String category, String publisher, Integer quantity, Integer remainingBooks, String imagePath) {
+        CheckBox = new CheckBox();
+        this.ISBN = ISBN;
+        Title = title;
+        Author = author;
+        Category = category;
+        Publisher = publisher;
+        Quantity = quantity;
+        Remaining = remainingBooks;
+        this.ImagePath = imagePath;
+    }
+
     public CheckBox getCheckBox() {
         return CheckBox;
     }

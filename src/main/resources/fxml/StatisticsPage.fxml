@@ -3,41 +3,66 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="392.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="392.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.limt.Controllers.StatisticsPageController">
    <children>
       <AnchorPane prefHeight="402.0" prefWidth="826.0" style="-fx-background-color: #dce6e5;">
          <children>
-            <AnchorPane layoutX="-14.0" layoutY="-5.0" prefHeight="37.0" prefWidth="840.0" style="-fx-background-color: #1e2d47;" />
-            <AnchorPane layoutY="32.0" prefHeight="13.0" prefWidth="825.0" style="-fx-background-color: white;" />
-            <Button fx:id="goBackbtn" layoutX="14.0" layoutY="343.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Go Back">
-               <graphic>
-                  <FontAwesomeIconView glyphName="ANGLE_DOUBLE_LEFT" size="2.5em" />
-               </graphic>
-            </Button>
-            <TabPane fx:id="TabPane" layoutX="27.0" layoutY="73.0" prefHeight="318.0" prefWidth="758.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="TabPane" layoutX="27.0" layoutY="29.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="362.0" prefWidth="758.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab text="Book List">
+                <Tab fx:id="BookListPane" onSelectionChanged="#HandleSwitchPaneBookList" text="Book List">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="bookListTableView" layoutY="10.0" prefHeight="245.0" prefWidth="758.0">
+                              <HBox layoutY="7.0" prefHeight="30.0" prefWidth="758.0">
+                                 <children>
+                                    <TextField fx:id="bookListSearchField" prefHeight="26.0" prefWidth="248.0">
+                                       <HBox.margin>
+                                          <Insets left="125.0" top="2.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <Button fx:id="bookListFindBtn" mnemonicParsing="false" onAction="#HandleFindBook" text="Find">
+                                       <HBox.margin>
+                                          <Insets left="45.0" top="2.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <TableView fx:id="bookListTableView" layoutY="44.0" prefHeight="245.0" prefWidth="758.0">
                                 <columns>
-                                  <TableColumn prefWidth="81.60000610351562" text="ID" />
-                                  <TableColumn prefWidth="76.79998779296875" text="ISBN" />
-                                    <TableColumn prefWidth="128.79998779296875" text="Title" />
-                                    <TableColumn prefWidth="104.0" text="Author" />
-                                    <TableColumn minWidth="8.0" prefWidth="100.79998779296875" text="Category" />
-                                    <TableColumn minWidth="5.5999755859375" prefWidth="127.199951171875" text="Publisher" />
-                                    <TableColumn minWidth="0.0" prefWidth="54.4000244140625" text="Quantity" />
-                                    <TableColumn minWidth="0.0" prefWidth="84.0" text="ImagePath" />
+                                    <TableColumn fx:id="bookListCheckCol" prefWidth="35.0" />
+                                    <TableColumn fx:id="bookListIDCol" prefWidth="124.79998016357422" text="ID" />
+                                    <TableColumn fx:id="bookListISBNCol" prefWidth="105.59998321533203" text="ISBN" />
+                                    <TableColumn fx:id="bookListTitleCol" prefWidth="151.20001220703125" text="Title" />
+                                    <TableColumn fx:id="bookListAuthorCol" prefWidth="108.79998779296875" text="Author" />
+                                    <TableColumn fx:id="bookListCategoryCol" minWidth="8.0" prefWidth="120.0" text="Category" />
+                                    <TableColumn fx:id="bookListPublisherCol" minWidth="5.5999755859375" prefWidth="106.4000244140625" text="Publisher" />
+                                    <TableColumn fx:id="bookListQuantityCol" minWidth="0.0" prefWidth="83.2000732421875" text="Quantity" />
+                                    <TableColumn fx:id="bookListRemainingCol" minWidth="0.0" prefWidth="83.2000732421875" text="Remaining" />
+                                    <TableColumn fx:id="bookListImagePathCol" minWidth="0.0" prefWidth="83.2000732421875" text="ImagePath" />
                                 </columns>
                               </TableView>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" layoutY="297.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/right-click-image.png" />
+                                 </image>
+                              </ImageView>
+                              <CheckBox fx:id="bookListCheckAll" layoutX="39.0" layoutY="302.0" mnemonicParsing="false" text="Select All" />
+                               <Button fx:id="bookListDeleteSelectedItem" layoutX="127.0" layoutY="298.0" onAction="#HandleDeleteSelectedBook" style="-fx-background-color: transparent;" text="Delete" textFill="#2b579a">
+                                   <graphic>
+                                       <FontAwesomeIconView fill="#e9594d" glyphName="TRASH" size="15" />
+                                   </graphic>
+                               </Button>
                            </children>
                            <padding>
                               <Insets top="6.0" />
@@ -45,65 +70,146 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                <Tab text="Student List">
+                <Tab fx:id="StudentListPane" onSelectionChanged="#HandleSwitchPaneStudentList" text="Student List">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="studentListTableView" layoutY="10.0" prefHeight="245.0" prefWidth="758.0">
+                              <HBox layoutY="6.0" prefHeight="30.0" prefWidth="758.0">
+                                 <children>
+                                    <TextField fx:id="studentListSearchField" prefHeight="26.0" prefWidth="248.0">
+                                       <HBox.margin>
+                                          <Insets left="125.0" top="2.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <Button fx:id="studentListFindBtn" mnemonicParsing="false" onAction="#HandleFindStudent" text="Find">
+                                       <HBox.margin>
+                                          <Insets left="45.0" top="2.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <TableView fx:id="studentListTableView" layoutY="44.0" prefHeight="245.0" prefWidth="758.0">
                                  <columns>
-                                    <TableColumn prefWidth="66.39996719360352" text="ID" />
-                                    <TableColumn prefWidth="133.60003662109375" text="Name" />
-                                    <TableColumn prefWidth="119.99992370605469" text="School" />
-                                    <TableColumn prefWidth="129.60003662109375" text="Email" />
-                                    <TableColumn minWidth="8.0" prefWidth="115.20001220703125" text="PhoneNumber" />
-                                    <TableColumn minWidth="5.5999755859375" prefWidth="111.99993896484375" text="AddressLine" />
-                                    <TableColumn minWidth="0.0" prefWidth="83.2000732421875" text="Birthday" />
+                                    <TableColumn fx:id="studentListCheckCol" prefWidth="35.0" />
+                                    <TableColumn fx:id="studentListIDCol" prefWidth="113.5999984741211" text="ID" />
+                                    <TableColumn fx:id="studentListNameCol" prefWidth="154.39996337890625" text="Name" />
+                                    <TableColumn fx:id="studentListSchoolCol" prefWidth="127.20001220703125" text="School" />
+                                    <TableColumn fx:id="studentListEmailCol" prefWidth="146.40005493164062" text="Email" />
+                                    <TableColumn fx:id="studentListPhoneNumberCol" minWidth="8.0" prefWidth="131.20013427734375" text="PhoneNumber" />
+                                    <TableColumn fx:id="studentListAddressLineCol" minWidth="5.5999755859375" prefWidth="120.0" text="AddressLine" />
+                                    <TableColumn fx:id="studentListBirthdayCol" minWidth="0.0" prefWidth="83.2000732421875" text="Birthday" />
                                  </columns>
                               </TableView>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" layoutY="296.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/right-click-image.png" />
+                                 </image>
+                              </ImageView>
+                              <CheckBox fx:id="studentListCheckAll" layoutX="38.0" layoutY="303.0" mnemonicParsing="false" text="Select All" />
+                              <Button fx:id="studentListDeleteSelectedItem" layoutX="125.0" layoutY="297.0" onAction="#HandleDeleteSelectedStudent" style="-fx-background-color: transparent;" text="Delete" textFill="#2b579a">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#e9594d" glyphName="TRASH" size="15" />
+                                 </graphic>
+                              </Button>
                            </children></AnchorPane>
                   </content>
                 </Tab>
-                  <Tab text="Issue Book List">
+                  <Tab fx:id="issueBookListPane" onSelectionChanged="#HandleSwitchPaneIssueBookList" text="Issue Book List">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="issueBookListTableView" layoutY="10.0" prefHeight="245.0" prefWidth="758.0">
+                              <HBox layoutY="8.0" prefHeight="30.0" prefWidth="758.0">
+                                 <children>
+                                    <TextField fx:id="issueBookListSearchField" prefHeight="26.0" prefWidth="248.0">
+                                       <HBox.margin>
+                                          <Insets left="125.0" top="2.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <Button fx:id="issueBookListFindBtn" mnemonicParsing="false" onAction="#HandleFindIssueBook" text="Find">
+                                       <HBox.margin>
+                                          <Insets left="45.0" top="2.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <TableView fx:id="issueBookListTableView" layoutY="44.0" prefHeight="245.0" prefWidth="758.0">
                                  <columns>
-                                    <TableColumn prefWidth="57.60000419616699" text="IssueID" />
-                                    <TableColumn prefWidth="97.60001373291016" text="BookID" />
-                                    <TableColumn prefWidth="92.79998779296875" text="BookISBN" />
-                                    <TableColumn prefWidth="144.79998779296875" text="BookTitle" />
-                                    <TableColumn minWidth="8.0" prefWidth="85.60009765625" text="StudentID" />
-                                    <TableColumn minWidth="5.5999755859375" prefWidth="167.19992065429688" text="StudentName" />
-                                    <TableColumn minWidth="0.0" prefWidth="112.800048828125" text="IssueDate" />
+                                    <TableColumn fx:id="issueBookListCheckCol" prefWidth="35.0" />
+                                    <TableColumn fx:id="issueBookListIssueIDCol" prefWidth="78.39998626708984" text="IssueID" />
+                                    <TableColumn fx:id="issueBookListBookIDCol" prefWidth="108.0" text="BookID" />
+                                    <TableColumn fx:id="issueBookListBookISBNCol" prefWidth="92.0" text="BookISBN" />
+                                    <TableColumn fx:id="issueBookListBookTitleCol" prefWidth="152.79998779296875" text="BookTitle" />
+                                    <TableColumn fx:id="issueBookListStudentIDCol" minWidth="8.0" prefWidth="66.40005493164062" text="StudentID" />
+                                    <TableColumn fx:id="issueBookListStudentNameCol" minWidth="5.5999755859375" prefWidth="151.99993896484375" text="StudentName" />
+                                    <TableColumn fx:id="issueBookListIssueDateCol" minWidth="0.0" prefWidth="110.0" text="IssueDate" />
                                  </columns>
                               </TableView>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" layoutY="297.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/right-click-image.png" />
+                                 </image>
+                              </ImageView>
+                              <CheckBox fx:id="IssueBookListCheckAll" layoutX="42.0" layoutY="303.0" mnemonicParsing="false" text="Select All" />
+                              <Button fx:id="issueBookListDeleteSelectedItem" layoutX="125.0" layoutY="299.0" onAction="#HandleDeleteSelectedIssueBook" style="-fx-background-color: transparent;" text="Delete" textFill="#2b579a">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#e9594d" glyphName="TRASH" size="15" />
+                                 </graphic>
+                              </Button>
                            </children>
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab text="Return Book List">
+                  <Tab fx:id="returnBookListPane" onSelectionChanged="#HandleSwitchPaneReturnBookList" text="Return Book List">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="returnBookListTableView" layoutY="10.0" prefHeight="245.0" prefWidth="758.0">
+                              <HBox layoutY="7.0" prefHeight="30.0" prefWidth="758.0">
+                                 <children>
+                                    <TextField fx:id="returnBookListSearchField" prefHeight="26.0" prefWidth="248.0">
+                                       <HBox.margin>
+                                          <Insets left="125.0" top="2.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <Button fx:id="returnBookListFindBtn" mnemonicParsing="false" onAction="#HandleFindReturnBook" text="Find">
+                                       <HBox.margin>
+                                          <Insets left="45.0" top="2.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <TableView fx:id="returnBookListTableView" layoutY="44.0" prefHeight="245.0" prefWidth="758.0">
                                  <columns>
-                                    <TableColumn prefWidth="51.19997978210449" text="IssueID" />
-                                    <TableColumn prefWidth="91.9999771118164" text="BookID" />
-                                    <TableColumn prefWidth="86.39996337890625" text="BookISBN" />
-                                    <TableColumn prefWidth="140.0" text="BookTitle" />
-                                    <TableColumn minWidth="8.0" prefWidth="64.80007934570312" text="StudentID" />
-                                    <TableColumn minWidth="5.5999755859375" prefWidth="124.79995727539062" text="StudentName" />
-                                    <TableColumn minWidth="0.0" prefWidth="65.5999755859375" text="IssueDate" />
-                                    <TableColumn minWidth="0.0" prefWidth="78.39996337890625" text="ReturnDate" />
-                                    <TableColumn minWidth="0.0" prefWidth="49.5999755859375" text="Days" />
+                                    <TableColumn prefWidth="35.0" />
+                                    <TableColumn fx:id="returnBookListIssueIDCol" prefWidth="64.0" text="IssueID" />
+                                    <TableColumn fx:id="returnBookListBookIDCol" text="BookID" />
+                                    <TableColumn fx:id="returnBookListBookISBNCol" prefWidth="100.0" text="BookISBN" />
+                                    <TableColumn fx:id="returnBookListBookTitleCol" prefWidth="152.800048828125" text="BookTitle" />
+                                    <TableColumn fx:id="returnBookListStudentIDCol" minWidth="8.0" prefWidth="70.0" text="StudentID" />
+                                    <TableColumn fx:id="returnBookListStudentNameCol" minWidth="5.5999755859375" prefWidth="130.0" text="StudentName" />
+                                    <TableColumn fx:id="returnBookListIssueDateCol" minWidth="0.0" text="IssueDate" />
+                                    <TableColumn fx:id="returnBookListReturnDateCol" minWidth="0.0" text="ReturnDate" />
+                                    <TableColumn minWidth="0.0" prefWidth="55.0" text="Days" />
                                  </columns>
                               </TableView>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/right-click-image.png" />
+                                 </image>
+                              </ImageView>
+                              <CheckBox fx:id="returnBookListCheckAll" layoutX="38.0" layoutY="301.0" mnemonicParsing="false" prefHeight="13.0" prefWidth="71.0" text="Select All" />
+                              <Button fx:id="returnBookListDeleteSelectedItem" layoutX="125.0" layoutY="297.0" onAction="#HandleDeleteSelectedReturnBook" style="-fx-background-color: transparent;" text="Delete" textFill="#2b579a">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#e9594d" glyphName="TRASH" size="15" />
+                                 </graphic>
+                              </Button>
                            </children>
                         </AnchorPane>
                      </content>
                   </Tab>
               </tabs>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
             </TabPane>
          </children>
       </AnchorPane>
