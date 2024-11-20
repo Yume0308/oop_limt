@@ -8,6 +8,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,10 +18,6 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class DashboardPageController implements Initializable {
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        System.out.println(CurrentUserID);
-    }
 
     @FXML
     private Button addBookBtn;
@@ -28,7 +26,13 @@ public class DashboardPageController implements Initializable {
     private Button addStudentBtn;
 
     @FXML
+    private Label description;
+
+    @FXML
     private Button issueBookBtn;
+
+    @FXML
+    private ImageView logo;
 
     @FXML
     private Button logoutBtn;
@@ -37,7 +41,14 @@ public class DashboardPageController implements Initializable {
     private Button returnBookBtn;
 
     @FXML
+    private Button settingBtn;
+
+    @FXML
     private Button statisticsBtn;
+
+    @FXML
+    private Label title;
+
 
     public static Integer CurrentUserID;
 
@@ -57,12 +68,6 @@ public class DashboardPageController implements Initializable {
     }
 
     @FXML
-    void HandleLogoutBtn(ActionEvent event) throws IOException {
-        ((Stage) logoutBtn.getScene().getWindow()).close();
-        Utils.HandleAddPage("/fxml/LoginPage.fxml");
-    }
-
-    @FXML
     void HandleReturnBookBtn(ActionEvent event) throws IOException {
         Utils.HandleAddPage("/fxml/ReturnBookPage.fxml");
     }
@@ -70,5 +75,21 @@ public class DashboardPageController implements Initializable {
     @FXML
     void HandleStatisticsBtn(ActionEvent event) throws IOException {
         Utils.HandleAddPage("/fxml/StatisticsPage.fxml");
+    }
+
+    @FXML
+    void HandleSettingBtn(ActionEvent event) throws IOException {
+        Utils.HandleAddPage("/fxml/SettingPage.fxml");
+    }
+
+    @FXML
+    void HandleLogoutBtn(ActionEvent event) throws IOException {
+        ((Stage) logoutBtn.getScene().getWindow()).close();
+        Utils.HandleAddPage("/fxml/LoginPage.fxml");
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        System.out.println(CurrentUserID);
     }
 }
