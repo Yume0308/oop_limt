@@ -1,54 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane layoutY="-2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="574.0" style="-fx-background-color: #dce6e5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <children>
-        <AnchorPane prefHeight="98.0" prefWidth="574.0" style="-fx-background-color: #FFCF1E;">
-            <children>
-                <ImageView fitHeight="61.0" fitWidth="97.0" layoutX="14.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" />
-                <Label layoutX="92.0" layoutY="34.0" text="Library System" textFill="WHITE">
-                    <font>
+<AnchorPane id="AnchorPane" prefHeight="403.0" prefWidth="574.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.limt.Controllers.DashboardPageController">
+   <children>
+      <AnchorPane layoutY="-2.0" prefHeight="410.0" prefWidth="574.0" style="-fx-background-color: #dce6e5;" >
+         <children>
+            <AnchorPane prefHeight="98.0" prefWidth="574.0" style="-fx-background-color: linear-gradient(to left top, #d6a8c2, #c8a4c4, #b9a1c4, #a99ec2, #999bbf, #92a1c5, #8ca8c9, #86aecc, #88c0d9, #8ed2e3, #97e3ea, #a6f4ef);;">
+               <children>
+                  <ImageView fitHeight="61.0" fitWidth="97.0" layoutX="14.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+<!--                        <Image url="@../image/LOGO.png" />-->
+                     </image>
+                  </ImageView>
+                  <Label layoutX="92.0" layoutY="34.0" text="Library System" textFill="WHITE">
+                     <font>
                         <Font name="System Bold" size="20.0" />
-                    </font>
-                </Label>
-                <Label layoutX="92.0" layoutY="56.0" opacity="0.83" text="This is the menu of the library system. " textFill="WHITE" />
-                <Button fx:id="logoutBtn" layoutX="500.0" layoutY="27.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0">
-                    <graphic>
-<!--                                <FontAwesomeIcon glyphName="SIGN_OUT" size="3em" />-->
-                    </graphic>
-                </Button>
-            </children>
-        </AnchorPane>
-        <Button layoutX="365.0" layoutY="171.0" mnemonicParsing="false" style="-fx-background-color: transparent;" />
-        <Button fx:id="addBookBtn" contentDisplay="TOP" layoutX="70.0" layoutY="140.0" mnemonicParsing="false" prefHeight="88.0" prefWidth="114.0" style="-fx-background-color: #c7d4d2; -fx-background-radius: 7;" text="Add Book">
-            <graphic>
-<!--                        <FontAwesomeIcon fill="#152032" glyphName="BOOK" size="3em" />-->
-            </graphic>
-        </Button>
-        <Button fx:id="addStudentBtn" contentDisplay="TOP" layoutX="219.0" layoutY="140.0" mnemonicParsing="false" prefHeight="88.0" prefWidth="114.0" style="-fx-background-color: #c9d1d0; -fx-background-radius: 7;" text="Add Student">
-            <graphic>
-<!--                        <FontAwesomeIcon fill="#152032" glyphName="GRADUATION_CAP" size="3em" />-->
-            </graphic>
-        </Button>
-        <Button fx:id="issueBookBtn" contentDisplay="TOP" layoutX="365.0" layoutY="140.0" mnemonicParsing="false" prefHeight="88.0" prefWidth="114.0" style="-fx-background-color: #c7d4d2; -fx-background-radius: 7;" text="Issue Book">
-            <graphic>
-<!--                        <FontAwesomeIcon fill="#152032" glyphName="PLUS_CIRCLE" size="3em" />-->
-            </graphic>
-        </Button>
-        <Button fx:id="returnBookBtn" contentDisplay="TOP" layoutX="120.0" layoutY="267.0" mnemonicParsing="false" prefHeight="88.0" prefWidth="114.0" style="-fx-background-color: #c7d4d2; -fx-background-radius: 7;" text="Return Book">
-            <graphic>
-<!--                        <FontAwesomeIcon fill="#152032" glyphName="CHECK_CIRCLE" size="3em" />-->
-            </graphic>
-        </Button>
-        <Button fx:id="statisticsBtn" contentDisplay="TOP" layoutX="300.0" layoutY="267.0" mnemonicParsing="false" prefHeight="88.0" prefWidth="114.0" style="-fx-background-color: #c9d1d0; -fx-background-radius: 7;" text="View Statistics">
-            <graphic>
-<!--                        <FontAwesomeIcon fill="#152032" glyphName="LIST_ALT" size="3em" />-->
-            </graphic>
-        </Button>
-    </children>
+                     </font>
+                  </Label>
+                  <Label layoutX="92.0" layoutY="56.0" opacity="0.83" text="This is the menu of the library system. " textFill="WHITE" />
+                  <Button fx:id="logoutBtn" layoutX="500.0" layoutY="27.0" mnemonicParsing="false" onAction="#HandleLogoutBtn" prefHeight="25.0" prefWidth="30.0">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="SIGN_OUT" size="3em" />
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <Button layoutX="365.0" layoutY="171.0" mnemonicParsing="false" style="-fx-background-color: transparent;" />
+            <Button fx:id="addBookBtn" contentDisplay="TOP" layoutX="75.0" layoutY="140.0" mnemonicParsing="false" onAction="#HandleAddBookBtn" prefHeight="88.0" prefWidth="114.0" style="-fx-background-color: #c7d4d2; -fx-background-radius: 7;" text="Add Book">
+               <graphic>
+                  <FontAwesomeIconView fill="#152032" glyphName="BOOK" size="3em" />
+               </graphic>
+            </Button>
+            <Button fx:id="addStudentBtn" contentDisplay="TOP" layoutX="219.0" layoutY="140.0" mnemonicParsing="false" onAction="#HandleAddStudentBtn" prefHeight="88.0" prefWidth="114.0" style="-fx-background-color: #c9d1d0; -fx-background-radius: 7;" text="Add Student">
+               <graphic>
+                  <FontAwesomeIconView fill="#152032" glyphName="GRADUATION_CAP" size="3em" />
+               </graphic>
+            </Button>
+            <Button fx:id="issueBookBtn" contentDisplay="TOP" layoutX="373.0" layoutY="140.0" mnemonicParsing="false" onAction="#HandleIssueBookBtn" prefHeight="88.0" prefWidth="114.0" style="-fx-background-color: #c7d4d2; -fx-background-radius: 7;" text="Issue Book">
+               <graphic>
+                  <FontAwesomeIconView fill="#152032" glyphName="PLUS_CIRCLE" size="3em" />
+               </graphic>
+            </Button>
+            <Button fx:id="returnBookBtn" contentDisplay="TOP" layoutX="120.0" layoutY="267.0" mnemonicParsing="false" onAction="#HandleReturnBookBtn" prefHeight="88.0" prefWidth="114.0" style="-fx-background-color: #c7d4d2; -fx-background-radius: 7;" text="Return Book">
+               <graphic>
+                  <FontAwesomeIconView fill="#152032" glyphName="CHECK_CIRCLE" size="3em" />
+               </graphic>
+            </Button>
+            <Button fx:id="statisticsBtn" contentDisplay="TOP" layoutX="300.0" layoutY="267.0" mnemonicParsing="false" onAction="#HandleStatisticsBtn" prefHeight="88.0" prefWidth="114.0" style="-fx-background-color: #c9d1d0; -fx-background-radius: 7;" text="View Statistics">
+               <graphic>
+                  <FontAwesomeIconView fill="#152032" glyphName="LIST_ALT" size="3em" />
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>

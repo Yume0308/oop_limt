@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class Student {
     private final CheckBox CheckBox;
-    private String UserID;
+    private final String UserID;
     private String StudentID;
     private String StudentName;
     private String School;
@@ -16,8 +16,9 @@ public class Student {
     private String AddressLine;
     private Date Birthday;
 
-    public Student(String studentID, String studentName, String school, String email, String phoneNumber, String addressLine, Date birthday) {
+    public Student(String UserID, String studentID, String studentName, String school, String email, String phoneNumber, String addressLine, Date birthday) {
         CheckBox = new CheckBox();
+        this.UserID = UserID;
         StudentID = studentID;
         StudentName = studentName;
         School = school;
@@ -27,7 +28,7 @@ public class Student {
         Birthday = birthday;
     }
 
-    public javafx.scene.control.CheckBox getCheckBox() {
+    public CheckBox getCheckBox() {
         return CheckBox;
     }
 

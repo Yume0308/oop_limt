@@ -2,15 +2,21 @@ package com.limt.Controllers;
 
 import com.limt.dbms.DatabaseManager;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LoginPageController implements Initializable {
@@ -35,11 +41,13 @@ public class LoginPageController implements Initializable {
     @FXML
     private TextField username_field;
 
+    private Integer UserID;
+
     public void loginAccount() {
         String username = username_field.getText();
         String password = password_field.getText();
 
-        String sql = "SELECT * FROM User WHERE userName = ? AND password = ?";
+        String sql = "SELECT * FROM User WHERE Username = ? AND Password = ?";
 
         // database
         Connection connect = DatabaseManager.connect();
@@ -70,6 +78,8 @@ public class LoginPageController implements Initializable {
                     alert.setHeaderText(null);
                     alert.setContentText("Login Successful");
                     alert.showAndWait();
+                    LoadDashboard();
+                    SetUser(resultSet);
                 }
                 else {
                     alert = new Alert(Alert.AlertType.ERROR);
@@ -85,9 +95,24 @@ public class LoginPageController implements Initializable {
         }
     }
 
+    void LoadDashboard() {
+        try {
+            Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/DashboardPage.fxml")));
+            ((Stage)login_button.getScene().getWindow()).close();
+            Scene scene = new Scene(parent);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    void SetUser(ResultSet resultSet) throws SQLException {
+        UserID = resultSet.getInt("UserID");
+    }
     public void initialize(URL location, ResourceBundle resources) {
-        login_button.setOnAction(event -> {
-            loginAccount();
-        });
+        com.limt.Controllers.DashboardPageController.CurrentUserID = UserID;
     }
 }
