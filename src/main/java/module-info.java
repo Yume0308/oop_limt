@@ -12,6 +12,11 @@ module com.limt {
     requires com.almasb.fxgl.all;
     requires annotations;
     requires org.xerial.sqlitejdbc;
+    requires javafx.media;
+    requires webcam.capture;
+    requires javafx.swing;
+    requires java.net.http;
+    requires com.google.gson;
 
     opens com.limt.Controllers to javafx.fxml;
     exports com.limt;
