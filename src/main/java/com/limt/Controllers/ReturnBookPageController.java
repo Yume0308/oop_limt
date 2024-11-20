@@ -2,12 +2,17 @@ package com.limt.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class ReturnBookPageController {
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
+
+public class ReturnBookPageController implements Initializable {
 
     @FXML
     private Button backBtn;
@@ -34,10 +39,7 @@ public class ReturnBookPageController {
     private TextField bookTitleField;
 
     @FXML
-    private Button clearBookField;
-
-    @FXML
-    private Button clearStudentFIeld;
+    private Button clearAllField;
 
     @FXML
     private DatePicker issueDate;
@@ -52,19 +54,10 @@ public class ReturnBookPageController {
     private DatePicker returnDate;
 
     @FXML
-    private Button scanISBNBtn;
+    private Button searchIssueID;
 
     @FXML
-    private Button searchBookBtn;
-
-    @FXML
-    private TextField searchBookID;
-
-    @FXML
-    private Button searchStudentBtn;
-
-    @FXML
-    private TextField searchStudentID;
+    private TextField searchIssueIDField;
 
     @FXML
     private TextField studentAddressLineField;
@@ -87,13 +80,58 @@ public class ReturnBookPageController {
     @FXML
     private TextField studentSchoolField;
 
-    @FXML
-    void HandleClearAllBookField(ActionEvent event) {
+    private Boolean issueIDSearchStatus;
 
+    @FXML
+    void HandleClearAllField(ActionEvent event) {
+        issueIDSearchStatus = false;
+        bookIDField.clear();
+        bookISBNField.clear();
+        bookTitleField.clear();
+        bookAuthorField.clear();
+        bookCategoryField.clear();
+        bookPublisherField.clear();
+        bookImagePathField.clear();
+        studentIDField.clear();
+        studentNameField.clear();
+        studentSchoolField.clear();
+        studentEmailField.clear();
+        studentPhoneNumberField.clear();
+        studentAddressLineField.clear();
+        studentBirthdayField.setValue(null);
+        issueDate.setValue(null);
+    }
+
+    void HandleClearMsgLabel() {
+        msgLabel.setText("");
+    }
+
+    void HandleSetBehaviourAllField(Boolean status) {
+        bookIDField.setDisable(status);
+        bookISBNField.setDisable(status);
+        bookTitleField.setDisable(status);
+        bookAuthorField.setDisable(status);
+        bookCategoryField.setDisable(status);
+        bookPublisherField.setDisable(status);
+        bookImagePathField.setDisable(status);
+        studentIDField.setDisable(status);
+        studentNameField.setDisable(status);
+        studentSchoolField.setDisable(status);
+        studentEmailField.setDisable(status);
+        studentPhoneNumberField.setDisable(status);
+        studentAddressLineField.setDisable(status);
+        studentBirthdayField.setDisable(status);
+        issueDate.setDisable(status);
+    }
+
+    void HandleSetDefaultDateIssue() {
+        if(issueIDSearchStatus){
+            returnDate.setValue(LocalDate.now());
+        }
     }
 
     @FXML
-    void HandleClearAllStudentField(ActionEvent event) {
+    void HandleSearchIssueID(ActionEvent event) {
 
     }
 
@@ -102,19 +140,12 @@ public class ReturnBookPageController {
 
     }
 
-    @FXML
-    void HandleScanISBNBook(ActionEvent event) {
-
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        issueIDSearchStatus = false;
+        HandleClearAllField(null);
+        HandleClearMsgLabel();
+        searchIssueIDField.setText(null);
+        HandleSetBehaviourAllField(issueIDSearchStatus);
     }
-
-    @FXML
-    void HandleSearchBook(ActionEvent event) {
-
-    }
-
-    @FXML
-    void HandleSearchStudent(ActionEvent event) {
-
-    }
-
 }

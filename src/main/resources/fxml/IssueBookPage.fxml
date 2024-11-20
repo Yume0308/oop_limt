@@ -16,12 +16,12 @@
             <TextField fx:id="searchBookID" layoutX="102.0" layoutY="30.0" prefHeight="26.0" prefWidth="205.0" promptText="Enter book ID" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
             <Button fx:id="searchBookBtn1" layoutX="314.0" layoutY="149.0" mnemonicParsing="false" onAction="#HandleSearchBook" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #bfbfc7;" text="Scan" />
             <TextField fx:id="bookISBNField" layoutX="102.0" layoutY="150.0" prefHeight="25.0" prefWidth="205.0" promptText="Book ISBN" />
-            <TextField fx:id="bookTitleField" layoutX="102.0" layoutY="190.0" prefHeight="25.0" prefWidth="205.0" />
-            <TextField fx:id="bookAuthorField" layoutX="102.0" layoutY="230.0" prefHeight="25.0" prefWidth="205.0" />
-            <TextField fx:id="bookCategoryField" layoutX="102.0" layoutY="270.0" prefHeight="25.0" prefWidth="205.0" />
-            <TextField fx:id="bookPublisherField" layoutX="102.0" layoutY="310.0" prefHeight="25.0" prefWidth="205.0" />
-            <TextField fx:id="bookQuantityField" layoutX="102.0" layoutY="350.0" prefHeight="25.0" prefWidth="205.0" />
-            <TextField fx:id="bookImagePathField" layoutX="102.0" layoutY="390.0" prefHeight="25.0" prefWidth="205.0" />
+            <TextField fx:id="bookTitleField" layoutX="102.0" layoutY="190.0" prefHeight="25.0" prefWidth="205.0" promptText="Book Title" />
+            <TextField fx:id="bookAuthorField" layoutX="102.0" layoutY="230.0" prefHeight="25.0" prefWidth="205.0" promptText="Book Author" />
+            <TextField fx:id="bookCategoryField" layoutX="102.0" layoutY="270.0" prefHeight="25.0" prefWidth="205.0" promptText="Book Category" />
+            <TextField fx:id="bookPublisherField" layoutX="102.0" layoutY="310.0" prefHeight="25.0" prefWidth="205.0" promptText="Book Publisher" />
+            <TextField fx:id="bookQuantityField" layoutX="102.0" layoutY="350.0" prefHeight="25.0" prefWidth="205.0" promptText="Book Quantity" />
+            <TextField fx:id="bookImagePathField" layoutX="102.0" layoutY="390.0" prefHeight="25.0" prefWidth="205.0" promptText="Book ImagePath" />
             <Label layoutX="21.0" layoutY="32.0" text="Enter  ID : ">
                <font>
                   <Font size="13.0" />
@@ -67,7 +67,7 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label fx:id="msgLabel" layoutX="93.0" layoutY="455.0" prefHeight="17.0" prefWidth="187.0" textFill="#b96909" />
+            <Label fx:id="msgLabel" layoutX="103.0" layoutY="437.0" prefHeight="18.0" prefWidth="276.0" textFill="#b96909" />
             <Button fx:id="searchBookBtn" layoutX="314.0" layoutY="30.0" mnemonicParsing="false" onAction="#HandleSearchBook" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #bfbfc7;" text="Search" />
             <Button fx:id="clearBookField" layoutX="16.0" layoutY="433.0" mnemonicParsing="false" onAction="#HandleClearAllBookField" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #bfbfc7;" text="Clear" />
             <Button fx:id="backBtn" layoutX="17.0" layoutY="494.0" mnemonicParsing="false" style="-fx-background-color: TRANSPARENT;" text="Go Back">
@@ -84,14 +84,14 @@
       </Label>
       <TextField fx:id="searchStudentID" layoutX="499.0" layoutY="28.0" prefHeight="26.0" prefWidth="195.0" promptText="Enter student ID" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
       <Button fx:id="searchStudentBtn" layoutX="711.0" layoutY="29.0" mnemonicParsing="false" onAction="#HandleSearchStudent" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #bfbfc7;" text="Search" />
-      <TextField fx:id="studentIDField" layoutX="518.0" layoutY="110.0" prefHeight="25.0" prefWidth="216.0" />
-      <TextField fx:id="studentNameField" layoutX="518.0" layoutY="150.0" prefHeight="25.0" prefWidth="216.0" />
-      <TextField fx:id="studentSchoolField" layoutX="518.0" layoutY="190.0" prefHeight="25.0" prefWidth="216.0" />
-      <TextField fx:id="studentEmailField" layoutX="518.0" layoutY="230.0" prefHeight="25.0" prefWidth="216.0" />
-      <TextField fx:id="studentPhoneNumberField" layoutX="518.0" layoutY="270.0" prefHeight="25.0" prefWidth="216.0" />
-      <TextField fx:id="studentAddressLineField" layoutX="518.0" layoutY="310.0" prefHeight="25.0" prefWidth="216.0" />
-      <DatePicker fx:id="studentBirthdayField" layoutX="518.0" layoutY="350.0" prefHeight="25.0" prefWidth="216.0" />
-      <DatePicker fx:id="issueDate" layoutX="518.0" layoutY="390.0" prefHeight="25.0" prefWidth="216.0" />
+      <TextField fx:id="studentIDField" layoutX="518.0" layoutY="110.0" prefHeight="25.0" prefWidth="216.0" promptText="Student ID" />
+      <TextField fx:id="studentNameField" layoutX="518.0" layoutY="150.0" prefHeight="25.0" prefWidth="216.0" promptText="Student Name" />
+      <TextField fx:id="studentSchoolField" layoutX="518.0" layoutY="190.0" prefHeight="25.0" prefWidth="216.0" promptText="Student School" />
+      <TextField fx:id="studentEmailField" layoutX="518.0" layoutY="230.0" prefHeight="25.0" prefWidth="216.0" promptText="Student Email" />
+      <TextField fx:id="studentPhoneNumberField" layoutX="518.0" layoutY="270.0" prefHeight="25.0" prefWidth="216.0" promptText="Student PhoneNumber" />
+      <TextField fx:id="studentAddressLineField" layoutX="518.0" layoutY="310.0" prefHeight="25.0" prefWidth="216.0" promptText="Student AddressLine" />
+      <DatePicker fx:id="studentBirthdayField" layoutX="518.0" layoutY="350.0" prefHeight="25.0" prefWidth="216.0" promptText="Student Birthday" />
+      <DatePicker fx:id="issueDate" layoutX="518.0" layoutY="390.0" prefHeight="25.0" prefWidth="216.0" promptText="Date Issue" />
       <Label layoutX="417.0" layoutY="113.0" text="ID :">
          <font>
             <Font size="13.0" />

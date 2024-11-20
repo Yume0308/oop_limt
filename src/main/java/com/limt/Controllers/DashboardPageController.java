@@ -1,5 +1,6 @@
 package com.limt.Controllers;
 
+import com.limt.Lib.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,41 +43,32 @@ public class DashboardPageController implements Initializable {
 
     @FXML
     void HandleAddBookBtn(ActionEvent event) throws IOException {
-        HandleAddPage("/fxml/AddBookPage.fxml");
+        Utils.HandleAddPage("/fxml/AddBookPage.fxml");
     }
 
     @FXML
     void HandleAddStudentBtn(ActionEvent event) throws IOException {
-        HandleAddPage("/fxml/AddStudentPage.fxml");
+        Utils.HandleAddPage("/fxml/AddStudentPage.fxml");
     }
 
     @FXML
     void HandleIssueBookBtn(ActionEvent event) throws IOException {
-        HandleAddPage("/fxml/IssueBookPage.fxml");
+        Utils.HandleAddPage("/fxml/IssueBookPage.fxml");
     }
 
     @FXML
     void HandleLogoutBtn(ActionEvent event) throws IOException {
         ((Stage) logoutBtn.getScene().getWindow()).close();
-        HandleAddPage("/fxml/LoginPage.fxml");
+        Utils.HandleAddPage("/fxml/LoginPage.fxml");
     }
 
     @FXML
     void HandleReturnBookBtn(ActionEvent event) throws IOException {
-        HandleAddPage("/fxml/ReturnBookPage.fxml");
+        Utils.HandleAddPage("/fxml/ReturnBookPage.fxml");
     }
 
     @FXML
     void HandleStatisticsBtn(ActionEvent event) throws IOException {
-        HandleAddPage("/fxml/StatisticsPage.fxml");
+        Utils.HandleAddPage("/fxml/StatisticsPage.fxml");
     }
-
-    void HandleAddPage(String URL) throws IOException {
-        Parent view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(URL)));
-        Scene scene = new Scene(view);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
-    }
-
 }

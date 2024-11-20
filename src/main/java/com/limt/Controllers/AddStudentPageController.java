@@ -3,18 +3,21 @@ package com.limt.Controllers;
 import com.limt.dbms.DatabaseManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.util.ResourceBundle;
 
-public class AddStudentPageController {
+public class AddStudentPageController implements Initializable {
 
     @FXML
     private Button addStudentBtn;
@@ -88,7 +91,13 @@ public class AddStudentPageController {
 
     @FXML
     void HandleClearAllField(ActionEvent event) {
-
+        studentIDField.clear();
+        studentNameField.clear();
+        studentEmailField.clear();
+        studentPhoneNumberFIeld.clear();
+        studentAddressLineField.clear();
+        studentSchoolField.clear();
+        studentBirthdayField.setValue(null);
     }
 
     @FXML
@@ -96,4 +105,8 @@ public class AddStudentPageController {
 
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        HandleClearAllField(null);
+    }
 }

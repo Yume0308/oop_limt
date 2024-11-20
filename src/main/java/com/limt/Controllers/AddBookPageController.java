@@ -1,17 +1,27 @@
 package com.limt.Controllers;
 
+import com.limt.Lib.Utils;
 import com.limt.dbms.DatabaseManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class AddBookPageController {
+public class AddBookPageController implements Initializable {
 
     @FXML
     private Button addBookBtn;
@@ -91,8 +101,34 @@ public class AddBookPageController {
     }
 
     @FXML
-    void HandleClearAllField(ActionEvent event) {
+    void HandleBrowseLink(ActionEvent event) {
 
     }
 
+    @FXML
+    void HandleClearAllField(ActionEvent event) {
+        bookIDField.clear();
+        bookISBNField.clear();
+        bookTitleField.clear();
+        bookAuthorField.clear();
+        bookCategoryField.clear();
+        bookPublisherField.clear();
+        bookQuantityField.clear();
+        bookImagePathField.clear();
+    }
+
+    @FXML
+    void HandleScanISBN(ActionEvent event) throws IOException{
+        Utils.HandleAddPage("/fxml/ScanISBNPage.fxml");
+    }
+
+    @FXML
+    void HandleAddBookWithApiBtn(ActionEvent event) throws IOException {
+        Utils.HandleAddPage("/fxml/AddBookWithApiPage.fxml");
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        HandleClearAllField(null);
+    }
 }
