@@ -132,7 +132,6 @@ public class ReturnBookPageController implements Initializable {
 
     @FXML
     void HandleSearchIssueID(ActionEvent event) {
-
     }
 
     @FXML

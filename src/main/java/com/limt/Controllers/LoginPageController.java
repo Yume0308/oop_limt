@@ -41,7 +41,8 @@ public class LoginPageController implements Initializable {
     @FXML
     private TextField username_field;
 
-    private Integer UserID;
+    private static Integer UserID;
+    public static Integer getUserID() { return UserID; }
 
     public void loginAccount() {
         String username = username_field.getText();
@@ -78,8 +79,8 @@ public class LoginPageController implements Initializable {
                     alert.setHeaderText(null);
                     alert.setContentText("Login Successful");
                     alert.showAndWait();
-                    LoadDashboard();
                     SetUser(resultSet);
+                    LoadDashboard();
                 }
                 else {
                     alert = new Alert(Alert.AlertType.ERROR);

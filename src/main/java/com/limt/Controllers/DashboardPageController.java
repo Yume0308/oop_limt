@@ -47,6 +47,9 @@ public class DashboardPageController implements Initializable {
     private Button statisticsBtn;
 
     @FXML
+    private Button analysisBtn;
+
+    @FXML
     private Label title;
 
 
@@ -83,6 +86,11 @@ public class DashboardPageController implements Initializable {
     }
 
     @FXML
+    void HandleAnalysisBtn(ActionEvent event) throws IOException {
+        Utils.HandleAddPage("/fxml/AnalysisPage.fxml");
+    }
+
+    @FXML
     void HandleLogoutBtn(ActionEvent event) throws IOException {
         ((Stage) logoutBtn.getScene().getWindow()).close();
         Utils.HandleAddPage("/fxml/LoginPage.fxml");
@@ -90,6 +98,7 @@ public class DashboardPageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        CurrentUserID = LoginPageController.getUserID();
         System.out.println(CurrentUserID);
     }
 }

@@ -4,6 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -18,9 +19,9 @@
    <children>
       <AnchorPane prefHeight="402.0" prefWidth="826.0" style="-fx-background-color: #dce6e5;">
          <children>
-            <TabPane fx:id="TabPane" layoutX="27.0" layoutY="29.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="362.0" prefWidth="758.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="tabPane" layoutX="27.0" layoutY="29.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="362.0" prefWidth="758.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab fx:id="BookListPane" onSelectionChanged="#HandleSwitchPaneBookList" text="Book List">
+                <Tab fx:id="BookListPane" text="Book List">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -31,6 +32,11 @@
                                           <Insets left="125.0" top="2.0" />
                                        </HBox.margin>
                                     </TextField>
+                                    <ChoiceBox fx:id="bookListChoiceBox" prefHeight="26.0" prefWidth="92.0">
+                                       <HBox.margin>
+                                          <Insets left="15.0" top="2.0" />
+                                       </HBox.margin>
+                                    </ChoiceBox>
                                     <Button fx:id="bookListFindBtn" mnemonicParsing="false" onAction="#HandleFindBook" text="Find">
                                        <HBox.margin>
                                           <Insets left="45.0" top="2.0" />
@@ -70,7 +76,7 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                <Tab fx:id="StudentListPane" onSelectionChanged="#HandleSwitchPaneStudentList" text="Student List">
+                <Tab fx:id="StudentListPane" text="Student List">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -81,6 +87,11 @@
                                           <Insets left="125.0" top="2.0" />
                                        </HBox.margin>
                                     </TextField>
+                                    <ChoiceBox fx:id="studentListCheckBox" prefHeight="26.0" prefWidth="92.0">
+                                       <HBox.margin>
+                                          <Insets left="15.0" top="2.0" />
+                                       </HBox.margin>
+                                    </ChoiceBox>
                                     <Button fx:id="studentListFindBtn" mnemonicParsing="false" onAction="#HandleFindStudent" text="Find">
                                        <HBox.margin>
                                           <Insets left="45.0" top="2.0" />
@@ -114,7 +125,7 @@
                            </children></AnchorPane>
                   </content>
                 </Tab>
-                  <Tab fx:id="issueBookListPane" onSelectionChanged="#HandleSwitchPaneIssueBookList" text="Issue Book List">
+                  <Tab fx:id="issueBookListPane" text="Issue Book List">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -125,6 +136,11 @@
                                           <Insets left="125.0" top="2.0" />
                                        </HBox.margin>
                                     </TextField>
+                                    <ChoiceBox fx:id="issueBookListChoiceBox" prefHeight="26.0" prefWidth="92.0">
+                                       <HBox.margin>
+                                          <Insets left="15.0" top="2.0" />
+                                       </HBox.margin>
+                                    </ChoiceBox>
                                     <Button fx:id="issueBookListFindBtn" mnemonicParsing="false" onAction="#HandleFindIssueBook" text="Find">
                                        <HBox.margin>
                                           <Insets left="45.0" top="2.0" />
@@ -159,7 +175,7 @@
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab fx:id="returnBookListPane" onSelectionChanged="#HandleSwitchPaneReturnBookList" text="Return Book List">
+                  <Tab fx:id="returnBookListPane" text="Return Book List">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -170,6 +186,11 @@
                                           <Insets left="125.0" top="2.0" />
                                        </HBox.margin>
                                     </TextField>
+                                    <ChoiceBox fx:id="returnBookListChoiceBox" prefHeight="26.0" prefWidth="92.0">
+                                       <HBox.margin>
+                                          <Insets left="15.0" top="2.0" />
+                                       </HBox.margin>
+                                    </ChoiceBox>
                                     <Button fx:id="returnBookListFindBtn" mnemonicParsing="false" onAction="#HandleFindReturnBook" text="Find">
                                        <HBox.margin>
                                           <Insets left="45.0" top="2.0" />

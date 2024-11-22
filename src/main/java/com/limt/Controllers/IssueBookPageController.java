@@ -9,11 +9,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
@@ -188,7 +186,7 @@ public class IssueBookPageController implements Initializable {
                 bookQuantityField.setText(rs.getString("Quantity"));
                 bookTitleField.setText(rs.getString("Title"));
 
-                System.out.println(bookAuthorField.getText());
+                HandleSetDefaultDateIssue();
                 rs.close();
                 pst.close();
             }
@@ -202,12 +200,76 @@ public class IssueBookPageController implements Initializable {
 
     @FXML
     void HandleSearchStudent(ActionEvent event) {
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+        Connection conn = DatabaseManager.connect();
+        assert conn != null;
 
+        String query = "select * from Book where StudentID = " + studentIDField.getText();
+
+        try {
+            studentSearchStatus = true;
+            HandleSetBehaviourAllStudentField(studentSearchStatus);
+            msgLabel.setText("Student Available");
+
+            studentIDField.setText(rs.getString("StudentID"));
+            studentNameField.setText(rs.getString("StudentName"));
+            studentSchoolField.setText(rs.getString("School"));
+            studentEmailField.setText(rs.getString("Email"));
+            studentPhoneNumberField.setText(rs.getString("PhoneNumber"));
+            studentAddressLineField.setText(rs.getString("AddressLine"));
+            studentBirthdayField.setValue(rs.getDate("Birthday").toLocalDate());
+
+            HandleSetDefaultDateIssue();
+            rs.close();
+            pst.close();
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void HandleIssueBook(ActionEvent event) {
+        ResultSet rs = null, rs1 = null, rs2 = null, rs3 = null;
+        PreparedStatement pst = null, pst1 = null, pst2 = null, pst3 = null;
+        Connection conn = DatabaseManager.connect();
+        assert conn != null;
 
+        String bId = searchBookID.getText();
+        String sId = searchStudentID.getText();
+
+        String query1 = "select * from Book where ID = " + bId + "";
+        String query2 = "select * from Book where StudentID = " + sId + "";
+        String query = "INSERT INTO IssueBook (BookID, BookISBN, BookTitle, StudentID, StudentName, IssuedDate) VALUES (?, ?, ?, ?, ?, ?)";
+
+        try {
+            pst1 = conn.prepareStatement(query1);
+            rs1 = pst1.executeQuery();
+
+            pst2 = conn.prepareStatement(query2);
+            rs2 = pst2.executeQuery();
+
+            if(rs1.next() && rs2.next()) {
+                try {
+                    pst = conn.prepareStatement(query);
+
+                    pst.setString(1, bookIDField.getText());
+                    pst.setString(2, bookISBNField.getText());
+                    pst.setString(3, bookTitleField.getText());
+                    pst.setString(4, studentIDField.getText());
+                    pst.setString(5, studentNameField.getText());
+                    pst.setDate(6, Date.valueOf(issueDate.getValue()));
+
+                    pst.execute();
+                    pst.close();
+                    msgLabel.setText("Successfully Issued");
+                } catch  (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
