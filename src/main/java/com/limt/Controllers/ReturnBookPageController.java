@@ -1,5 +1,6 @@
 package com.limt.Controllers;
 
+import com.limt.dbms.DatabaseManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
@@ -82,6 +84,8 @@ public class ReturnBookPageController implements Initializable {
 
     private Boolean issueIDSearchStatus;
 
+    private Integer iID;
+
     @FXML
     void HandleClearAllField(ActionEvent event) {
         issueIDSearchStatus = false;
@@ -124,7 +128,7 @@ public class ReturnBookPageController implements Initializable {
         issueDate.setDisable(status);
     }
 
-    void HandleSetDefaultDateIssue() {
+    void HandleSetDefaultDateReturn() {
         if(issueIDSearchStatus){
             returnDate.setValue(LocalDate.now());
         }
@@ -132,11 +136,74 @@ public class ReturnBookPageController implements Initializable {
 
     @FXML
     void HandleSearchIssueID(ActionEvent event) {
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+        Connection conn = DatabaseManager.connect();
+        assert conn != null;
+
+        String query = "select * from ReturnBook where IssueID = " + searchIssueIDField.getText();
+        try {
+            issueIDSearchStatus = true;
+            HandleSetBehaviourAllField(issueIDSearchStatus);
+            iID = Integer.parseInt(searchIssueIDField.getText());
+            msgLabel.setText("Issue ID is Exits");
+
+            pst = conn.prepareStatement(query);
+            rs = pst.executeQuery();
+            String query1 = "select * from Book where ID = " + rs.getString("BookID");
+            String query2 = "select * from Student where StudentID = " + rs.getString("StudentID");
+            issueDate.setValue(rs.getDate("IssueDate").toLocalDate());
+
+            pst = conn.prepareStatement(query1);
+            rs = pst.executeQuery();
+            bookIDField.setText(rs.getString("ID"));
+            bookISBNField.setText(rs.getString("ISBN"));
+            bookTitleField.setText(rs.getString("Title"));
+            bookAuthorField.setText(rs.getString("Author"));
+            bookCategoryField.setText(rs.getString("Category"));
+            bookPublisherField.setText(rs.getString("Publisher"));
+            bookImagePathField.setText(rs.getString("ImagePath"));
+
+            pst = conn.prepareStatement(query2);
+            rs = pst.executeQuery();
+            studentIDField.setText(rs.getString("StudentID"));
+            studentNameField.setText(rs.getString("StudentName"));
+            studentSchoolField.setText(rs.getString("School"));
+            studentEmailField.setText(rs.getString("Email"));
+            studentPhoneNumberField.setText(rs.getString("PhoneNumber"));
+            studentAddressLineField.setText(rs.getString("AddressLine"));
+            studentBirthdayField.setValue(rs.getDate("Birthday").toLocalDate());
+
+            HandleSetDefaultDateReturn();
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void HandleReturnBook(ActionEvent event) {
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+        Connection conn = DatabaseManager.connect();
+        assert conn != null;
 
+
+        String query = "INSERT INTO ReturnBook (IssueID, BookID, BookTitle, StudentID, StudentName, IssueDate, ReturnDate) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        try {
+            msgLabel.setText("Successfully Returned Book");
+
+            pst = conn.prepareStatement(query);
+            pst.setInt(1, iID);
+            pst.setString(2, bookIDField.getText());
+            pst.setString(3, bookTitleField.getText());
+            pst.setString(4, studentIDField.getText());
+            pst.setString(5, studentNameField.getText());
+            pst.setDate(6, Date.valueOf(issueDate.getValue()));
+            pst.setDate(7, Date.valueOf(returnDate.getValue()));
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     @Override

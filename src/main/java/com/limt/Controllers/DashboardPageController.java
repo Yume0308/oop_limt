@@ -53,7 +53,9 @@ public class DashboardPageController implements Initializable {
     private Label title;
 
 
-    public static Integer CurrentUserID;
+    private static Integer CurrentUserID;
+    public static Integer getCurrentUserID() { return CurrentUserID; }
+    public static void setCurrentUserID(Integer id) { CurrentUserID = id; }
 
     @FXML
     void HandleAddBookBtn(ActionEvent event) throws IOException {
@@ -98,7 +100,5 @@ public class DashboardPageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        CurrentUserID = LoginPageController.getUserID();
-        System.out.println(CurrentUserID);
     }
 }

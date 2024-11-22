@@ -72,7 +72,7 @@ public class AddStudentPageController implements Initializable {
             String query = "INSERT INTO Student VALUES(? ,? , ?, ?, ?, ?, ?, ?)";
             preparedStatement = connection.prepareStatement(query);
 
-            preparedStatement.setInt(1, 1);
+            preparedStatement.setInt(1, DashboardPageController.getCurrentUserID());
             preparedStatement.setString(2, StudentID);
             preparedStatement.setString(3, StudentName);
             preparedStatement.setString(4, StudentSchool);

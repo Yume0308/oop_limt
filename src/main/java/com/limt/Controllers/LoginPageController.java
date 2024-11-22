@@ -112,8 +112,9 @@ public class LoginPageController implements Initializable {
 
     void SetUser(ResultSet resultSet) throws SQLException {
         UserID = resultSet.getInt("UserID");
+        DashboardPageController.setCurrentUserID(UserID);
     }
     public void initialize(URL location, ResourceBundle resources) {
-        com.limt.Controllers.DashboardPageController.CurrentUserID = UserID;
+
     }
 }
