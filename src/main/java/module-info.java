@@ -17,6 +17,7 @@ module com.limt {
     requires javafx.swing;
     requires java.net.http;
     requires com.google.gson;
+    requires mail;
 
     opens com.limt.Controllers to javafx.fxml;
     exports com.limt;
