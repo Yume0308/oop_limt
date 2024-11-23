@@ -13,22 +13,6 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Utils {
-    @NotNull
-    public static Long generateUserID() {
-        Random random = new Random();
-        long min = 10000000000000000L;
-        long max = 99999999999999999L;
-        return random.nextLong((max - min) + 1) + min;
-    }
-
-    @NotNull
-    public static Long generateBookID() {
-        Random random = new Random();
-        long min = 100000000000000000L;
-        long max = 999999999999999999L;
-        return random.nextLong((max - min) + 1) + min;
-    }
-
     @Contract
     public static void setFadeTransition(Parent parent) {
         FadeTransition fadeTransition = new FadeTransition(javafx.util.Duration.minutes(1.2), parent);
@@ -45,5 +29,39 @@ public class Utils {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
+    }
+
+    public static String generateRandomPassword() {
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&+=";
+        Random random = new Random();
+        StringBuilder password;
+        do {
+            password = new StringBuilder();
+            for (int i = 0; i < 12; i++) {
+            password.append(characters.charAt(random.nextInt(characters.length())));
+            }
+        }
+        while (!checkPassword(password.toString()));
+        return password.toString();
+    }
+
+    public static boolean checkPassword(String password) {
+        String regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$";
+        return password.matches(regex);
+    }
+
+    public static boolean checkEmail(String email) {
+        String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        return email.matches(regex);
+    }
+
+    public static boolean checkPhoneNumber(String phoneNumber) {
+        String regex = "^(\\+\\d{1,3}[- ]?)?\\d{10}$";
+        return phoneNumber.matches(regex);
+    }
+
+    public static boolean checkBookISBN(String ISBN) {
+        String regex = "^(?=(?:\\D*\\d){10}(?:(?:\\D*\\d){3})?$)[\\d-]+$";
+        return ISBN.matches(regex);
     }
 }
