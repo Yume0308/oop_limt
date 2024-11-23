@@ -1,6 +1,8 @@
 package com.limt.Controllers;
 
+import com.limt.Lib.Utils;
 import com.limt.dbms.DatabaseManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,31 +22,50 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LoginPageController implements Initializable {
-    @FXML
-    private Text error_desc;
 
     @FXML
-    private Hyperlink forgot_password_hyperlink;
+    private Label error_msg;
 
     @FXML
-    private Button login_button;
+    private Button forgot_password_btn;
+
+    @FXML
+    private Button login_btn;
 
     @FXML
     private PasswordField password_field;
 
     @FXML
-    private Hyperlink sign_in_hyperlink;
-
-    @FXML
-    private Text text_header;
+    private Button sign_up_btn;
 
     @FXML
     private TextField username_field;
 
+
     private static Integer UserID;
     public static Integer getUserID() { return UserID; }
 
-    public void loginAccount() {
+    void LoadDashboard() {
+        try {
+            Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/DashboardPage.fxml")));
+            ((Stage)login_btn.getScene().getWindow()).close();
+            Scene scene = new Scene(parent);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    void SetUser(ResultSet resultSet) throws SQLException {
+        UserID = resultSet.getInt("UserID");
+        DashboardPageController.setCurrentUserID(UserID);
+    }
+
+    @FXML
+    public void loginAccount(ActionEvent actionEvent) {
         String username = username_field.getText();
         String password = password_field.getText();
 
@@ -96,24 +117,16 @@ public class LoginPageController implements Initializable {
         }
     }
 
-    void LoadDashboard() {
-        try {
-            Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/DashboardPage.fxml")));
-            ((Stage)login_button.getScene().getWindow()).close();
-            Scene scene = new Scene(parent);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+    @FXML
+    void HandleForgotPasswordScene(ActionEvent event) throws IOException {
+        Utils.HandleAddPage("/fxml/ForgotPasswordPage.fxml");
     }
 
-    void SetUser(ResultSet resultSet) throws SQLException {
-        UserID = resultSet.getInt("UserID");
-        DashboardPageController.setCurrentUserID(UserID);
+    @FXML
+    void HandleSignUpScene(ActionEvent event) throws IOException {
+        Utils.HandleAddPage("/fxml/SignUpPage.fxml");
     }
+
     public void initialize(URL location, ResourceBundle resources) {
 
     }
