@@ -53,7 +53,7 @@
    ```bash
    Sao chép mã
    mvn clean javafx:run
-3.**Xuất tệp JAR và chạy**:
+3. **Xuất tệp JAR và chạy**:
 
     ```bash
     Sao chép mã
@@ -66,12 +66,6 @@
 - [JavaFX](https://openjfx.io/) - Thư viện giao diện sử dụng
 - [SQLite](https://www.sqlite.org/index.html) - Cơ sở dữ liệu sử dụng
 - [JDBC](https://www.oracle.com/java/technologies/jdbc.html) - Công cụ kết nối cơ sở dữ liệu sử dụng
-
-## Thành viên nhóm
-
-- **Phạm Anh Tuấn** - 23020704 ([GitHub](https://github.com/Yumeio))
-- **Tạ Duy Khánh** - 23020677 ([GitHub](https://github.com/khanhtaduy2k5))
-- **Phan Xuân Hiếu**
 
 
 ### Cấu trúc thư mục
@@ -100,3 +94,9 @@
     ├── package.json                # Tệp cấu hình NPM hiển thị thông tin và dependencies của dự án
     ├── pom.xml                     # Tệp cấu hình Maven
     └── README.md                   # Tệp hướng dẫn README
+
+## Thành viên nhóm
+
+- **Phạm Anh Tuấn** - 23020704 ([GitHub](https://github.com/Yumeio))
+- **Tạ Duy Khánh** - 23020677 ([GitHub](https://github.com/khanhtaduy2k5))
+- **Phan Xuân Hiếu**
