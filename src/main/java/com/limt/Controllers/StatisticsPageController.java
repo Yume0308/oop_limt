@@ -350,12 +350,13 @@ public class StatisticsPageController implements Initializable {
         studentListTableView.getItems().removeAll(selectedStudents);
     }
 
-    String queryFindBook = "SELECT * FROM Book WHERE ? = ?";
+    //String queryFindBook = "SELECT * FROM Book WHERE ? = ?";
     ObservableList<Book> bookList = FXCollections.observableArrayList();
     @FXML
     void HandleFindBook(ActionEvent event) {
         bookList.clear();
         String filter = bookListChoiceBox.getValue();
+        String queryFindBook = "SELECT * FROM Book WHERE " + filter + " = ?";
         Connection connection = DatabaseManager.connect();
         assert connection != null;
         PreparedStatement preparedStatement = null;
@@ -373,12 +374,13 @@ public class StatisticsPageController implements Initializable {
         }
     }
 
-    String queryFindIssueBook = "SELECT * FROM IssueBook WHERE ? = ?";
+    //String queryFindIssueBook = "SELECT * FROM IssueBook WHERE ? = ?";
     ObservableList<IssueBook> issueBookList = FXCollections.observableArrayList();
     @FXML
     void HandleFindIssueBook(ActionEvent event) {
         issueBookList.clear();
         String filter = issueBookListChoiceBox.getValue();
+        String queryFindIssueBook = "SELECT * FROM IssueBook WHERE " + filter + " = ?";
         Connection connection = DatabaseManager.connect();
         assert connection != null;
         PreparedStatement preparedStatement = null;
@@ -397,12 +399,13 @@ public class StatisticsPageController implements Initializable {
         }
     }
 
-    String queryFindReturnBook = "SELECT * FROM ReturnBook WHERE ? = ?";
+    //String queryFindReturnBook = "SELECT * FROM ReturnBook WHERE ? = ?";
     ObservableList<ReturnBook> returnBookList = FXCollections.observableArrayList();
     @FXML
     void HandleFindReturnBook(ActionEvent event) {
         returnBookList.clear();
         String filter = returnBookListChoiceBox.getValue();
+        String queryFindReturnBook = "SELECT * FROM ReturnBook WHERE " + filter + " = ?";
         Connection connection = DatabaseManager.connect();
         assert connection != null;
         PreparedStatement preparedStatement = null;
@@ -420,11 +423,12 @@ public class StatisticsPageController implements Initializable {
         }
     }
 
-    String queryFindStudent = "SELECT * FROM Student WHERE ? = ?";
+    //String queryFindStudent = "SELECT * FROM Student WHERE ? = ?";
     ObservableList<Student> studentList = FXCollections.observableArrayList();
     @FXML
     void HandleFindStudent(ActionEvent event) {
         String filter = studentListChoiceBox.getValue();
+        String queryFindStudent = "SELECT * FROM Student WHERE " + filter + " = ?";
         Connection connection = DatabaseManager.connect();
         assert connection != null;
         PreparedStatement preparedStatement = null;
