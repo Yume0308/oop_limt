@@ -151,7 +151,6 @@ public class AddBookWithApiPageController implements Initializable {
         return books;
     }
 
-    @FXML
     private void InitializeAllColumns() {
         isbnCol.setCellValueFactory(new PropertyValueFactory<>("ISBN"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("Title"));
@@ -162,7 +161,7 @@ public class AddBookWithApiPageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        InitializeAllColumns();
-        HandleClearTableView(null);
+        InitializeAllColumns();
+        bookTableView.getItems().clear();
     }
 }

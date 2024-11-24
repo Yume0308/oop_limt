@@ -4,6 +4,7 @@ import com.limt.Models.Book;
 import com.limt.Models.IssueBook;
 import com.limt.Models.ReturnBook;
 import com.limt.Models.Student;
+import com.limt.dbms.DatabaseManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,7 +20,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -344,248 +350,122 @@ public class StatisticsPageController implements Initializable {
         studentListTableView.getItems().removeAll(selectedStudents);
     }
 
+    String queryFindBook = "SELECT * FROM Book WHERE ? = ?";
+    ObservableList<Book> bookList = FXCollections.observableArrayList();
     @FXML
     void HandleFindBook(ActionEvent event) {
-        String searchField = bookListSearchField.getText().toLowerCase();
+        bookList.clear();
         String filter = bookListChoiceBox.getValue();
-        ObservableList<Book> filteredList = FXCollections.observableArrayList();
-
-        for (Book book : bookListTableView.getItems()) {
-            switch (filter) {
-                case "ID":
-                    if (book.getID().toLowerCase().contains(searchField)) {
-                        filteredList.add(book);
-                    }
-                    break;
-                case "ISBN":
-                    if (book.getISBN().toLowerCase().contains(searchField)) {
-                        filteredList.add(book);
-                    }
-                    break;
-                case "Title":
-                    if (book.getTitle().toLowerCase().contains(searchField)) {
-                        filteredList.add(book);
-                    }
-                    break;
-                case "Author":
-                    if (book.getAuthor().toLowerCase().contains(searchField)) {
-                        filteredList.add(book);
-                    }
-                    break;
-                case "Category":
-                    if (book.getCategory().toLowerCase().contains(searchField)) {
-                        filteredList.add(book);
-                    }
-                    break;
-                case "Publisher":
-                    if (book.getPublisher().toLowerCase().contains(searchField)) {
-                        filteredList.add(book);
-                    }
-                    break;
-                case "Quantity":
-                    if (String.valueOf(book.getQuantity()).contains(searchField)) {
-                        filteredList.add(book);
-                    }
-                    break;
-                case "Remaining":
-                    if (String.valueOf(book.getRemaining()).contains(searchField)) {
-                        filteredList.add(book);
-                    }
-                    break;
+        Connection connection = DatabaseManager.connect();
+        assert connection != null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            preparedStatement = connection.prepareStatement(queryFindBook);
+            preparedStatement.setString(1, filter);
+            preparedStatement.setString(2, bookListSearchField.getText().trim());
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                // query
             }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-
-        bookListTableView.setItems(filteredList);
     }
 
+    String queryFindIssueBook = "SELECT * FROM IssueBook WHERE ? = ?";
+    ObservableList<IssueBook> issueBookList = FXCollections.observableArrayList();
     @FXML
     void HandleFindIssueBook(ActionEvent event) {
-        String searchField = issueBookListSearchField.getText().toLowerCase();
+        issueBookList.clear();
         String filter = issueBookListChoiceBox.getValue();
-        ObservableList<IssueBook> filteredList = FXCollections.observableArrayList();
-
-        for (IssueBook issueBook : issueBookListTableView.getItems()) {
-            switch (filter) {
-                case "IssueID":
-                    if (String.valueOf(issueBook.getIssueID()).contains(searchField)) {
-                        filteredList.add(issueBook);
-                    }
-                    break;
-                case "BookID":
-                    if (issueBook.getBookID().toLowerCase().contains(searchField)) {
-                        filteredList.add(issueBook);
-                    }
-                    break;
-                case "BookISBN":
-                    if (issueBook.getBookISBN().toLowerCase().contains(searchField)) {
-                        filteredList.add(issueBook);
-                    }
-                    break;
-                case "BookTitle":
-                    if (issueBook.getBookTitle().toLowerCase().contains(searchField)) {
-                        filteredList.add(issueBook);
-                    }
-                    break;
-                case "StudentID":
-                    if (String.valueOf(issueBook.getStudentID()).contains(searchField)) {
-                        filteredList.add(issueBook);
-                    }
-                    break;
-                case "StudentName":
-                    if (issueBook.getStudentName().toLowerCase().contains(searchField)) {
-                        filteredList.add(issueBook);
-                    }
-                    break;
-                case "IssueDate":
-                    if (issueBook.getIssueDate().toString().toLowerCase().contains(searchField)) {
-                        filteredList.add(issueBook);
-                    }
-                    break;
+        Connection connection = DatabaseManager.connect();
+        assert connection != null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            preparedStatement = connection.prepareStatement(queryFindIssueBook);
+            preparedStatement.setString(1, filter);
+            preparedStatement.setString(2, issueBookListSearchField.getText().trim());
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                // query
             }
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
         }
-
-        issueBookListTableView.setItems(filteredList);
     }
 
+    String queryFindReturnBook = "SELECT * FROM ReturnBook WHERE ? = ?";
+    ObservableList<ReturnBook> returnBookList = FXCollections.observableArrayList();
     @FXML
     void HandleFindReturnBook(ActionEvent event) {
-        String searchField = returnBookListSearchField.getText().toLowerCase();
+        returnBookList.clear();
         String filter = returnBookListChoiceBox.getValue();
-        ObservableList<ReturnBook> filteredList = FXCollections.observableArrayList();
-
-        for (ReturnBook returnBook : returnBookListTableView.getItems()) {
-            switch (filter) {
-            case "IssueID":
-                if (String.valueOf(returnBook.getIssueID()).contains(searchField)) {
-                filteredList.add(returnBook);
-                }
-                break;
-            case "BookID":
-                if (returnBook.getBookID().toLowerCase().contains(searchField)) {
-                filteredList.add(returnBook);
-                }
-                break;
-            case "BookISBN":
-                if (returnBook.getBookISBN().toLowerCase().contains(searchField)) {
-                filteredList.add(returnBook);
-                }
-                break;
-            case "BookTitle":
-                if (returnBook.getBookTitle().toLowerCase().contains(searchField)) {
-                filteredList.add(returnBook);
-                }
-                break;
-            case "StudentID":
-                if (String.valueOf(returnBook.getStudentID()).contains(searchField)) {
-                filteredList.add(returnBook);
-                }
-                break;
-            case "StudentName":
-                if (returnBook.getStudentName().toLowerCase().contains(searchField)) {
-                filteredList.add(returnBook);
-                }
-                break;
-            case "IssueDate":
-                if (returnBook.getIssueDate().toString().toLowerCase().contains(searchField)) {
-                filteredList.add(returnBook);
-                }
-                break;
-            case "ReturnDate":
-                if (returnBook.getReturnDate().toString().toLowerCase().contains(searchField)) {
-                filteredList.add(returnBook);
-                }
-                break;
-            case "Days":
-                if (String.valueOf(returnBook.getDays()).contains(searchField)) {
-                filteredList.add(returnBook);
-                }
-                break;
+        Connection connection = DatabaseManager.connect();
+        assert connection != null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            preparedStatement = connection.prepareStatement(queryFindReturnBook);
+            preparedStatement.setString(1, filter);
+            preparedStatement.setString(2, returnBookListSearchField.getText().trim());
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                // query
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
-        returnBookListTableView.setItems(filteredList);
     }
 
+    String queryFindStudent = "SELECT * FROM Student WHERE ? = ?";
+    ObservableList<Student> studentList = FXCollections.observableArrayList();
     @FXML
     void HandleFindStudent(ActionEvent event) {
-        String searchField = studentListSearchField.getText().toLowerCase();
         String filter = studentListChoiceBox.getValue();
-        ObservableList<Student> filteredList = FXCollections.observableArrayList();
-
-        for (Student student : studentListTableView.getItems()) {
-            switch (filter) {
-                case "ID":
-                    if (student.getStudentID().toLowerCase().contains(searchField)) {
-                        filteredList.add(student);
-                    }
-                    break;
-                case "Name":
-                    if (student.getStudentName().toLowerCase().contains(searchField)) {
-                        filteredList.add(student);
-                    }
-                    break;
-                case "School":
-                    if (student.getSchool().toLowerCase().contains(searchField)) {
-                        filteredList.add(student);
-                    }
-                    break;
-                case "Email":
-                    if (student.getEmail().toLowerCase().contains(searchField)) {
-                        filteredList.add(student);
-                    }
-                    break;
-                case "PhoneNumber":
-                    if (student.getPhoneNumber().toLowerCase().contains(searchField)) {
-                        filteredList.add(student);
-                    }
-                    break;
-                case "AddressLine":
-                    if (student.getAddressLine().toLowerCase().contains(searchField)) {
-                        filteredList.add(student);
-                    }
-                    break;
-                case "Birthday":
-                    if (student.getBirthday().toString().toLowerCase().contains(searchField)) {
-                        filteredList.add(student);
-                    }
-                    break;
-            }
+        Connection connection = DatabaseManager.connect();
+        assert connection != null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            preparedStatement = connection.prepareStatement(queryFindStudent);
+            preparedStatement.setString(1, filter);
+            preparedStatement.setString(2, studentListSearchField.getText().trim());
+            resultSet = preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
-        studentListTableView.setItems(filteredList);
     }
 
     void LoadBookListData() {
         bookListTableView.getItems().clear();
-        ObservableList<Book> bookList;
 
         // query data
 
-        bookListTableView.setItems(bookList);
+//        bookListTableView.setItems(bookList);
     }
 
     void LoadIssueBookListData() {
         issueBookListTableView.getItems().clear();
-        ObservableList<IssueBook> issueBookList;
 
         // query data
-        issueBookListTableView.setItems(issueBookList);
+//        issueBookListTableView.setItems(issueBookList);
     }
 
     void LoadReturnBookListData() {
         returnBookListTableView.getItems().clear();
-        ObservableList<ReturnBook> returnBookList;
 
         // query data
-        returnBookListTableView.setItems(returnBookList);
+//        returnBookListTableView.setItems(returnBookList);
     }
 
     void LoadStudentListData() {
         studentListTableView.getItems().clear();
-        ObservableList<Student> studentList;
 
         // query data
-        studentListTableView.setItems(studentList);
+//        studentListTableView.setItems(studentList);
     }
 
     @Override
@@ -616,6 +496,6 @@ public class StatisticsPageController implements Initializable {
         studentListChoiceBox.getItems().addAll(filterSearch);
         studentListChoiceBox.setValue(filterSearch[0]);
 
-        LoadBookListData();
+//        LoadBookListData();
     }
 }
