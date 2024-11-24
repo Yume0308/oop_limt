@@ -6,16 +6,15 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Base64;
-import java.util.HexFormat;
 
 public class PasswordHash {
     private String SALT;
-    private final Integer numberOfIterations;
-    private final Integer keyLength;
+    private final int numberOfIterations;
+    private final int keyLength;
     private final String Algorithm;
 
     public PasswordHash() {
-        numberOfIterations = 32768;
+        numberOfIterations = 65536;
         keyLength = 128;
         Algorithm = "PBKDF2WithHmacSHA256";
         SALT = GeneratedSalt();
@@ -23,20 +22,31 @@ public class PasswordHash {
 
     private String GeneratedSalt() {
         SecureRandom random = new SecureRandom();
-        byte[] saltBytes = new byte[16];  // 16 byte = 128 bit
+        byte[] saltBytes = new byte[16]; // 16 byte = 128 bit
         random.nextBytes(saltBytes);
-        return Base64.getEncoder().encodeToString(saltBytes);
+        return Base64.getEncoder().encodeToString(saltBytes); // Mã hóa thành chuỗi Base64
     }
 
-    public String HashPassword(String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public String hashPassword(String password) throws NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeySpecException {
         PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), SALT.getBytes(), numberOfIterations, keyLength);
-        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(Algorithm);
-        return Base64.getEncoder().encodeToString(keyFactory.generateSecret(spec).getEncoded());
+        SecretKeyFactory factory = SecretKeyFactory.getInstance(Algorithm);
+        byte[] hash = factory.generateSecret(spec).getEncoded();
+        return Base64.getEncoder().encodeToString(hash); // Mã hóa thành chuỗi Base64
     }
 
-    public boolean VerifyPassword(String password, String hashedPassword) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public boolean verifyPassword(String password, String hashedPassword) throws NoSuchAlgorithmException, InvalidKeySpecException {
         PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), SALT.getBytes(), numberOfIterations, keyLength);
-        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(Algorithm);
-        return Base64.getEncoder().encodeToString(keyFactory.generateSecret(spec).getEncoded()).equals(hashedPassword);
+        SecretKeyFactory factory = SecretKeyFactory.getInstance(Algorithm);
+        byte[] hash = factory.generateSecret(spec).getEncoded();
+        String generatedHash = Base64.getEncoder().encodeToString(hash);
+        return generatedHash.equals(hashedPassword);
+    }
+
+    public String getSalt() {
+        return SALT;
+    }
+
+    public void setSalt(String SALT) {
+        this.SALT = SALT;
     }
 }

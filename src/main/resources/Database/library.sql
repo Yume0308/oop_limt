@@ -6,7 +6,7 @@ create table MailServer
     Password       TEXT,
     Authentication TEXT,
     TLS            TEXT
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 create table Book
 (
@@ -26,7 +26,8 @@ create table User
 (
     UserID      INTEGER NOT NULL UNIQUE,
     Username    TEXT NOT NULL UNIQUE,
-    Password    TEXT NOT NULL,
+    Salt        TEXT NOT NULL,
+    PasswordHash TEXT NOT NULL,
     Name        TEXT NOT NULL,
     Email       TEXT DEFAULT '',
     PhoneNumber TEXT DEFAULT '',

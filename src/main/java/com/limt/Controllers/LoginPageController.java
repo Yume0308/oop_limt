@@ -1,5 +1,6 @@
 package com.limt.Controllers;
 
+import com.limt.Lib.PasswordHash;
 import com.limt.Lib.Utils;
 import com.limt.dbms.DatabaseManager;
 import javafx.event.ActionEvent;
@@ -14,6 +15,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -64,12 +67,18 @@ public class LoginPageController implements Initializable {
         DashboardPageController.setCurrentUserID(UserID);
     }
 
+    boolean CheckHashingPassword(ResultSet resultSet, String password) throws SQLException, NoSuchAlgorithmException, InvalidKeySpecException {
+        PasswordHash passwordHash = new PasswordHash();
+        passwordHash.setSalt(resultSet.getString("Salt"));
+        return passwordHash.verifyPassword(password, passwordHash.hashPassword(password));
+    }
+
     @FXML
     public void loginAccount(ActionEvent actionEvent) {
         String username = username_field.getText();
         String password = password_field.getText();
 
-        String sql = "SELECT * FROM User WHERE Username = ? AND Password = ?";
+        String sql = "SELECT * FROM User WHERE Username = ?";
 
         // database
         Connection connect = DatabaseManager.connect();
@@ -90,11 +99,9 @@ public class LoginPageController implements Initializable {
             {
                 PreparedStatement preparedStatement = connect.prepareStatement(sql);
                 preparedStatement.setString(1, username);
-                preparedStatement.setString(2, password);
-
                 ResultSet resultSet = preparedStatement.executeQuery();
 
-                if(resultSet.next()) {
+                if(resultSet.next() & CheckHashingPassword(resultSet, password)) {
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Message");
                     alert.setHeaderText(null);
@@ -113,6 +120,10 @@ public class LoginPageController implements Initializable {
             }
 
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        } catch (InvalidKeySpecException e) {
             throw new RuntimeException(e);
         }
     }
