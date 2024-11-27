@@ -188,12 +188,12 @@ public class ReturnBookPageController implements Initializable {
     }
 
     @FXML
-    void HandleReturnBook(ActionEvent event) {
+    void HandleReturnBook(ActionEvent event) throws SQLException {
         ResultSet rs = null;
         PreparedStatement pst = null;
         Connection conn = DatabaseManager.connect();
+        conn.setAutoCommit(false);
         assert conn != null;
-
 
         String query = "INSERT INTO returnbook (IssueID, BookID, BookTitle, StudentID, StudentName, IssueDate, ReturnDate, Days) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try {

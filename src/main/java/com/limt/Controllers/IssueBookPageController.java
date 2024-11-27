@@ -236,10 +236,11 @@ public class IssueBookPageController implements Initializable {
     }
 
     @FXML
-    void HandleIssueBook(ActionEvent event) {
+    void HandleIssueBook(ActionEvent event) throws SQLException {
         ResultSet rs = null, rs1 = null, rs2 = null, rs3 = null;
         PreparedStatement pst = null, pst1 = null, pst2 = null, pst3 = null;
         Connection conn = DatabaseManager.connect();
+        conn.setAutoCommit(false);
         assert conn != null;
 
         String bId = searchBookID.getText();

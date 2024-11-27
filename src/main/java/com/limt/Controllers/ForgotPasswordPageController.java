@@ -1,11 +1,13 @@
 package com.limt.Controllers;
 
+import com.limt.Lib.PasswordHash;
 import com.limt.Lib.Utils;
 import com.limt.dbms.DatabaseManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -15,6 +17,8 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -65,27 +69,14 @@ public class ForgotPasswordPageController implements Initializable {
     @FXML
     void HandleCheckEmailIsExits(ActionEvent event) {
         String email = email_field.getText();
-        String sql = "SELECT * FROM User WHERE Email = ?";
-
-        Connection connect = DatabaseManager.connect();
-
-        try {
-            assert connect != null;
-            PreparedStatement preparedStatement = connect.prepareStatement(sql);
-            preparedStatement.setString(1, email);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()) {
-                error_msg.setText("Email exists in the database.");
-                otp_field.setDisable(false);
-                send_otp_btn.setDisable(false);
-                verify_otp_btn.setDisable(false);
-            } else {
-                error_msg.setText("Email does not exist.");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if(Utils.checkEmail(email) && Utils.CheckEmailIsExits(email)) {
+            error_msg.setText("Email exists in the database.");
+            otp_field.setDisable(false);
+            send_otp_btn.setDisable(false);
+            verify_otp_btn.setDisable(false);
+        }
+        else {
+            error_msg.setText("Email does not exist.");
         }
     }
 
@@ -100,36 +91,11 @@ public class ForgotPasswordPageController implements Initializable {
         hide_label.setVisible(true);
         hide_label.setText(Utils.generatedOTP());
 
-        String otp = otp_field.getText();
-        String smtpHost = "smtp.gmail.com";
-        String smtpPort = "587";
-
-        Properties props = new Properties();
-        props.put("mail.smtp.host", smtpHost);
-        props.put("mail.smtp.port", smtpPort);
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.socketFactory.port", smtpPort);
-        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-
-        String email = "tuandapda2@gmail.com";
-        String password_app = "******";    //  Your email password here
-        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(email, password_app);
-            }
-        });
-        try {
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(email));
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(email_field.getText().trim()));
-            message.setSubject("Verify Code");
-            message.setText(hide_label.getText().trim());
-            Transport.send(message);
-        } catch (MessagingException e) {
-           e.printStackTrace();
-        }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Your OTP");
+        alert.setHeaderText(null);
+        alert.setContentText(hide_label.getText());
+        alert.showAndWait();
     }
 
     @FXML
@@ -146,18 +112,20 @@ public class ForgotPasswordPageController implements Initializable {
     }
 
     @FXML
-    void HandleSubmit(ActionEvent event) {
+    void HandleSubmit(ActionEvent event) throws NoSuchAlgorithmException, InvalidKeySpecException {
         String email = email_field.getText();
-        String newPassword = new_password_field.getText();
-        String sql = "UPDATE User SET Password = ? WHERE Email = ?";
+        PasswordHash passwordHash = new PasswordHash();
+        String newPassword = passwordHash.hashPassword(new_password_field.getText());
+        String sql = "UPDATE user SET Salt = ?, PasswordHash = ? WHERE Email = ?";
 
         Connection connect = DatabaseManager.connect();
 
         try {
             assert connect != null;
             PreparedStatement preparedStatement = connect.prepareStatement(sql);
-            preparedStatement.setString(1, newPassword);
-            preparedStatement.setString(2, email);
+            preparedStatement.setString(1, passwordHash.getSalt());
+            preparedStatement.setString(2, newPassword);
+            preparedStatement.setString(3, email);
 
             int rowsUpdated = preparedStatement.executeUpdate();
 

@@ -66,6 +66,8 @@ public class AddStudentPageController implements Initializable {
             ResultSet resultSet = null;
             PreparedStatement preparedStatement = null;
             Connection connection = DatabaseManager.connect();
+            connection.setAutoCommit(false);
+
             assert connection != null;
 
             Integer StudentID = Integer.parseInt(studentIDField.getText());

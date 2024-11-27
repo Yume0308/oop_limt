@@ -1,5 +1,8 @@
 package com.limt.Controllers;
 
+import com.limt.Lib.PasswordHash;
+import com.limt.Lib.Utils;
+import com.limt.dbms.DatabaseManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,6 +15,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class SignUpPageController implements Initializable {
@@ -46,8 +52,38 @@ public class SignUpPageController implements Initializable {
     private TextField username_field;
 
     @FXML
-    void CreateAccount(ActionEvent event) {
+    void CreateAccount(ActionEvent event) throws SQLException {
 
+        try {
+            ResultSet resultSet = null;
+            PreparedStatement preparedStatement = null;
+            Connection connection = DatabaseManager.connect();
+            connection.setAutoCommit(false);
+            assert connection != null;
+            PasswordHash passwordHash = new PasswordHash();
+
+            if(Utils.CheckAccountIsExits(username_field.getText()))
+            {
+                String query = "INSERT INTO user (Username, Salt, PasswordHash, Name, Email, PhoneNumber, Birthday) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setString(1, username_field.getText());
+                preparedStatement.setString(2, passwordHash.getSalt());
+                preparedStatement.setString(3, passwordHash.hashPassword(password_field.getText()));
+                preparedStatement.setString(4, name_field.getText());
+                preparedStatement.setString(5, email_field.getText());
+                preparedStatement.setString(6, phoneNumber_field.getText());
+                preparedStatement.setDate(7, Date.valueOf(birthday_field.getValue()));
+                preparedStatement.execute();
+                error_msg.setText("Create account successful");
+            }
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        } catch (InvalidKeySpecException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML

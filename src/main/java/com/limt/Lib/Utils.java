@@ -1,5 +1,6 @@
 package com.limt.Lib;
 
+import com.limt.dbms.DatabaseManager;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,6 +11,10 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Objects;
 import java.util.Random;
 
@@ -73,5 +78,47 @@ public class Utils {
             otp.append(random.nextInt(10));
         }
         return otp.toString();
+    }
+
+    public static boolean CheckAccountIsExits(String username) {
+        String sql = "SELECT * FROM user WHERE Username = ?";
+
+        Connection connect = DatabaseManager.connect();
+
+        try {
+            assert connect != null;
+            PreparedStatement preparedStatement = connect.prepareStatement(sql);
+            preparedStatement.setString(1, username);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static boolean CheckEmailIsExits(String email) {
+        String sql = "SELECT * FROM user WHERE Email = ?";
+
+        Connection connect = DatabaseManager.connect();
+
+        try {
+            assert connect != null;
+            PreparedStatement preparedStatement = connect.prepareStatement(sql);
+            preparedStatement.setString(1, email);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
