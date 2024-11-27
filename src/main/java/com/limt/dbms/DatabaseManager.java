@@ -8,17 +8,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseManager {
-    private static final String url = "jdbc:sqlite:src/main/resources/Database/sqlite (1).db";
+    private static final String url = "jdbc:mysql://localhost:3306/library";
 
     @Nullable
     public static Connection connect() {
         Connection conn = null;
         try {
-            Class.forName("org.sqlite.JDBC");
-            SQLiteConfig configuration = new SQLiteConfig();
-            configuration.enforceForeignKeys(true);
-            configuration.setBusyTimeout(Integer.parseInt(String.valueOf(1000)));
-            conn = DriverManager.getConnection(url, configuration.toProperties());
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection(url, "root", "Tuan0308");
             System.out.println("Connection to SQLite has been established.");
             return conn;
         } catch (SQLException e) {
