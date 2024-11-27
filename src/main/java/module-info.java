@@ -18,6 +18,9 @@ module com.limt {
     requires java.net.http;
     requires com.google.gson;
     requires mail;
+    requires com.google.zxing;
+    requires com.google.zxing.javase;
+    requires org.slf4j;
 
     opens com.limt.Controllers to javafx.fxml;
     exports com.limt;

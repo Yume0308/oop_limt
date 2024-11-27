@@ -85,7 +85,6 @@ public class AddBookWithApiPageController implements Initializable {
             return;
         }
 
-        String ApiKey = "AIzaSyDZzVvq_zRa2dMBFdapShHbQANDTVhCMY4";
         String ApiURL = "https://www.googleapis.com/books/v1/volumes?q=" + query + "&maxResults=20&key=";
 
         try {

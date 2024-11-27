@@ -64,4 +64,13 @@ public class Utils {
         String regex = "^(?=(?:\\D*\\d){10}(?:(?:\\D*\\d){3})?$)[\\d-]+$";
         return ISBN.matches(regex);
     }
+
+    public static String generatedOTP() {
+        Random random = new Random();
+        StringBuilder otp = new StringBuilder();
+        for (int i = 0; i < 6; i++) {
+            otp.append(random.nextInt(10));
+        }
+        return otp.toString();
+    }
 }

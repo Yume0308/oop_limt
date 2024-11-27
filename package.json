@@ -8,7 +8,7 @@
         {
             "name": "Phạm Anh Tuấn",
             "email": "23020704@vnu.edu.vn",
-            "github_url": "https://github.com/Yume0308"
+            "github_url": "https://github.com/Yumeio"
         },
         {
             "name": "Tạ Duy Khánh",
@@ -30,7 +30,7 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/Yume0308/OOP_LibraryManagement"
+        "url": "https://github.com/Yumeio/OOP_LibraryManagement"
     }
 
 }

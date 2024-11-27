@@ -71,6 +71,9 @@ public class ForgotPasswordPageController implements Initializable {
 
             if (resultSet.next()) {
                 error_msg.setText("Email exists in the database.");
+                otp_field.setDisable(false);
+                send_otp_btn.setDisable(false);
+                verify_otp_btn.setDisable(false);
             } else {
                 error_msg.setText("Email does not exist.");
             }
@@ -87,41 +90,79 @@ public class ForgotPasswordPageController implements Initializable {
 
     @FXML
     void HandleSendOTP(ActionEvent event) {
-//        String from = "******@gmail.com";
-//        Properties prop = new Properties();
-//        prop.put("mail.smtp.host", "smtp.gmail.com");
-//        prop.put("mail.smtp.port", "587");
-//        prop.put("mail.smtp.auth", "true");
-//        prop.put("mail.smtp.starttls.enable", "true");
-//        String username = "******@gmail.com";
-//        String password = "******";    //  Your email password here
-//        Session session = Session.getInstance(prop, new javax.mail.Authenticator() {
-//            @Override
-//            protected PasswordAuthentication getPasswordAuthentication() {
-//                return new PasswordAuthentication(username, password);
-//            }
-//        });
-//        try {
-//            Message message = new MimeMessage(session);
-//            message.setFrom(new InternetAddress(from));
-//            message.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
-//            message.setSubject("Verify Code");
-//            message.setText(code);
-//            Transport.send(message);
-//            ms.setSuccess(true);
-//        } catch (MessagingException e) {
-//           e.printStackTrace();
-//        }
+        hide_label.setVisible(true);
+        hide_label.setText(Utils.generatedOTP());
+
+        String otp = otp_field.getText();
+        String smtpHost = "smtp.gmail.com";
+        String smtpPort = "587";
+
+        Properties props = new Properties();
+        props.put("mail.smtp.host", smtpHost);
+        props.put("mail.smtp.port", smtpPort);
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.socketFactory.port", smtpPort);
+        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+
+        String email = "tuandapda2@gmail.com";
+        String password_app = "******";    //  Your email password here
+        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(email, password_app);
+            }
+        });
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(email));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(email_field.getText().trim()));
+            message.setSubject("Verify Code");
+            message.setText(hide_label.getText().trim());
+            Transport.send(message);
+        } catch (MessagingException e) {
+           e.printStackTrace();
+        }
     }
 
     @FXML
     void HandleVerifyOTP(ActionEvent event) {
-
+        if(otp_field.getText().trim().equals("")) {
+            error_msg.setText("Enter OTP");
+            return;
+        }
+        if(otp_field.getText().trim().equals(hide_label.getText().trim())) {
+            error_msg.setText("OTP is true");
+            retrive_password_btn.setDisable(false);
+            new_password_field.setDisable(false);
+        }
     }
 
     @FXML
     void HandleSubmit(ActionEvent event) {
+        String email = email_field.getText();
+        String newPassword = new_password_field.getText();
+        String sql = "UPDATE User SET Password = ? WHERE Email = ?";
 
+        Connection connect = DatabaseManager.connect();
+
+        try {
+            assert connect != null;
+            PreparedStatement preparedStatement = connect.prepareStatement(sql);
+            preparedStatement.setString(1, newPassword);
+            preparedStatement.setString(2, email);
+
+            int rowsUpdated = preparedStatement.executeUpdate();
+
+            if (rowsUpdated > 0) {
+                error_msg.setText("Password updated successfully.");
+            } else {
+                error_msg.setText("Failed to update password.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
     }
 
     @Override
