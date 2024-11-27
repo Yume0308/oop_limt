@@ -7,11 +7,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URI;
@@ -24,6 +26,12 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AddBookWithApiPageController implements Initializable {
+
+    @FXML
+    private Button close;
+
+    @FXML
+    private Button minimize;
 
     @FXML
     private Button addSelectedBoxBtn;
@@ -156,6 +164,17 @@ public class AddBookWithApiPageController implements Initializable {
         authorCol.setCellValueFactory(new PropertyValueFactory<>("Author"));
         categoryCol.setCellValueFactory(new PropertyValueFactory<>("Category"));
         publisherCol.setCellValueFactory(new PropertyValueFactory<>("Publisher"));
+    }
+
+    @FXML
+    public void HandleMinimize(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    @FXML
+    public void HandleClose(ActionEvent actionEvent) {
+        ((Stage) close.getScene().getWindow()).close();
     }
 
     @Override

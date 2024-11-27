@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
@@ -19,6 +20,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,6 +32,11 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class StatisticsPageController implements Initializable {
+    @FXML
+    private Button close;
+
+    @FXML
+    private Button minimize;
 
     @FXML
     private Tab bookListPane;
@@ -515,6 +522,17 @@ public class StatisticsPageController implements Initializable {
 
         // query data
 //        studentListTableView.setItems(studentList);
+    }
+
+    @FXML
+    public void HandleMinimize(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    @FXML
+    public void HandleClose(ActionEvent actionEvent) {
+        ((Stage) close.getScene().getWindow()).close();
     }
 
     @Override

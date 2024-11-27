@@ -9,8 +9,11 @@ import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.LuminanceSource;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Stop;
@@ -30,6 +33,11 @@ import org.slf4j.LoggerFactory;
 
 
 public class ScanISBNPageController implements Initializable {
+    @FXML
+    private Button close;
+
+    @FXML
+    private Button minimize;
 
     private static final Logger log = LoggerFactory.getLogger(ScanISBNPageController.class);
     @FXML
@@ -121,6 +129,17 @@ public class ScanISBNPageController implements Initializable {
                 }
             }
         });
+    }
+
+    @FXML
+    public void HandleMinimize(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    @FXML
+    public void HandleClose(ActionEvent actionEvent) {
+        ((Stage) close.getScene().getWindow()).close();
     }
 
     @Override

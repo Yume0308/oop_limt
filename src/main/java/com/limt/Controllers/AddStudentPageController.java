@@ -4,10 +4,12 @@ import com.limt.dbms.DatabaseManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -18,6 +20,12 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class AddStudentPageController implements Initializable {
+
+    @FXML
+    private Button close;
+
+    @FXML
+    private Button minimize;
 
     @FXML
     private Button addStudentBtn;
@@ -100,8 +108,14 @@ public class AddStudentPageController implements Initializable {
     }
 
     @FXML
-    void backto(ActionEvent event) {
+    public void HandleMinimize(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setIconified(true);
+    }
 
+    @FXML
+    public void HandleClose(ActionEvent actionEvent) {
+        ((Stage) close.getScene().getWindow()).close();
     }
 
     @Override

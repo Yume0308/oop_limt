@@ -7,12 +7,34 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.layout.HBox?>
 <AnchorPane id="AnchorPane" prefHeight="403.0" prefWidth="574.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.limt.Controllers.DashboardPageController">
    <children>
       <AnchorPane layoutY="-2.0" prefHeight="410.0" prefWidth="574.0" style="-fx-background-color: #dce6e5;">
          <children>
             <AnchorPane prefHeight="98.0" prefWidth="574.0" style="-fx-background-color: linear-gradient(to left top, #d6a8c2, #c8a4c4, #b9a1c4, #a99ec2, #999bbf, #92a1c5, #8ca8c9, #86aecc, #88c0d9, #8ed2e3, #97e3ea, #a6f4ef);;">
                <children>
+                   <HBox layoutX="503.0" layoutY="6.0" prefHeight="30.0" prefWidth="100.0" spacing="10.0">
+                       <children>
+                           <Button fx:id="minimize" mnemonicParsing="false" onAction="#HandleMinimize" prefHeight="30.0" prefWidth="45.0" style="-fx-background-color: transparent;">
+                               <graphic>
+                                   <ImageView fitHeight="20.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                           <Image url="@../images/minimize_window.png" />
+                                       </image>
+                                   </ImageView>
+                               </graphic>
+                           </Button>
+                           <Button fx:id="close" mnemonicParsing="false" onAction="#HandleClose" prefHeight="30.0" prefWidth="45.0" style="-fx-background-color: transparent;">
+                               <graphic>
+                                   <ImageView fitHeight="20.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                           <Image url="@../images/close_window.png" />
+                                       </image>
+                                   </ImageView>
+                               </graphic>
+                           </Button>
+                       </children></HBox>
                   <ImageView fx:id="logo" fitHeight="61.0" fitWidth="97.0" layoutX="14.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
                      <image>
 <!--                        <Image url="@../image/LOGO.png" />-->
@@ -24,15 +46,6 @@
                      </font>
                   </Label>
                   <Label fx:id="description" layoutX="92.0" layoutY="56.0" opacity="0.83" text="This is the menu of the library system. " textFill="WHITE" />
-                  <Button fx:id="logoutBtn" layoutX="502.0" layoutY="27.0" mnemonicParsing="false" onAction="#HandleLogoutBtn" prefHeight="25.0" prefWidth="30.0">
-                     <graphic>
-                        <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/logout-icon.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
                </children>
             </AnchorPane>
             <Button fx:id="addBookBtn" contentDisplay="TOP" layoutX="75.0" layoutY="140.0" mnemonicParsing="false" onAction="#HandleAddBookBtn" prefHeight="88.0" prefWidth="114.0" style="-fx-background-color: #c7d4d2; -fx-background-radius: 7;" text="Add Book">
@@ -62,7 +75,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="returnBookBtn" contentDisplay="TOP" layoutX="142.0" layoutY="267.0" mnemonicParsing="false" onAction="#HandleReturnBookBtn" prefHeight="88.0" prefWidth="114.0" style="-fx-background-color: #c7d4d2; -fx-background-radius: 7;" text="Return Book">
+            <Button fx:id="returnBookBtn" contentDisplay="TOP" layoutX="75.0" layoutY="267.0" mnemonicParsing="false" onAction="#HandleReturnBookBtn" prefHeight="88.0" prefWidth="114.0" style="-fx-background-color: #c7d4d2; -fx-background-radius: 7;" text="Return Book">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -71,11 +84,20 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="statisticsBtn" contentDisplay="TOP" layoutX="309.0" layoutY="267.0" mnemonicParsing="false" onAction="#HandleStatisticsBtn" prefHeight="88.0" prefWidth="114.0" style="-fx-background-color: #c9d1d0; -fx-background-radius: 7;" text="View Statistics">
+            <Button fx:id="statisticsBtn" contentDisplay="TOP" layoutX="226.0" layoutY="267.0" mnemonicParsing="false" onAction="#HandleStatisticsBtn" prefHeight="88.0" prefWidth="114.0" style="-fx-background-color: #c9d1d0; -fx-background-radius: 7;" text="View Statistics">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/statistics-icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="logoutBtn" contentDisplay="TOP" layoutX="373.0" layoutY="267.0" mnemonicParsing="false" onAction="#HandleLogoutBtn" prefHeight="88.0" prefWidth="114.0" style="-fx-background-color: #c9d1d0; -fx-background-radius: 7;" text="Log out">
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/logout-icon.png" />
                      </image>
                   </ImageView>
                </graphic>

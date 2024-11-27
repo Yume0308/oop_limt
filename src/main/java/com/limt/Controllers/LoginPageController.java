@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -25,6 +26,11 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LoginPageController implements Initializable {
+    @FXML
+    private Button close;
+
+    @FXML
+    private Button minimize;
 
     @FXML
     private Label error_msg;
@@ -136,6 +142,17 @@ public class LoginPageController implements Initializable {
     @FXML
     void HandleSignUpScene(ActionEvent event) throws IOException {
         Utils.HandleAddPage("/fxml/SignUpPage.fxml");
+    }
+
+    @FXML
+    public void HandleMinimize(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    @FXML
+    public void HandleClose(ActionEvent actionEvent) {
+        ((Stage) close.getScene().getWindow()).close();
     }
 
     public void initialize(URL location, ResourceBundle resources) {

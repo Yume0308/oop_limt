@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -24,10 +25,13 @@ import java.util.ResourceBundle;
 public class AddBookPageController implements Initializable {
 
     @FXML
-    private Button addBookBtn;
+    private Button close;
 
     @FXML
-    private Button backBtn;
+    private Button minimize;
+
+    @FXML
+    private Button addBookBtn;
 
     @FXML
     private TextField bookAuthorField;
@@ -95,11 +99,6 @@ public class AddBookPageController implements Initializable {
     }
 
     @FXML
-    void HandleBackToDashboard(ActionEvent event) {
-
-    }
-
-    @FXML
     void HandleBrowseLink(ActionEvent event) {
 
     }
@@ -126,8 +125,21 @@ public class AddBookPageController implements Initializable {
         Utils.HandleAddPage("/fxml/AddBookWithApiPage.fxml");
     }
 
+    @FXML
+    public void HandleMinimize(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    @FXML
+    public void HandleClose(ActionEvent actionEvent) {
+        ((Stage) close.getScene().getWindow()).close();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         HandleClearAllField(null);
     }
+
+
 }

@@ -10,6 +10,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="700.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.limt.Controllers.LoginPageController">
     <VBox prefHeight="567.0" prefWidth="210.0" styleClass="page_logo_image" stylesheets="@../styles/style.css">
         <FontAwesomeIconView glyphName="BOOK" size="35" />
@@ -17,6 +20,27 @@
     </VBox>
    <AnchorPane layoutX="210.0" prefHeight="567.0" prefWidth="490.0">
       <children>
+          <HBox layoutX="391.0" layoutY="-2.0" prefHeight="30.0" prefWidth="100.0" spacing="10.0">
+              <children>
+                  <Button fx:id="minimize" mnemonicParsing="false" onAction="#HandleMinimize" prefHeight="30.0" prefWidth="45.0" style="-fx-background-color: transparent;">
+                      <graphic>
+                          <ImageView fitHeight="20.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                  <Image url="@../images/minimize_window.png" />
+                              </image>
+                          </ImageView>
+                      </graphic>
+                  </Button>
+                  <Button fx:id="close" mnemonicParsing="false" onAction="#HandleClose" prefHeight="30.0" prefWidth="45.0" style="-fx-background-color: transparent;">
+                      <graphic>
+                          <ImageView fitHeight="20.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                  <Image url="@../images/close_window.png" />
+                              </image>
+                          </ImageView>
+                      </graphic>
+                  </Button>
+              </children></HBox>
          <Label layoutX="194.0" layoutY="39.0" prefHeight="26.0" prefWidth="165.0" text="Login Page">
             <font>
                <Font name="System Bold" size="22.0" />

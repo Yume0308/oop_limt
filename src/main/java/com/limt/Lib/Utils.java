@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -26,7 +27,7 @@ public class Utils {
     public static void HandleAddPage(String URL) throws IOException {
         Parent view = FXMLLoader.load(Objects.requireNonNull(Utils.class.getResource(URL)));
         Scene scene = new Scene(view);
-        Stage stage = new Stage();
+        Stage stage = new Stage(StageStyle.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
     }
