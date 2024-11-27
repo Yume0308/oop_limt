@@ -165,7 +165,7 @@ public class IssueBookPageController implements Initializable {
         assert conn != null;
 
         String BookID = searchBookID.getText();
-        String query = "select * from Book where ID = ?";
+        String query = "select * from book where ID = ?";
 
         try {
             pst = conn.prepareStatement(query);
@@ -179,7 +179,7 @@ public class IssueBookPageController implements Initializable {
 
                 bookAuthorField.setText(rs.getString("Author"));
                 bookCategoryField.setText(rs.getString("Category"));
-                bookIDField.setText(rs.getString("ID"));
+                bookIDField.setText(String.valueOf(rs.getInt("ID")));
                 bookISBNField.setText(rs.getString("ISBN"));
                 bookImagePathField.setText(rs.getString("ImagePath"));
                 bookPublisherField.setText(rs.getString("Publisher"));
@@ -205,14 +205,14 @@ public class IssueBookPageController implements Initializable {
         Connection conn = DatabaseManager.connect();
         assert conn != null;
 
-        String query = "select * from Book where StudentID = " + studentIDField.getText();
+        String query = "select * from student where StudentID = " + studentIDField.getText();
 
         try {
             studentSearchStatus = true;
             HandleSetBehaviourAllStudentField(studentSearchStatus);
             msgLabel.setText("Student Available");
 
-            studentIDField.setText(rs.getString("StudentID"));
+            studentIDField.setText(String.valueOf(rs.getInt("StudentID")));
             studentNameField.setText(rs.getString("StudentName"));
             studentSchoolField.setText(rs.getString("School"));
             studentEmailField.setText(rs.getString("Email"));
@@ -238,8 +238,8 @@ public class IssueBookPageController implements Initializable {
         String bId = searchBookID.getText();
         String sId = searchStudentID.getText();
 
-        String query1 = "select * from Book where ID = " + bId + "";
-        String query2 = "select * from Student where StudentID = " + sId + "";
+        String query1 = "select * from book where ID = " + bId + "";
+        String query2 = "select * from student where StudentID = " + sId + "";
         String query = "INSERT INTO IssueBook (BookID, BookISBN, BookTitle, StudentID, StudentName, IssuedDate) VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
@@ -253,10 +253,10 @@ public class IssueBookPageController implements Initializable {
                 try {
                     pst = conn.prepareStatement(query);
 
-                    pst.setString(1, bookIDField.getText());
+                    pst.setInt(1, Integer.parseInt(bookIDField.getText()));
                     pst.setString(2, bookISBNField.getText());
                     pst.setString(3, bookTitleField.getText());
-                    pst.setString(4, studentIDField.getText());
+                    pst.setInt(4, Integer.parseInt(studentIDField.getText()));
                     pst.setString(5, studentNameField.getText());
                     pst.setDate(6, Date.valueOf(issueDate.getValue()));
 

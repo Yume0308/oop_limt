@@ -4,17 +4,16 @@ import javafx.scene.control.CheckBox;
 
 public class Book {
     private final CheckBox CheckBox;
-    private String ID;
+    private Integer ID;
     private String ISBN;
     private String Title;
     private String Author;
     private String Category;
     private String Publisher;
     private Integer Quantity;
-    private Integer Remaining;
     private String ImagePath;
 
-    public Book(String ID, String ISBN, String title, String author, String category, String publisher, Integer quantity, Integer remainingBooks, String imagePath) {
+    public Book(Integer ID, String ISBN, String title, String author, String category, String publisher, Integer quantity, String imagePath) {
         CheckBox = new CheckBox();
         this.ID = ID;
         this.ISBN = ISBN;
@@ -23,7 +22,6 @@ public class Book {
         Category = category;
         Publisher = publisher;
         Quantity = quantity;
-        Remaining = remainingBooks;
         this.ImagePath = imagePath;
     }
 
@@ -35,7 +33,6 @@ public class Book {
         Category = category;
         Publisher = publisher;
         Quantity = quantity;
-        Remaining = remainingBooks;
         this.ImagePath = imagePath;
     }
 
@@ -43,7 +40,7 @@ public class Book {
         return CheckBox;
     }
 
-    public String getID() {
+    public Integer getID() {
         return ID;
     }
 
@@ -71,15 +68,11 @@ public class Book {
         return Quantity;
     }
 
-    public Integer getRemaining() {
-        return Remaining;
-    }
-
     public String getImagePath() {
         return ImagePath;
     }
 
-    public void setID(String ID) {
+    public void setID(Integer ID) {
         this.ID = ID;
     }
 
@@ -105,10 +98,6 @@ public class Book {
 
     public void setQuantity(Integer quantity) {
         Quantity = quantity;
-    }
-
-    public void setRemaining(Integer remaining) {
-        Remaining = remaining;
     }
 
     public void setImagePath(String imagePath) {

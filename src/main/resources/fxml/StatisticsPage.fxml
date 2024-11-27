@@ -54,7 +54,6 @@
                                     <TableColumn fx:id="bookListCategoryCol" minWidth="8.0" prefWidth="120.0" text="Category" />
                                     <TableColumn fx:id="bookListPublisherCol" minWidth="5.5999755859375" prefWidth="106.4000244140625" text="Publisher" />
                                     <TableColumn fx:id="bookListQuantityCol" minWidth="0.0" prefWidth="83.2000732421875" text="Quantity" />
-                                    <TableColumn fx:id="bookListRemainingCol" minWidth="0.0" prefWidth="83.2000732421875" text="Remaining" />
                                     <TableColumn fx:id="bookListImagePathCol" minWidth="0.0" prefWidth="83.2000732421875" text="ImagePath" />
                                 </columns>
                               </TableView>

@@ -41,13 +41,7 @@ public class DashboardPageController implements Initializable {
     private Button returnBookBtn;
 
     @FXML
-    private Button settingBtn;
-
-    @FXML
     private Button statisticsBtn;
-
-    @FXML
-    private Button analysisBtn;
 
     @FXML
     private Label title;
@@ -80,16 +74,6 @@ public class DashboardPageController implements Initializable {
     @FXML
     void HandleStatisticsBtn(ActionEvent event) throws IOException {
         Utils.HandleAddPage("/fxml/StatisticsPage.fxml");
-    }
-
-    @FXML
-    void HandleSettingBtn(ActionEvent event) throws IOException {
-        Utils.HandleAddPage("/fxml/SettingPage.fxml");
-    }
-
-    @FXML
-    void HandleAnalysisBtn(ActionEvent event) throws IOException {
-        Utils.HandleAddPage("/fxml/AnalysisPage.fxml");
     }
 
     @FXML

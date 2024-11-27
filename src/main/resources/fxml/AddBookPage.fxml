@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.limt.Controllers.AddBookPageController">
@@ -19,6 +20,7 @@
                      </font>
                   </Label>
                   <FontAwesomeIconView fill="WHITE" glyphName="BOOK" layoutX="365.0" layoutY="62.0" size="3em" text="" />
+                  <HBox layoutX="503.0" layoutY="6.0" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: WHITE;" />
                </children>
             </AnchorPane>
             <TextField fx:id="bookIDField" layoutX="280.0" layoutY="104.0" prefHeight="25.0" prefWidth="216.0" promptText="Enter book ID" />

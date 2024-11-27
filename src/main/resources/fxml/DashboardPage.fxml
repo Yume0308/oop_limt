@@ -24,15 +24,6 @@
                      </font>
                   </Label>
                   <Label fx:id="description" layoutX="92.0" layoutY="56.0" opacity="0.83" text="This is the menu of the library system. " textFill="WHITE" />
-                  <Button fx:id="settingBtn" layoutX="403.0" layoutY="28.0" mnemonicParsing="false" onAction="#HandleSettingBtn" prefHeight="25.0" prefWidth="30.0">
-                     <graphic>
-                        <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/setting-icon.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
                   <Button fx:id="logoutBtn" layoutX="502.0" layoutY="27.0" mnemonicParsing="false" onAction="#HandleLogoutBtn" prefHeight="25.0" prefWidth="30.0">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
@@ -71,7 +62,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="returnBookBtn" contentDisplay="TOP" layoutX="75.0" layoutY="267.0" mnemonicParsing="false" onAction="#HandleReturnBookBtn" prefHeight="88.0" prefWidth="114.0" style="-fx-background-color: #c7d4d2; -fx-background-radius: 7;" text="Return Book">
+            <Button fx:id="returnBookBtn" contentDisplay="TOP" layoutX="142.0" layoutY="267.0" mnemonicParsing="false" onAction="#HandleReturnBookBtn" prefHeight="88.0" prefWidth="114.0" style="-fx-background-color: #c7d4d2; -fx-background-radius: 7;" text="Return Book">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -80,20 +71,11 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="statisticsBtn" contentDisplay="TOP" layoutX="227.0" layoutY="267.0" mnemonicParsing="false" onAction="#HandleStatisticsBtn" prefHeight="88.0" prefWidth="114.0" style="-fx-background-color: #c9d1d0; -fx-background-radius: 7;" text="View Statistics">
+            <Button fx:id="statisticsBtn" contentDisplay="TOP" layoutX="309.0" layoutY="267.0" mnemonicParsing="false" onAction="#HandleStatisticsBtn" prefHeight="88.0" prefWidth="114.0" style="-fx-background-color: #c9d1d0; -fx-background-radius: 7;" text="View Statistics">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/statistics-icon.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="analysisBtn" contentDisplay="TOP" layoutX="373.0" layoutY="267.0" mnemonicParsing="false" onAction="#HandleAnalysisBtn" prefHeight="88.0" prefWidth="114.0" style="-fx-background-color: #c9d1d0; -fx-background-radius: 7;" text="Analysis">
-               <graphic>
-                  <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/analysis-icon.png" />
                      </image>
                   </ImageView>
                </graphic>

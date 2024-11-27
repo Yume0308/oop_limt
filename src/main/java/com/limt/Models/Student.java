@@ -7,8 +7,8 @@ import java.util.Date;
 
 public class Student {
     private final CheckBox CheckBox;
-    private final String UserID;
-    private String StudentID;
+    private final Integer UserID;
+    private Integer StudentID;
     private String StudentName;
     private String School;
     private String Email;
@@ -16,7 +16,7 @@ public class Student {
     private String AddressLine;
     private Date Birthday;
 
-    public Student(String UserID, String studentID, String studentName, String school, String email, String phoneNumber, String addressLine, Date birthday) {
+    public Student(Integer UserID, Integer studentID, String studentName, String school, String email, String phoneNumber, String addressLine, Date birthday) {
         CheckBox = new CheckBox();
         this.UserID = UserID;
         StudentID = studentID;
@@ -32,11 +32,11 @@ public class Student {
         return CheckBox;
     }
 
-    public String getStudentID() {
+    public Integer getStudentID() {
         return StudentID;
     }
 
-    public void setStudentID(String studentID) {
+    public void setStudentID(Integer studentID) {
         StudentID = studentID;
     }
 

@@ -6,15 +6,15 @@ import java.util.Date;
 
 public class IssueBook {
     private final CheckBox CheckBox;
-    private String IssueID;
-    private String BookID;
+    private Integer IssueID;
+    private Integer BookID;
     private String BookISBN;
     private String BookTitle;
-    private String StudentID;
+    private Integer StudentID;
     private String StudentName;
     private Date IssueDate;
 
-    public IssueBook(String issueID, String bookID, String bookISBN, String bookTitle, String studentID, String studentName, Date issueDate) {
+    public IssueBook(Integer issueID, Integer bookID, String bookISBN, String bookTitle, Integer studentID, String studentName, Date issueDate) {
         CheckBox = new CheckBox();
         IssueID = issueID;
         BookID = bookID;
@@ -29,19 +29,19 @@ public class IssueBook {
         return CheckBox;
     }
 
-    public String getIssueID() {
+    public Integer getIssueID() {
         return IssueID;
     }
 
-    public void setIssueID(String issueID) {
+    public void setIssueID(Integer issueID) {
         IssueID = issueID;
     }
 
-    public String getBookID() {
+    public Integer getBookID() {
         return BookID;
     }
 
-    public void setBookID(String bookID) {
+    public void setBookID(Integer bookID) {
         BookID = bookID;
     }
 
@@ -61,11 +61,11 @@ public class IssueBook {
         BookTitle = bookTitle;
     }
 
-    public String getStudentID() {
+    public Integer getStudentID() {
         return StudentID;
     }
 
-    public void setStudentID(String studentID) {
+    public void setStudentID(Integer studentID) {
         StudentID = studentID;
     }
 

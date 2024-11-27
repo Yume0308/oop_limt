@@ -7,16 +7,16 @@ import java.util.Date;
 public class ReturnBook {
     private final CheckBox CheckBox;
     private Integer IssueID;
-    private String BookID;
+    private Integer BookID;
     private String BookISBN;
     private String BookTitle;
-    private String StudentID;
+    private Integer StudentID;
     private String StudentName;
     private Date IssueDate;
     private Date ReturnDate;
     private Integer Days;
 
-    public ReturnBook(Integer IssueID, String BookID, String BookISBN, String BookTitle, String StudentID, String StudentName, Date IssueDate, Date ReturnDate, Integer Days) {
+    public ReturnBook(Integer IssueID, Integer BookID, String BookISBN, String BookTitle, Integer StudentID, String StudentName, Date IssueDate, Date ReturnDate, Integer Days) {
         CheckBox = new CheckBox();
         this.IssueID = IssueID;
         this.BookID = BookID;
@@ -53,11 +53,11 @@ public class ReturnBook {
         StudentName = studentName;
     }
 
-    public String getStudentID() {
+    public Integer getStudentID() {
         return StudentID;
     }
 
-    public void setStudentID(String studentID) {
+    public void setStudentID(Integer studentID) {
         StudentID = studentID;
     }
 
@@ -69,11 +69,11 @@ public class ReturnBook {
         BookTitle = bookTitle;
     }
 
-    public String getBookID() {
+    public Integer getBookID() {
         return BookID;
     }
 
-    public void setBookID(String bookID) {
+    public void setBookID(Integer bookID) {
         BookID = bookID;
     }
 

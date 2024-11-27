@@ -78,7 +78,7 @@ public class LoginPageController implements Initializable {
         String username = username_field.getText();
         String password = password_field.getText();
 
-        String sql = "SELECT * FROM User WHERE Username = ?";
+        String sql = "SELECT * FROM user WHERE Username = ?";
 
         // database
         Connection connect = DatabaseManager.connect();

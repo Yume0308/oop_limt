@@ -141,7 +141,7 @@ public class ReturnBookPageController implements Initializable {
         Connection conn = DatabaseManager.connect();
         assert conn != null;
 
-        String query = "select * from ReturnBook where IssueID = " + searchIssueIDField.getText();
+        String query = "select * from ReturnBook where issueid = " + searchIssueIDField.getText();
         try {
             issueIDSearchStatus = true;
             HandleSetBehaviourAllField(issueIDSearchStatus);
@@ -150,23 +150,23 @@ public class ReturnBookPageController implements Initializable {
 
             pst = conn.prepareStatement(query);
             rs = pst.executeQuery();
-            String query1 = "select * from Book where ID = " + rs.getString("BookID");
-            String query2 = "select * from Student where StudentID = " + rs.getString("StudentID");
+            String query1 = "select * from book where ID = " + rs.getString("BookID");
+            String query2 = "select * from student where StudentID = " + rs.getString("StudentID");
             issueDate.setValue(rs.getDate("IssueDate").toLocalDate());
 
             pst = conn.prepareStatement(query1);
             rs = pst.executeQuery();
-            bookIDField.setText(rs.getString("ID"));
+            bookIDField.setText(String.valueOf(rs.getInt("ID")));
             bookISBNField.setText(rs.getString("ISBN"));
             bookTitleField.setText(rs.getString("Title"));
             bookAuthorField.setText(rs.getString("Author"));
             bookCategoryField.setText(rs.getString("Category"));
-            bookPublisherField.setText(rs.getString("Publisher"));
+            bookPublisherField.setText(String.valueOf(rs.getInt("Publisher")));
             bookImagePathField.setText(rs.getString("ImagePath"));
 
             pst = conn.prepareStatement(query2);
             rs = pst.executeQuery();
-            studentIDField.setText(rs.getString("StudentID"));
+            studentIDField.setText(String.valueOf(rs.getInt("StudentID")));
             studentNameField.setText(rs.getString("StudentName"));
             studentSchoolField.setText(rs.getString("School"));
             studentEmailField.setText(rs.getString("Email"));
@@ -188,18 +188,20 @@ public class ReturnBookPageController implements Initializable {
         assert conn != null;
 
 
-        String query = "INSERT INTO ReturnBook (IssueID, BookID, BookTitle, StudentID, StudentName, IssueDate, ReturnDate) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO returnbook (IssueID, BookID, BookTitle, StudentID, StudentName, IssueDate, ReturnDate, Days) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             msgLabel.setText("Successfully Returned Book");
 
             pst = conn.prepareStatement(query);
             pst.setInt(1, iID);
-            pst.setString(2, bookIDField.getText());
+            pst.setInt(2, Integer.parseInt(bookIDField.getText()));
             pst.setString(3, bookTitleField.getText());
-            pst.setString(4, studentIDField.getText());
+            pst.setInt(4, Integer.parseInt(studentIDField.getText()));
             pst.setString(5, studentNameField.getText());
             pst.setDate(6, Date.valueOf(issueDate.getValue()));
             pst.setDate(7, Date.valueOf(returnDate.getValue()));
+            pst.setInt(8, Integer.parseInt(String.valueOf(java.time.temporal.ChronoUnit.DAYS.between(issueDate.getValue(), returnDate.getValue()) + 1)));
+            pst.execute();
         } catch (SQLException e)
         {
             e.printStackTrace();

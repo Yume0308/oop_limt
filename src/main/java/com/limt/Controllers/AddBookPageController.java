@@ -62,30 +62,29 @@ public class AddBookPageController implements Initializable {
             ResultSet resultSet = null;
             PreparedStatement preparedStatement = null;
             Connection connection = DatabaseManager.connect();
-            assert connection != null;
             connection.setAutoCommit(false);
+            assert connection != null;
 
-            String BookID = bookIDField.getText();
+            Integer BookID = Integer.parseInt(bookIDField.getText());
             String BookISBN = bookISBNField.getText();
             String BookTitle = bookTitleField.getText();
             String BookAuthor = bookAuthorField.getText();
             String BookCategory = bookCategoryField.getText();
             String BookPublisher = bookPublisherField.getText();
-            int BookQuantity = Integer.parseInt(bookQuantityField.getText());
+            Integer BookQuantity = Integer.parseInt(bookQuantityField.getText());
             String BookImagePath = bookImagePathField.getText();
 
-            String query = "INSERT INTO Book VALUES(? ,? , ?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO Book VALUES(? ,? , ?, ?, ?, ?, ?, ?)";
             preparedStatement = connection.prepareStatement(query);
 
-            preparedStatement.setString(1, BookID);
+            preparedStatement.setInt(1, BookID);
             preparedStatement.setString(2, BookISBN);
             preparedStatement.setString(3, BookTitle);
             preparedStatement.setString(4, BookAuthor);
             preparedStatement.setString(5, BookCategory);
             preparedStatement.setString(6, BookPublisher);
             preparedStatement.setInt(7, BookQuantity);
-            preparedStatement.setInt(8, BookQuantity);
-            preparedStatement.setString(9, BookImagePath);
+            preparedStatement.setString(8, BookImagePath);
 
             preparedStatement.execute();
             connection.commit();

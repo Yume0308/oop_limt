@@ -59,9 +59,8 @@ public class AddStudentPageController implements Initializable {
             PreparedStatement preparedStatement = null;
             Connection connection = DatabaseManager.connect();
             assert connection != null;
-            connection.setAutoCommit(false);
 
-            String StudentID = studentIDField.getText();
+            Integer StudentID = Integer.parseInt(studentIDField.getText());
             String StudentSchool = studentSchoolField.getText();
             String StudentName = studentNameField.getText();
             String Email = studentEmailField.getText();
@@ -69,11 +68,11 @@ public class AddStudentPageController implements Initializable {
             String StudentAddress = studentAddressLineField.getText();
             LocalDate Birthday = studentBirthdayField.getValue();
 
-            String query = "INSERT INTO Student VALUES(? ,? , ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO student VALUES(? ,? , ?, ?, ?, ?, ?, ?)";
             preparedStatement = connection.prepareStatement(query);
 
             preparedStatement.setInt(1, DashboardPageController.getCurrentUserID());
-            preparedStatement.setString(2, StudentID);
+            preparedStatement.setInt(2, StudentID);
             preparedStatement.setString(3, StudentName);
             preparedStatement.setString(4, StudentSchool);
             preparedStatement.setString(5, Email);
