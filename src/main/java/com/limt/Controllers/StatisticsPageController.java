@@ -365,9 +365,35 @@ public class StatisticsPageController implements Initializable {
         ResultSet resultSet = null;
         try {
             preparedStatement = connection.prepareStatement(queryFindBook);
-            preparedStatement.setString(1, filter);
-            preparedStatement.setString(2, bookListSearchField.getText().trim());
-            System.out.println(preparedStatement);
+            switch (filter)
+            {
+                case "ID":
+                    queryFindBook = "SELECT * FROM Book WHERE ID = ?";
+                    break;
+                case "ISBN":
+                    queryFindBook = "SELECT * FROM Book WHERE ISBN = ?";
+                    break;
+                case "Title":
+                    queryFindBook = "SELECT * FROM Book WHERE Title = ?";
+                    break;
+                case "Author":
+                    queryFindBook = "SELECT * FROM Book WHERE Author = ?";
+                    break;
+                case "Category":
+                    queryFindBook = "SELECT * FROM Book WHERE Category = ?";
+                    break;
+                case "Publisher":
+                    queryFindBook = "SELECT * FROM Book WHERE Publisher = ?";
+                    break;
+                case "Quantity":
+                    queryFindBook = "SELECT * FROM Book WHERE Quantity = ?";
+                    break;
+                case "ImagePath":
+                    queryFindBook = "SELECT * FROM Book WHERE ImagePath = ?";
+                    break;
+            }
+            preparedStatement = connection.prepareStatement(queryFindBook);
+            preparedStatement.setString(1, bookListSearchField.getText().trim());
             resultSet = preparedStatement.executeQuery();
             if(resultSet.next()) {
                 while (resultSet.next()) {
@@ -381,7 +407,6 @@ public class StatisticsPageController implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        bookListTableView.getItems().clear();
         bookListTableView.getItems().addAll(bookList);
     }
 
@@ -396,9 +421,32 @@ public class StatisticsPageController implements Initializable {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
+            switch (filter)
+            {
+                case "IssueID":
+                    queryFindIssueBook = "SELECT * FROM IssueBook WHERE IssueID = ?";
+                    break;
+                case "BookID":
+                    queryFindIssueBook = "SELECT * FROM IssueBook WHERE BookID = ?";
+                    break;
+                case "BookISBN":
+                    queryFindIssueBook = "SELECT * FROM IssueBook WHERE BookISBN = ?";
+                    break;
+                case "BookTitle":
+                    queryFindIssueBook = "SELECT * FROM IssueBook WHERE BookTitle = ?";
+                    break;
+                case "StudentID":
+                    queryFindIssueBook = "SELECT * FROM IssueBook WHERE StudentID = ?";
+                    break;
+                case "StudentName":
+                    queryFindIssueBook = "SELECT * FROM IssueBook WHERE StudentName = ?";
+                    break;
+                case "IssueDate":
+                    queryFindIssueBook = "SELECT * FROM IssueBook WHERE IssueDate = ?";
+                    break;
+            }
             preparedStatement = connection.prepareStatement(queryFindIssueBook);
-            preparedStatement.setString(1, filter);
-            preparedStatement.setString(2, issueBookListSearchField.getText().trim());
+            preparedStatement.setString(1, issueBookListSearchField.getText().trim());
             resultSet = preparedStatement.executeQuery();
             if(resultSet.next()) {
                 issueBookList.clear();
@@ -419,7 +467,6 @@ public class StatisticsPageController implements Initializable {
         {
             e.printStackTrace();
         }
-        issueBookListTableView.getItems().clear();
         issueBookListTableView.getItems().addAll(issueBookList);
     }
 
@@ -435,9 +482,38 @@ public class StatisticsPageController implements Initializable {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
+            switch (filter)
+            {
+                case "IssueID":
+                    queryFindReturnBook = "SELECT * FROM ReturnBook WHERE IssueID = ?";
+                    break;
+                case "BookID":
+                    queryFindReturnBook = "SELECT * FROM ReturnBook WHERE BookID = ?";
+                    break;
+                case "BookISBN":
+                    queryFindReturnBook = "SELECT * FROM ReturnBook WHERE BookISBN = ?";
+                    break;
+                case "BookTitle":
+                    queryFindReturnBook = "SELECT * FROM ReturnBook WHERE BookTitle = ?";
+                    break;
+                case "StudentID":
+                    queryFindReturnBook = "SELECT * FROM ReturnBook WHERE StudentID = ?";
+                    break;
+                case "StudentName":
+                    queryFindReturnBook = "SELECT * FROM ReturnBook WHERE StudentName = ?";
+                    break;
+                case "IssueDate":
+                    queryFindReturnBook = "SELECT * FROM ReturnBook WHERE IssueDate = ?";
+                    break;
+                case "ReturnDate":
+                    queryFindReturnBook = "SELECT * FROM ReturnBook WHERE ReturnDate = ?";
+                    break;
+                case "Days":
+                    queryFindReturnBook = "SELECT * FROM ReturnBook WHERE Days = ?";
+                    break;
+            }
             preparedStatement = connection.prepareStatement(queryFindReturnBook);
-            preparedStatement.setString(1, filter);
-            preparedStatement.setString(2, returnBookListSearchField.getText().trim());
+            preparedStatement.setString(1, returnBookListSearchField.getText().trim());
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 returnBookList.clear();
@@ -459,7 +535,6 @@ public class StatisticsPageController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        returnBookListTableView.getItems().clear();
         returnBookListTableView.getItems().addAll(returnBookList);
     }
 
@@ -475,9 +550,32 @@ public class StatisticsPageController implements Initializable {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
+            switch (filter)
+            {
+                case "StudentID":
+                    queryFindStudent = "SELECT * FROM Student WHERE StudentID = ?";
+                    break;
+                case "StudentName":
+                    queryFindStudent = "SELECT * FROM Student WHERE StudentName = ?";
+                    break;
+                case "School":
+                    queryFindStudent = "SELECT * FROM Student WHERE School = ?";
+                    break;
+                case "Email":
+                    queryFindStudent = "SELECT * FROM Student WHERE Email = ?";
+                    break;
+                case "PhoneNumber":
+                    queryFindStudent = "SELECT * FROM Student WHERE PhoneNumber = ?";
+                    break;
+                case "AddressLine":
+                    queryFindStudent = "SELECT * FROM Student WHERE AddressLine = ?";
+                    break;
+                case "Birthday":
+                    queryFindStudent = "SELECT * FROM Student WHERE Birthday = ?";
+                    break;
+            }
             preparedStatement = connection.prepareStatement(queryFindStudent);
-            preparedStatement.setString(1, filter);
-            preparedStatement.setString(2, studentListSearchField.getText().trim());
+            preparedStatement.setString(1, studentListSearchField.getText().trim());
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 studentList.clear();
@@ -498,7 +596,6 @@ public class StatisticsPageController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        studentListTableView.getItems().clear();
         studentListTableView.getItems().addAll(studentList);
     }
 
@@ -596,7 +693,7 @@ public class StatisticsPageController implements Initializable {
 
         InitAllBookListColumn();
         filterSearch = null;
-        filterSearch = new String[]{"ID", "ISBN", "Title", "Author", "Category", "Publisher", "Quantity"};
+        filterSearch = new String[]{"ID", "ISBN", "Title", "Author", "Category", "Publisher", "Quantity", "ImagePath"};
         bookListChoiceBox.getItems().addAll(filterSearch);
         bookListChoiceBox.setValue(filterSearch[0]);
 
