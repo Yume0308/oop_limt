@@ -356,7 +356,7 @@ public class StatisticsPageController implements Initializable {
     ObservableList<Book> bookList = FXCollections.observableArrayList();
     @FXML
     void HandleFindBook(ActionEvent event) {
-        String queryFindBook = "SELECT * FROM book WHERE ? = ?";
+        String queryFindBook = "SELECT * FROM Book WHERE ? = ?";
         bookList.clear();
         String filter = bookListChoiceBox.getValue();
         Connection connection = DatabaseManager.connect();
@@ -377,18 +377,18 @@ public class StatisticsPageController implements Initializable {
                         bookList.add(book);
                     }
                 }
-            } else {
-
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        bookListTableView.getItems().clear();
+        bookListTableView.getItems().addAll(bookList);
     }
 
-    String queryFindIssueBook = "SELECT * FROM IssueBook WHERE ? = ?";
     ObservableList<IssueBook> issueBookList = FXCollections.observableArrayList();
     @FXML
     void HandleFindIssueBook(ActionEvent event) {
+        String queryFindIssueBook = "SELECT * FROM IssueBook WHERE ? = ?";
         issueBookList.clear();
         String filter = issueBookListChoiceBox.getValue();
         Connection connection = DatabaseManager.connect();
@@ -414,19 +414,20 @@ public class StatisticsPageController implements Initializable {
                     );
                     issueBookList.add(issueBook);
                 }
-            } else {
-
             }
         } catch (SQLException e)
         {
             e.printStackTrace();
         }
+        issueBookListTableView.getItems().clear();
+        issueBookListTableView.getItems().addAll(issueBookList);
     }
 
-    String queryFindReturnBook = "SELECT * FROM ReturnBook WHERE ? = ?";
     ObservableList<ReturnBook> returnBookList = FXCollections.observableArrayList();
     @FXML
     void HandleFindReturnBook(ActionEvent event) {
+        String queryFindReturnBook = "SELECT * FROM ReturnBook WHERE ? = ?";
+
         returnBookList.clear();
         String filter = returnBookListChoiceBox.getValue();
         Connection connection = DatabaseManager.connect();
@@ -458,12 +459,16 @@ public class StatisticsPageController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        returnBookListTableView.getItems().clear();
+        returnBookListTableView.getItems().addAll(returnBookList);
     }
 
     String queryFindStudent = "SELECT * FROM Student WHERE ? = ?";
     ObservableList<Student> studentList = FXCollections.observableArrayList();
     @FXML
     void HandleFindStudent(ActionEvent event) {
+        String queryFindStudent = "SELECT * FROM Student WHERE ? = ?";
+
         String filter = studentListChoiceBox.getValue();
         Connection connection = DatabaseManager.connect();
         assert connection != null;
@@ -493,31 +498,81 @@ public class StatisticsPageController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        studentListTableView.getItems().clear();
+        studentListTableView.getItems().addAll(studentList);
     }
 
-    void LoadBookListData() {
-        bookListTableView.getItems().clear();
-
-        // query data
-
-//        bookListTableView.setItems(bookList);
+    void LoadAllBookListData() {
+        String queryFindBook = "SELECT * FROM Book";
+        bookList.clear();
+        Connection connection = DatabaseManager.connect();
+        assert connection != null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            preparedStatement = connection.prepareStatement(queryFindBook);
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                while (resultSet.next()) {
+                    bookList.clear();
+                    while (resultSet.next()) {
+                        Book book = new Book(resultSet.getInt("ID"), resultSet.getString("ISBN"), resultSet.getString("Title"), resultSet.getString("Author"), resultSet.getString("Category"), resultSet.getString("Publisher"), resultSet.getInt("Quantity"), resultSet.getString("ImagePath"));
+                        bookList.add(book);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        bookListTableView.getItems().addAll(bookList);
     }
 
-    void LoadIssueBookListData() {
+    void LoadAllIssueBookListData() {
         issueBookListTableView.getItems().clear();
 
-        // query data
-//        issueBookListTableView.setItems(issueBookList);
+        String queryFindIssueBook = "SELECT * FROM IssueBook WHERE ? = ?";
+        issueBookList.clear();
+        String filter = issueBookListChoiceBox.getValue();
+        Connection connection = DatabaseManager.connect();
+        assert connection != null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            preparedStatement = connection.prepareStatement(queryFindIssueBook);
+            preparedStatement.setString(1, filter);
+            preparedStatement.setString(2, issueBookListSearchField.getText().trim());
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                issueBookList.clear();
+                while (resultSet.next()) {
+                    IssueBook issueBook = new IssueBook(
+                        resultSet.getInt("IssueID"),
+                        resultSet.getInt("BookID"),
+                        resultSet.getString("BookISBN"),
+                        resultSet.getString("BookTitle"),
+                        resultSet.getInt("StudentID"),
+                        resultSet.getString("StudentName"),
+                        resultSet.getDate("IssueDate")
+                    );
+                    issueBookList.add(issueBook);
+                }
+            }
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        issueBookListTableView.getItems().clear();
+        issueBookListTableView.getItems().addAll(issueBookList);
     }
 
-    void LoadReturnBookListData() {
+    void LoadAllReturnBookListData() {
         returnBookListTableView.getItems().clear();
 
         // query data
 //        returnBookListTableView.setItems(returnBookList);
     }
 
-    void LoadStudentListData() {
+    void LoadAllStudentListData() {
         studentListTableView.getItems().clear();
 
         // query data
@@ -541,7 +596,7 @@ public class StatisticsPageController implements Initializable {
 
         InitAllBookListColumn();
         filterSearch = null;
-        filterSearch = new String[]{"ID", "ISBN", "Title", "Author", "Category", "Publisher", "Quantity", "Remaining"};
+        filterSearch = new String[]{"ID", "ISBN", "Title", "Author", "Category", "Publisher", "Quantity"};
         bookListChoiceBox.getItems().addAll(filterSearch);
         bookListChoiceBox.setValue(filterSearch[0]);
 
@@ -563,6 +618,9 @@ public class StatisticsPageController implements Initializable {
         studentListChoiceBox.getItems().addAll(filterSearch);
         studentListChoiceBox.setValue(filterSearch[0]);
 
-//        LoadBookListData();
+        LoadAllBookListData();
+        LoadAllStudentListData();
+        LoadAllIssueBookListData();
+        LoadAllReturnBookListData();
     }
 }

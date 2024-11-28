@@ -38,7 +38,7 @@ create table User
 
 create table Student
 (
-    UserID      INTEGER NOT NULL UNIQUE,
+    UserID      INTEGER NOT NULL,
     StudentID   INTEGER NOT NULL UNIQUE AUTO_INCREMENT,
     StudentName VARCHAR(255) NOT NULL,
     School      VARCHAR(255) NOT NULL,

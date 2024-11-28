@@ -172,7 +172,7 @@ public class IssueBookPageController implements Initializable {
         assert conn != null;
 
         String BookID = searchBookID.getText();
-        String query = "select * from book where ID = ?";
+        String query = "select * from Book where ID = ?";
 
         try {
             pst = conn.prepareStatement(query);
@@ -212,24 +212,33 @@ public class IssueBookPageController implements Initializable {
         Connection conn = DatabaseManager.connect();
         assert conn != null;
 
-        String query = "select * from student where StudentID = " + studentIDField.getText();
+        String StudentID = searchStudentID.getText();
+        String query = "select * from Student where StudentID = ?";
 
         try {
-            studentSearchStatus = true;
-            HandleSetBehaviourAllStudentField(studentSearchStatus);
-            msgLabel.setText("Student Available");
+            pst = conn.prepareStatement(query);
+            pst.setString(1, StudentID);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                studentSearchStatus = true;
+                HandleSetBehaviourAllStudentField(studentSearchStatus);
+                msgLabel.setText("Student Available");
 
-            studentIDField.setText(String.valueOf(rs.getInt("StudentID")));
-            studentNameField.setText(rs.getString("StudentName"));
-            studentSchoolField.setText(rs.getString("School"));
-            studentEmailField.setText(rs.getString("Email"));
-            studentPhoneNumberField.setText(rs.getString("PhoneNumber"));
-            studentAddressLineField.setText(rs.getString("AddressLine"));
-            studentBirthdayField.setValue(rs.getDate("Birthday").toLocalDate());
+                studentIDField.setText(String.valueOf(rs.getInt("StudentID")));
+                studentNameField.setText(rs.getString("StudentName"));
+                studentSchoolField.setText(rs.getString("School"));
+                studentEmailField.setText(rs.getString("Email"));
+                studentPhoneNumberField.setText(rs.getString("PhoneNumber"));
+                studentAddressLineField.setText(rs.getString("AddressLine"));
+                studentBirthdayField.setValue(rs.getDate("Birthday").toLocalDate());
 
-            HandleSetDefaultDateIssue();
-            rs.close();
-            pst.close();
+                HandleSetDefaultDateIssue();
+                rs.close();
+                pst.close();
+            }
+            else {
+                msgLabel.setText("Student Not Available");
+            }
         } catch(SQLException e) {
             e.printStackTrace();
         }
@@ -248,7 +257,7 @@ public class IssueBookPageController implements Initializable {
 
         String query1 = "select * from book where ID = " + bId + "";
         String query2 = "select * from student where StudentID = " + sId + "";
-        String query = "INSERT INTO IssueBook (BookID, BookISBN, BookTitle, StudentID, StudentName, IssuedDate) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Issuebook (BookID, BookISBN, BookTitle, StudentID, StudentName, IssuedDate) VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
             pst1 = conn.prepareStatement(query1);

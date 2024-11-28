@@ -75,7 +75,7 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                <Tab fx:id="studentListPane" onSelectionChanged="#HandleSelectAllStudent" text="Student List">
+                <Tab fx:id="studentListPane" text="Student List">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -124,7 +124,7 @@
                            </children></AnchorPane>
                   </content>
                 </Tab>
-                  <Tab fx:id="issueBookListPane" onSelectionChanged="#HandleSelectAllIssueBook" text="Issue Book List">
+                  <Tab fx:id="issueBookListPane" text="Issue Book List">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -174,7 +174,7 @@
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab fx:id="returnBookListPane" onSelectionChanged="#HandleSelectAllReturnBook" text="Return Book List">
+                  <Tab fx:id="returnBookListPane" text="Return Book List">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>

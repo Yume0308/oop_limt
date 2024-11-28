@@ -93,6 +93,7 @@ public class AddBookPageController implements Initializable {
             preparedStatement.execute();
             connection.commit();
             msgLabel.setText("Successfully Added Book");
+
         } catch (Exception e) {
             System.out.println("error" + e);
         }

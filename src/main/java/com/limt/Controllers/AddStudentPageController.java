@@ -78,7 +78,7 @@ public class AddStudentPageController implements Initializable {
             String StudentAddress = studentAddressLineField.getText();
             LocalDate Birthday = studentBirthdayField.getValue();
 
-            String query = "INSERT INTO student VALUES(? ,? , ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO Student VALUES(? ,? , ?, ?, ?, ?, ?, ?)";
             preparedStatement = connection.prepareStatement(query);
 
             preparedStatement.setInt(1, DashboardPageController.getCurrentUserID());
@@ -92,7 +92,7 @@ public class AddStudentPageController implements Initializable {
 
             preparedStatement.execute();
             connection.commit();
-            msgLabel.setText("Successfully Added Book");
+            msgLabel.setText("Successfully Added Student");
         } catch (Exception e) {
             System.out.println("error" + e);
         }
