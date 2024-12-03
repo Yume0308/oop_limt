@@ -99,4 +99,4 @@
 
 - **Phạm Anh Tuấn** - 23020704 ([GitHub](https://github.com/Yumeio))
 - **Tạ Duy Khánh** - 23020677 ([GitHub](https://github.com/khanhtaduy2k5))
-- **Phan Xuân Hiếu** - 23020665 ([GitHub](https://github.com/mrshallow2k5)))
+- **Phan Xuân Hiếu** - 23020665 ([GitHub](https://github.com/mrshallow2k5))
