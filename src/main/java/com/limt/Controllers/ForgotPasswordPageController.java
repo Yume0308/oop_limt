@@ -128,6 +128,7 @@ public class ForgotPasswordPageController implements Initializable {
             preparedStatement.setString(3, email);
 
             int rowsUpdated = preparedStatement.executeUpdate();
+            connect.commit();
 
             if (rowsUpdated > 0) {
                 error_msg.setText("Password updated successfully.");

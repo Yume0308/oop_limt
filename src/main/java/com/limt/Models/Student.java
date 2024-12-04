@@ -7,7 +7,6 @@ import java.util.Date;
 
 public class Student {
     private final CheckBox CheckBox;
-    private final Integer UserID;
     private Integer StudentID;
     private String StudentName;
     private String School;
@@ -16,9 +15,8 @@ public class Student {
     private String AddressLine;
     private Date Birthday;
 
-    public Student(Integer UserID, Integer studentID, String studentName, String school, String email, String phoneNumber, String addressLine, Date birthday) {
+    public Student(Integer studentID, String studentName, String school, String email, String phoneNumber, String addressLine, Date birthday) {
         CheckBox = new CheckBox();
-        this.UserID = UserID;
         StudentID = studentID;
         StudentName = studentName;
         School = school;

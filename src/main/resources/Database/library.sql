@@ -68,10 +68,12 @@ create table ReturnBook
 (
     IssueID     INTEGER NOT NULL UNIQUE AUTO_INCREMENT,
     BookID      INTEGER NOT NULL,
+    BookISBN    TEXT NOT NULL,
     BookTitle   TEXT NOT NULL,
     StudentID   INTEGER NOT NULL,
     StudentName TEXT NOT NULL,
     IssueDate   DATE NOT NULL,
     ReturnDate  DATE NOT NULL,
     Days        INTEGER NOT NULL,
+    FOREIGN KEY (IssueID) REFERENCES IssueBook(IssueID) ON UPDATE CASCADE
 );

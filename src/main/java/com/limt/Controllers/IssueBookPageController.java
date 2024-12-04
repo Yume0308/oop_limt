@@ -257,7 +257,7 @@ public class IssueBookPageController implements Initializable {
 
         String query1 = "select * from book where ID = " + bId + "";
         String query2 = "select * from student where StudentID = " + sId + "";
-        String query = "INSERT INTO Issuebook (BookID, BookISBN, BookTitle, StudentID, StudentName, IssuedDate) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Issuebook (BookID, BookISBN, BookTitle, StudentID, StudentName, IssueDate) VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
             pst1 = conn.prepareStatement(query1);

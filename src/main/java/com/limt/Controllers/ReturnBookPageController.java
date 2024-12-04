@@ -115,7 +115,7 @@ public class ReturnBookPageController implements Initializable {
                 bookTitleField.setText(rs.getString("BookTitle"));
                 studentIDField.setText(String.valueOf(rs.getInt("StudentID")));
                 studentNameField.setText(rs.getString("StudentName"));
-                issueDate.setValue(rs.getDate("IssuedDate").toLocalDate());
+                issueDate.setValue(rs.getDate("IssueDate").toLocalDate());
                 HandleSetDefaultDateReturn();
                 msgLabel.setText("Issue ID is Exits");
 
@@ -139,17 +139,18 @@ public class ReturnBookPageController implements Initializable {
         conn.setAutoCommit(false);
         assert conn != null;
 
-        String query = "INSERT INTO returnbook (IssueID, BookID, BookTitle, StudentID, StudentName, IssueDate, ReturnDate, Days) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO returnbook (IssueID, BookID, BookISBN, BookTitle, StudentID, StudentName, IssueDate, ReturnDate, Days) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             pst = conn.prepareStatement(query);
             pst.setInt(1, iID);
             pst.setInt(2, Integer.parseInt(bookIDField.getText()));
             pst.setString(3, bookTitleField.getText());
-            pst.setInt(4, Integer.parseInt(studentIDField.getText()));
-            pst.setString(5, studentNameField.getText());
-            pst.setDate(6, Date.valueOf(issueDate.getValue()));
-            pst.setDate(7, Date.valueOf(returnDate.getValue()));
-            pst.setInt(8, Integer.parseInt(String.valueOf(java.time.temporal.ChronoUnit.DAYS.between(issueDate.getValue(), returnDate.getValue()) + 1)));
+            pst.setString(4, bookISBNField.getText());
+            pst.setInt(5, Integer.parseInt(studentIDField.getText()));
+            pst.setString(6, studentNameField.getText());
+            pst.setDate(7, Date.valueOf(issueDate.getValue()));
+            pst.setDate(8, Date.valueOf(returnDate.getValue()));
+            pst.setInt(9, Integer.parseInt(String.valueOf(java.time.temporal.ChronoUnit.DAYS.between(issueDate.getValue(), returnDate.getValue()) + 1)));
             pst.execute();
             conn.commit();
 
@@ -163,6 +164,7 @@ public class ReturnBookPageController implements Initializable {
         try {
             PreparedStatement pst2 = conn.prepareStatement(query2);
             pst2.execute();
+            conn.commit();
         }
         catch (SQLException e) {
             e.printStackTrace();

@@ -244,8 +244,8 @@ public class StatisticsPageController implements Initializable {
 
     void InitAllStudentListColumn() {
         studentListCheckCol.setCellValueFactory(new PropertyValueFactory<>("CheckBox"));
-        studentListIDCol.setCellValueFactory(new PropertyValueFactory<>("ID"));
-        studentListNameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        studentListIDCol.setCellValueFactory(new PropertyValueFactory<>("StudentID"));
+        studentListNameCol.setCellValueFactory(new PropertyValueFactory<>("StudentName"));
         studentListSchoolCol.setCellValueFactory(new PropertyValueFactory<>("School"));
         studentListEmailCol.setCellValueFactory(new PropertyValueFactory<>("Email"));
         studentListPhoneNumberCol.setCellValueFactory(new PropertyValueFactory<>("PhoneNumber"));
@@ -356,6 +356,7 @@ public class StatisticsPageController implements Initializable {
     ObservableList<Book> bookList = FXCollections.observableArrayList();
     @FXML
     void HandleFindBook(ActionEvent event) {
+        bookListTableView.getItems().clear();
         String queryFindBook = "SELECT * FROM Book WHERE ? = ?";
         bookList = FXCollections.observableArrayList();
         String filter = bookListChoiceBox.getValue();
@@ -372,39 +373,43 @@ public class StatisticsPageController implements Initializable {
                     return;
                 case "ID":
                     queryFindBook = "SELECT * FROM Book WHERE ID = ?";
+                    preparedStatement.setInt(1, Integer.parseInt(bookListSearchField.getText().trim()));
                     break;
                 case "ISBN":
                     queryFindBook = "SELECT * FROM Book WHERE ISBN = ?";
+                    preparedStatement.setString(1, bookListSearchField.getText().trim());
                     break;
                 case "Title":
                     queryFindBook = "SELECT * FROM Book WHERE Title = ?";
+                    preparedStatement.setString(1, bookListSearchField.getText().trim());
                     break;
                 case "Author":
                     queryFindBook = "SELECT * FROM Book WHERE Author = ?";
+                    preparedStatement.setString(1, bookListSearchField.getText().trim());
                     break;
                 case "Category":
                     queryFindBook = "SELECT * FROM Book WHERE Category = ?";
+                    preparedStatement.setString(1, bookListSearchField.getText().trim());
                     break;
                 case "Publisher":
                     queryFindBook = "SELECT * FROM Book WHERE Publisher = ?";
+                    preparedStatement.setString(1, bookListSearchField.getText().trim());
                     break;
                 case "Quantity":
                     queryFindBook = "SELECT * FROM Book WHERE Quantity = ?";
+                    preparedStatement.setInt(1, Integer.parseInt(bookListSearchField.getText().trim()));
                     break;
                 case "ImagePath":
                     queryFindBook = "SELECT * FROM Book WHERE ImagePath = ?";
+                    preparedStatement.setString(1, bookListSearchField.getText().trim());
                     break;
             }
-            preparedStatement = connection.prepareStatement(queryFindBook);
-            preparedStatement.setString(1, bookListSearchField.getText().trim());
             resultSet = preparedStatement.executeQuery();
             if(resultSet.next()) {
+                bookList.clear();
                 while (resultSet.next()) {
-                    bookList.clear();
-                    while (resultSet.next()) {
-                        Book book = new Book(resultSet.getInt("ID"), resultSet.getString("ISBN"), resultSet.getString("Title"), resultSet.getString("Author"), resultSet.getString("Category"), resultSet.getString("Publisher"), resultSet.getInt("Quantity"), resultSet.getString("ImagePath"));
-                        bookList.add(book);
-                    }
+                    Book book = new Book(resultSet.getInt("ID"), resultSet.getString("ISBN"), resultSet.getString("Title"), resultSet.getString("Author"), resultSet.getString("Category"), resultSet.getString("Publisher"), resultSet.getInt("Quantity"), resultSet.getString("ImagePath"));
+                    bookList.add(book);
                 }
             }
         } catch (SQLException e) {
@@ -417,6 +422,7 @@ public class StatisticsPageController implements Initializable {
     ObservableList<IssueBook> issueBookList = FXCollections.observableArrayList();
     @FXML
     void HandleFindIssueBook(ActionEvent event) {
+        issueBookListTableView.getItems().clear();
         String queryFindIssueBook = "SELECT * FROM IssueBook WHERE ? = ?";
         issueBookList.clear();
         String filter = issueBookListChoiceBox.getValue();
@@ -432,28 +438,33 @@ public class StatisticsPageController implements Initializable {
                     return;
                 case "IssueID":
                     queryFindIssueBook = "SELECT * FROM IssueBook WHERE IssueID = ?";
+                    preparedStatement.setInt(1, Integer.parseInt(issueBookListSearchField.getText().trim()));
                     break;
                 case "BookID":
                     queryFindIssueBook = "SELECT * FROM IssueBook WHERE BookID = ?";
+                    preparedStatement.setInt(1, Integer.parseInt(issueBookListSearchField.getText().trim()));
                     break;
                 case "BookISBN":
                     queryFindIssueBook = "SELECT * FROM IssueBook WHERE BookISBN = ?";
+                    preparedStatement.setString(1, issueBookListSearchField.getText().trim());
                     break;
                 case "BookTitle":
                     queryFindIssueBook = "SELECT * FROM IssueBook WHERE BookTitle = ?";
+                    preparedStatement.setString(1, issueBookListSearchField.getText().trim());
                     break;
                 case "StudentID":
                     queryFindIssueBook = "SELECT * FROM IssueBook WHERE StudentID = ?";
+                    preparedStatement.setString(1, issueBookListSearchField.getText().trim());
                     break;
                 case "StudentName":
                     queryFindIssueBook = "SELECT * FROM IssueBook WHERE StudentName = ?";
+                    preparedStatement.setString(1, issueBookListSearchField.getText().trim());
                     break;
                 case "IssueDate":
                     queryFindIssueBook = "SELECT * FROM IssueBook WHERE IssueDate = ?";
+                    preparedStatement.setDate(1, java.sql.Date.valueOf((issueBookListSearchField.getText().trim())));
                     break;
             }
-            preparedStatement = connection.prepareStatement(queryFindIssueBook);
-            preparedStatement.setString(1, issueBookListSearchField.getText().trim());
             resultSet = preparedStatement.executeQuery();
             if(resultSet.next()) {
                 issueBookList.clear();
@@ -480,8 +491,8 @@ public class StatisticsPageController implements Initializable {
     ObservableList<ReturnBook> returnBookList = FXCollections.observableArrayList();
     @FXML
     void HandleFindReturnBook(ActionEvent event) {
+        returnBookListTableView.getItems().clear();
         String queryFindReturnBook = "SELECT * FROM ReturnBook WHERE ? = ?";
-
         returnBookList.clear();
         String filter = returnBookListChoiceBox.getValue();
         Connection connection = DatabaseManager.connect();
@@ -489,6 +500,7 @@ public class StatisticsPageController implements Initializable {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
+            preparedStatement = connection.prepareStatement(queryFindReturnBook);
             switch (filter)
             {
                 case "All":
@@ -496,34 +508,41 @@ public class StatisticsPageController implements Initializable {
                     return;
                 case "IssueID":
                     queryFindReturnBook = "SELECT * FROM ReturnBook WHERE IssueID = ?";
+                    preparedStatement.setInt(1, Integer.parseInt(returnBookListSearchField.getText().trim()));
                     break;
                 case "BookID":
                     queryFindReturnBook = "SELECT * FROM ReturnBook WHERE BookID = ?";
+                    preparedStatement.setInt(1, Integer.parseInt(returnBookListSearchField.getText().trim()));
                     break;
                 case "BookISBN":
                     queryFindReturnBook = "SELECT * FROM ReturnBook WHERE BookISBN = ?";
+                    preparedStatement.setString(1,(returnBookListSearchField.getText().trim()));
                     break;
                 case "BookTitle":
                     queryFindReturnBook = "SELECT * FROM ReturnBook WHERE BookTitle = ?";
+                    preparedStatement.setString(1,(returnBookListSearchField.getText().trim()));
                     break;
                 case "StudentID":
                     queryFindReturnBook = "SELECT * FROM ReturnBook WHERE StudentID = ?";
+                    preparedStatement.setInt(1, Integer.parseInt(returnBookListSearchField.getText().trim()));
                     break;
                 case "StudentName":
                     queryFindReturnBook = "SELECT * FROM ReturnBook WHERE StudentName = ?";
+                    preparedStatement.setString(1,(returnBookListSearchField.getText().trim()));
                     break;
                 case "IssueDate":
                     queryFindReturnBook = "SELECT * FROM ReturnBook WHERE IssueDate = ?";
+                    preparedStatement.setDate(1, java.sql.Date.valueOf((returnBookListSearchField.getText().trim())));
                     break;
                 case "ReturnDate":
                     queryFindReturnBook = "SELECT * FROM ReturnBook WHERE ReturnDate = ?";
+                    preparedStatement.setDate(1, java.sql.Date.valueOf((returnBookListSearchField.getText().trim())));
                     break;
                 case "Days":
                     queryFindReturnBook = "SELECT * FROM ReturnBook WHERE Days = ?";
+                    preparedStatement.setInt(1, Integer.parseInt(returnBookListSearchField.getText().trim()));
                     break;
             }
-            preparedStatement = connection.prepareStatement(queryFindReturnBook);
-            preparedStatement.setString(1, returnBookListSearchField.getText().trim());
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 returnBookList.clear();
@@ -552,14 +571,15 @@ public class StatisticsPageController implements Initializable {
     ObservableList<Student> studentList = FXCollections.observableArrayList();
     @FXML
     void HandleFindStudent(ActionEvent event) {
+        studentListTableView.getItems().clear();
         String queryFindStudent = "SELECT * FROM Student WHERE ? = ?";
-
         String filter = studentListChoiceBox.getValue();
         Connection connection = DatabaseManager.connect();
         assert connection != null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
+            preparedStatement = connection.prepareStatement(queryFindStudent);
             switch (filter)
             {
                 case "All":
@@ -567,34 +587,38 @@ public class StatisticsPageController implements Initializable {
                     return;
                 case "StudentID":
                     queryFindStudent = "SELECT * FROM Student WHERE StudentID = ?";
+                    preparedStatement.setInt(1, Integer.parseInt(studentListSearchField.getText().trim()));
                     break;
                 case "StudentName":
                     queryFindStudent = "SELECT * FROM Student WHERE StudentName = ?";
+                    preparedStatement.setString(1, studentListSearchField.getText().trim());
                     break;
                 case "School":
                     queryFindStudent = "SELECT * FROM Student WHERE School = ?";
+                    preparedStatement.setString(1, studentListSearchField.getText().trim());
                     break;
                 case "Email":
                     queryFindStudent = "SELECT * FROM Student WHERE Email = ?";
+                    preparedStatement.setString(1, studentListSearchField.getText().trim());
                     break;
                 case "PhoneNumber":
                     queryFindStudent = "SELECT * FROM Student WHERE PhoneNumber = ?";
+                    preparedStatement.setString(1, studentListSearchField.getText().trim());
                     break;
                 case "AddressLine":
                     queryFindStudent = "SELECT * FROM Student WHERE AddressLine = ?";
+                    preparedStatement.setString(1, studentListSearchField.getText().trim());
                     break;
                 case "Birthday":
                     queryFindStudent = "SELECT * FROM Student WHERE Birthday = ?";
+                    preparedStatement.setDate(1, java.sql.Date.valueOf(studentListSearchField.getText().trim()));
                     break;
             }
-            preparedStatement = connection.prepareStatement(queryFindStudent);
-            preparedStatement.setString(1, studentListSearchField.getText().trim());
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 studentList.clear();
                 while (resultSet.next()) {
                     Student student = new Student(
-                        resultSet.getInt("UserID"),
                         resultSet.getInt("StudentID"),
                         resultSet.getString("StudentName"),
                         resultSet.getString("School"),
@@ -624,11 +648,8 @@ public class StatisticsPageController implements Initializable {
             resultSet = preparedStatement.executeQuery();
             if(resultSet.next()) {
                 while (resultSet.next()) {
-                    bookList.clear();
-                    while (resultSet.next()) {
-                        Book book = new Book(resultSet.getInt("ID"), resultSet.getString("ISBN"), resultSet.getString("Title"), resultSet.getString("Author"), resultSet.getString("Category"), resultSet.getString("Publisher"), resultSet.getInt("Quantity"), resultSet.getString("ImagePath"));
-                        bookList.add(book);
-                    }
+                    Book book = new Book(resultSet.getInt("ID"), resultSet.getString("ISBN"), resultSet.getString("Title"), resultSet.getString("Author"), resultSet.getString("Category"), resultSet.getString("Publisher"), resultSet.getInt("Quantity"), resultSet.getString("ImagePath"));
+                    bookList.add(book);
                 }
             }
         } catch (SQLException e) {
@@ -639,18 +660,13 @@ public class StatisticsPageController implements Initializable {
 
     void LoadAllIssueBookListData() {
         issueBookListTableView.getItems().clear();
-
-        String queryFindIssueBook = "SELECT * FROM IssueBook WHERE ? = ?";
-        issueBookList.clear();
-        String filter = issueBookListChoiceBox.getValue();
+        String queryFindIssueBook = "SELECT * FROM IssueBook";
         Connection connection = DatabaseManager.connect();
         assert connection != null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
             preparedStatement = connection.prepareStatement(queryFindIssueBook);
-            preparedStatement.setString(1, filter);
-            preparedStatement.setString(2, issueBookListSearchField.getText().trim());
             resultSet = preparedStatement.executeQuery();
             if(resultSet.next()) {
                 issueBookList.clear();
@@ -671,42 +687,63 @@ public class StatisticsPageController implements Initializable {
         {
             e.printStackTrace();
         }
-        issueBookListTableView.getItems().clear();
         issueBookListTableView.getItems().addAll(issueBookList);
     }
 
     void LoadAllReturnBookListData() {
         returnBookListTableView.getItems().clear();
-
-        // query data
-//        returnBookListTableView.setItems(returnBookList);
+        String queryFindReturnBook = "SELECT * FROM ReturnBook";
+        Connection connection = DatabaseManager.connect();
+        assert connection != null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            preparedStatement = connection.prepareStatement(queryFindReturnBook);
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                returnBookList.clear();
+                while (resultSet.next()) {
+                    ReturnBook returnBook = new ReturnBook(
+                        resultSet.getInt("IssueID"),
+                        resultSet.getInt("BookID"),
+                        resultSet.getString("BookISBN"),
+                        resultSet.getString("BookTitle"),
+                        resultSet.getInt("StudentID"),
+                        resultSet.getString("StudentName"),
+                        resultSet.getDate("IssueDate"),
+                        resultSet.getDate("ReturnDate"),
+                        resultSet.getInt("Days")
+                        );
+                    returnBookList.add(returnBook);
+                }
+            }
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        returnBookListTableView.getItems().addAll(returnBookList);
     }
 
     void LoadAllStudentListData() {
         studentListTableView.getItems().clear();
-
-        // query data
-//        studentListTableView.setItems(studentList);
-    }
-
-    @FXML
-    void HandleBookListPaneSelected(ActionEvent event) {
-        LoadAllBookListData();
-    }
-
-    @FXML
-    void HandleStudentListPaneSelected(ActionEvent event) {
-        LoadAllStudentListData();
-    }
-
-    @FXML
-    void HandleIssueBookListPaneSelected(ActionEvent event) {
-        LoadAllIssueBookListData();
-    }
-
-    @FXML
-    void HandleReturnBookListPaneSelected(ActionEvent event) {
-        LoadAllReturnBookListData();
+        String queryFindStudent = "SELECT * FROM Student";
+        Connection connection = DatabaseManager.connect();
+        assert connection != null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            preparedStatement = connection.prepareStatement(queryFindStudent);
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                while (resultSet.next()) {
+                    Student student = new Student(resultSet.getInt("StudentID"), resultSet.getString("StudentName"), resultSet.getString("School"), resultSet.getString("Email"), resultSet.getString("PhoneNumber"), resultSet.getString("AddressLine"), resultSet.getDate("Birthday"));
+                    studentList.add(student);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        studentListTableView.getItems().addAll(studentList);
     }
 
     @FXML
@@ -749,8 +786,8 @@ public class StatisticsPageController implements Initializable {
         studentListChoiceBox.setValue(filterSearch[0]);
 
         LoadAllBookListData();
-        LoadAllStudentListData();
         LoadAllIssueBookListData();
         LoadAllReturnBookListData();
+        LoadAllStudentListData();
     }
 }

@@ -21,7 +21,7 @@
          <children>
             <TabPane fx:id="tabPane" layoutX="27.0" layoutY="38.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="362.0" prefWidth="758.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab fx:id="bookListPane" onSelectionChanged="#HandleBookListPaneSelected" text="Book List">
+                <Tab fx:id="bookListPane" text="Book List">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -75,7 +75,7 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                <Tab fx:id="studentListPane" onSelectionChanged="#HandleStudentListPaneSelected" text="Student List">
+                <Tab fx:id="studentListPane" text="Student List">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -101,8 +101,8 @@
                               <TableView fx:id="studentListTableView" layoutY="44.0" prefHeight="245.0" prefWidth="758.0">
                                  <columns>
                                     <TableColumn fx:id="studentListCheckCol" prefWidth="35.0" />
-                                    <TableColumn fx:id="studentListIDCol" prefWidth="113.5999984741211" text="ID" />
-                                    <TableColumn fx:id="studentListNameCol" prefWidth="154.39996337890625" text="Name" />
+                                    <TableColumn fx:id="studentListIDCol" prefWidth="113.5999984741211" text="StudentID" />
+                                    <TableColumn fx:id="studentListNameCol" prefWidth="154.39996337890625" text="StudentName" />
                                     <TableColumn fx:id="studentListSchoolCol" prefWidth="127.20001220703125" text="School" />
                                     <TableColumn fx:id="studentListEmailCol" prefWidth="146.40005493164062" text="Email" />
                                     <TableColumn fx:id="studentListPhoneNumberCol" minWidth="8.0" prefWidth="131.20013427734375" text="PhoneNumber" />
@@ -124,7 +124,7 @@
                            </children></AnchorPane>
                   </content>
                 </Tab>
-                  <Tab fx:id="issueBookListPane" onSelectionChanged="#HandleIssueBookListPaneSelected" text="Issue Book List">
+                  <Tab fx:id="issueBookListPane" text="Issue Book List">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -174,7 +174,7 @@
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab fx:id="returnBookListPane" onSelectionChanged="#HandleReturnBookListPaneSelected" text="Return Book List">
+                  <Tab fx:id="returnBookListPane" text="Return Book List">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>

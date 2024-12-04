@@ -74,6 +74,8 @@ public class SignUpPageController implements Initializable {
                 preparedStatement.setString(6, phoneNumber_field.getText());
                 preparedStatement.setDate(7, Date.valueOf(birthday_field.getValue()));
                 preparedStatement.execute();
+                connection.commit();
+
                 error_msg.setText("Create account successful");
             }
         } catch (SQLException e)
