@@ -357,7 +357,7 @@ public class StatisticsPageController implements Initializable {
     @FXML
     void HandleFindBook(ActionEvent event) {
         String queryFindBook = "SELECT * FROM Book WHERE ? = ?";
-        bookList.clear();
+        bookList = FXCollections.observableArrayList();
         String filter = bookListChoiceBox.getValue();
         Connection connection = DatabaseManager.connect();
         assert connection != null;
@@ -367,6 +367,9 @@ public class StatisticsPageController implements Initializable {
             preparedStatement = connection.prepareStatement(queryFindBook);
             switch (filter)
             {
+                case "All":
+                    LoadAllBookListData();
+                    return;
                 case "ID":
                     queryFindBook = "SELECT * FROM Book WHERE ID = ?";
                     break;
@@ -408,6 +411,7 @@ public class StatisticsPageController implements Initializable {
             throw new RuntimeException(e);
         }
         bookListTableView.getItems().addAll(bookList);
+        System.out.println(queryFindBook);
     }
 
     ObservableList<IssueBook> issueBookList = FXCollections.observableArrayList();
@@ -423,6 +427,9 @@ public class StatisticsPageController implements Initializable {
         try {
             switch (filter)
             {
+                case "All":
+                    LoadAllIssueBookListData();
+                    return;
                 case "IssueID":
                     queryFindIssueBook = "SELECT * FROM IssueBook WHERE IssueID = ?";
                     break;
@@ -484,6 +491,9 @@ public class StatisticsPageController implements Initializable {
         try {
             switch (filter)
             {
+                case "All":
+                    LoadAllReturnBookListData();
+                    return;
                 case "IssueID":
                     queryFindReturnBook = "SELECT * FROM ReturnBook WHERE IssueID = ?";
                     break;
@@ -552,6 +562,9 @@ public class StatisticsPageController implements Initializable {
         try {
             switch (filter)
             {
+                case "All":
+                    LoadAllStudentListData();
+                    return;
                 case "StudentID":
                     queryFindStudent = "SELECT * FROM Student WHERE StudentID = ?";
                     break;
@@ -677,6 +690,26 @@ public class StatisticsPageController implements Initializable {
     }
 
     @FXML
+    void HandleBookListPaneSelected(ActionEvent event) {
+        LoadAllBookListData();
+    }
+
+    @FXML
+    void HandleStudentListPaneSelected(ActionEvent event) {
+        LoadAllStudentListData();
+    }
+
+    @FXML
+    void HandleIssueBookListPaneSelected(ActionEvent event) {
+        LoadAllIssueBookListData();
+    }
+
+    @FXML
+    void HandleReturnBookListPaneSelected(ActionEvent event) {
+        LoadAllReturnBookListData();
+    }
+
+    @FXML
     public void HandleMinimize(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
@@ -693,25 +726,25 @@ public class StatisticsPageController implements Initializable {
 
         InitAllBookListColumn();
         filterSearch = null;
-        filterSearch = new String[]{"ID", "ISBN", "Title", "Author", "Category", "Publisher", "Quantity", "ImagePath"};
+        filterSearch = new String[]{"All", "ID", "ISBN", "Title", "Author", "Category", "Publisher", "Quantity", "ImagePath"};
         bookListChoiceBox.getItems().addAll(filterSearch);
         bookListChoiceBox.setValue(filterSearch[0]);
 
         InitAllIssueBookListColumn();
         filterSearch = null;
-        filterSearch = new String[]{"IssueID", "BookID", "BookISBN", "BookTitle", "StudentID", "StudentName", "IssueDate"};
+        filterSearch = new String[]{"All", "IssueID", "BookID", "BookISBN", "BookTitle", "StudentID", "StudentName", "IssueDate"};
         issueBookListChoiceBox.getItems().addAll(filterSearch);
         issueBookListChoiceBox.setValue(filterSearch[0]);
 
         InitAllReturnBookListColumn();
         filterSearch = null;
-        filterSearch = new String[]{"IssueID", "BookID", "BookISBN", "BookTitle", "StudentID", "StudentName", "IssueDate", "ReturnDate", "Days"};
+        filterSearch = new String[]{"All", "IssueID", "BookID", "BookISBN", "BookTitle", "StudentID", "StudentName", "IssueDate", "ReturnDate", "Days"};
         returnBookListChoiceBox.getItems().addAll(filterSearch);
         returnBookListChoiceBox.setValue(filterSearch[0]);
 
         InitAllStudentListColumn();
         filterSearch = null;
-        filterSearch = new String[]{"ID", "Name", "School", "Email", "PhoneNumber", "AddressLine", "Birthday"};
+        filterSearch = new String[]{"All", "ID", "Name", "School", "Email", "PhoneNumber", "AddressLine", "Birthday"};
         studentListChoiceBox.getItems().addAll(filterSearch);
         studentListChoiceBox.setValue(filterSearch[0]);
 

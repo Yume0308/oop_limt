@@ -18,31 +18,10 @@ import java.util.ResourceBundle;
 
 public class ReturnBookPageController implements Initializable {
     @FXML
-    private Button close;
-
-    @FXML
-    private Button minimize;
-
-    @FXML
-    private Button backBtn;
-
-    @FXML
-    private TextField bookAuthorField;
-
-    @FXML
-    private TextField bookCategoryField;
-
-    @FXML
     private TextField bookIDField;
 
     @FXML
     private TextField bookISBNField;
-
-    @FXML
-    private TextField bookImagePathField;
-
-    @FXML
-    private TextField bookPublisherField;
 
     @FXML
     private TextField bookTitleField;
@@ -51,7 +30,13 @@ public class ReturnBookPageController implements Initializable {
     private Button clearAllField;
 
     @FXML
+    private Button close;
+
+    @FXML
     private DatePicker issueDate;
+
+    @FXML
+    private Button minimize;
 
     @FXML
     private Label msgLabel;
@@ -69,25 +54,10 @@ public class ReturnBookPageController implements Initializable {
     private TextField searchIssueIDField;
 
     @FXML
-    private TextField studentAddressLineField;
-
-    @FXML
-    private DatePicker studentBirthdayField;
-
-    @FXML
-    private TextField studentEmailField;
-
-    @FXML
     private TextField studentIDField;
 
     @FXML
     private TextField studentNameField;
-
-    @FXML
-    private TextField studentPhoneNumberField;
-
-    @FXML
-    private TextField studentSchoolField;
 
     private Boolean issueIDSearchStatus;
 
@@ -99,17 +69,8 @@ public class ReturnBookPageController implements Initializable {
         bookIDField.clear();
         bookISBNField.clear();
         bookTitleField.clear();
-        bookAuthorField.clear();
-        bookCategoryField.clear();
-        bookPublisherField.clear();
-        bookImagePathField.clear();
         studentIDField.clear();
         studentNameField.clear();
-        studentSchoolField.clear();
-        studentEmailField.clear();
-        studentPhoneNumberField.clear();
-        studentAddressLineField.clear();
-        studentBirthdayField.setValue(null);
         issueDate.setValue(null);
     }
 
@@ -121,18 +82,8 @@ public class ReturnBookPageController implements Initializable {
         bookIDField.setDisable(status);
         bookISBNField.setDisable(status);
         bookTitleField.setDisable(status);
-        bookAuthorField.setDisable(status);
-        bookCategoryField.setDisable(status);
-        bookPublisherField.setDisable(status);
-        bookImagePathField.setDisable(status);
         studentIDField.setDisable(status);
         studentNameField.setDisable(status);
-        studentSchoolField.setDisable(status);
-        studentEmailField.setDisable(status);
-        studentPhoneNumberField.setDisable(status);
-        studentAddressLineField.setDisable(status);
-        studentBirthdayField.setDisable(status);
-        issueDate.setDisable(status);
     }
 
     void HandleSetDefaultDateReturn() {
@@ -148,40 +99,32 @@ public class ReturnBookPageController implements Initializable {
         Connection conn = DatabaseManager.connect();
         assert conn != null;
 
-        String query = "select * from ReturnBook where issueid = " + searchIssueIDField.getText();
+        String issueID = searchIssueIDField.getText();
+        String query = "select * from IssueBook where IssueID = ?";
+
         try {
-            issueIDSearchStatus = true;
-            HandleSetBehaviourAllField(issueIDSearchStatus);
-            iID = Integer.parseInt(searchIssueIDField.getText());
-            msgLabel.setText("Issue ID is Exits");
-
             pst = conn.prepareStatement(query);
+            pst.setString(1, issueID);
             rs = pst.executeQuery();
-            String query1 = "select * from book where ID = " + rs.getString("BookID");
-            String query2 = "select * from student where StudentID = " + rs.getString("StudentID");
-            issueDate.setValue(rs.getDate("IssueDate").toLocalDate());
+            if (rs.next()) {
+                issueIDSearchStatus = true;
+                HandleSetBehaviourAllField(issueIDSearchStatus);
 
-            pst = conn.prepareStatement(query1);
-            rs = pst.executeQuery();
-            bookIDField.setText(String.valueOf(rs.getInt("ID")));
-            bookISBNField.setText(rs.getString("ISBN"));
-            bookTitleField.setText(rs.getString("Title"));
-            bookAuthorField.setText(rs.getString("Author"));
-            bookCategoryField.setText(rs.getString("Category"));
-            bookPublisherField.setText(String.valueOf(rs.getInt("Publisher")));
-            bookImagePathField.setText(rs.getString("ImagePath"));
+                bookIDField.setText(String.valueOf(rs.getInt("BookID")));
+                bookISBNField.setText(rs.getString("BookISBN"));
+                bookTitleField.setText(rs.getString("BookTitle"));
+                studentIDField.setText(String.valueOf(rs.getInt("StudentID")));
+                studentNameField.setText(rs.getString("StudentName"));
+                issueDate.setValue(rs.getDate("IssuedDate").toLocalDate());
+                HandleSetDefaultDateReturn();
+                msgLabel.setText("Issue ID is Exits");
 
-            pst = conn.prepareStatement(query2);
-            rs = pst.executeQuery();
-            studentIDField.setText(String.valueOf(rs.getInt("StudentID")));
-            studentNameField.setText(rs.getString("StudentName"));
-            studentSchoolField.setText(rs.getString("School"));
-            studentEmailField.setText(rs.getString("Email"));
-            studentPhoneNumberField.setText(rs.getString("PhoneNumber"));
-            studentAddressLineField.setText(rs.getString("AddressLine"));
-            studentBirthdayField.setValue(rs.getDate("Birthday").toLocalDate());
-
-            HandleSetDefaultDateReturn();
+                rs.close();
+                pst.close();
+            }
+            else {
+                msgLabel.setText("Issue ID Not Found");
+            }
         } catch(SQLException e) {
             e.printStackTrace();
         }
@@ -189,6 +132,7 @@ public class ReturnBookPageController implements Initializable {
 
     @FXML
     void HandleReturnBook(ActionEvent event) throws SQLException {
+        iID = Integer.valueOf(searchIssueIDField.getText());
         ResultSet rs = null;
         PreparedStatement pst = null;
         Connection conn = DatabaseManager.connect();
@@ -197,8 +141,6 @@ public class ReturnBookPageController implements Initializable {
 
         String query = "INSERT INTO returnbook (IssueID, BookID, BookTitle, StudentID, StudentName, IssueDate, ReturnDate, Days) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
-            msgLabel.setText("Successfully Returned Book");
-
             pst = conn.prepareStatement(query);
             pst.setInt(1, iID);
             pst.setInt(2, Integer.parseInt(bookIDField.getText()));
@@ -209,8 +151,20 @@ public class ReturnBookPageController implements Initializable {
             pst.setDate(7, Date.valueOf(returnDate.getValue()));
             pst.setInt(8, Integer.parseInt(String.valueOf(java.time.temporal.ChronoUnit.DAYS.between(issueDate.getValue(), returnDate.getValue()) + 1)));
             pst.execute();
+            conn.commit();
+
+            msgLabel.setText("Successfully Returned Book");
         } catch (SQLException e)
         {
+            e.printStackTrace();
+        }
+
+        String query2 = "DELETE FROM IssueBook WHERE IssueID =" + iID;
+        try {
+            PreparedStatement pst2 = conn.prepareStatement(query2);
+            pst2.execute();
+        }
+        catch (SQLException e) {
             e.printStackTrace();
         }
     }

@@ -85,7 +85,7 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="110.0" layoutY="422.0" text="Quantity :">
+            <Label layoutX="109.0" layoutY="377.0" text="Quantity :">
                <font>
                   <Font size="13.0" />
                </font>
@@ -94,7 +94,7 @@
             <Button fx:id="addBookBtn" layoutX="266.0" layoutY="539.0" mnemonicParsing="false" onAction="#HandleAddBookBtn" prefHeight="30.0" prefWidth="142.0" style="-fx-background-color: linear-gradient(to left top, #d6a8c2, #c8a4c4, #b9a1c4, #a99ec2, #999bbf, #92a1c5, #8ca8c9, #86aecc, #88c0d9, #8ed2e3, #97e3ea, #a6f4ef);; -fx-background-radius: 7;" text="ADD BOOK" textFill="WHITE" />
             <Button fx:id="addBookWithApiBtn" layoutX="441.0" layoutY="539.0" mnemonicParsing="false" onAction="#HandleAddBookWithApiBtn" prefHeight="30.0" prefWidth="142.0" style="-fx-background-color: linear-gradient(to left top, #d6a8c2, #c8a4c4, #b9a1c4, #a99ec2, #999bbf, #92a1c5, #8ca8c9, #86aecc, #88c0d9, #8ed2e3, #97e3ea, #a6f4ef);; -fx-background-radius: 7;" text="ADD BOOK WITH API" textFill="WHITE" />
             <Label fx:id="msgLabel" layoutX="110.0" layoutY="498.0" prefHeight="18.0" prefWidth="381.0" textFill="#b96909" />
-            <Label layoutX="110.0" layoutY="377.0" text="Image Path: ">
+            <Label layoutX="105.0" layoutY="422.0" text="Image Path: ">
                <font>
                   <Font size="13.0" />
                </font>

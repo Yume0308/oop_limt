@@ -21,7 +21,7 @@
          <children>
             <TabPane fx:id="tabPane" layoutX="27.0" layoutY="38.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="362.0" prefWidth="758.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab fx:id="bookListPane" text="Book List">
+                <Tab fx:id="bookListPane" onSelectionChanged="#HandleBookListPaneSelected" text="Book List">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -54,7 +54,7 @@
                                     <TableColumn fx:id="bookListCategoryCol" minWidth="8.0" prefWidth="120.0" text="Category" />
                                     <TableColumn fx:id="bookListPublisherCol" minWidth="5.5999755859375" prefWidth="106.4000244140625" text="Publisher" />
                                     <TableColumn fx:id="bookListQuantityCol" minWidth="0.0" prefWidth="83.2000732421875" text="Quantity" />
-                                    <TableColumn fx:id="bookListImagePathCol" minWidth="0.0" prefWidth="83.2000732421875" text="ImagePath" />
+                                    <TableColumn fx:id="bookListImagePathCol" minWidth="0.0" prefWidth="200.0" text="ImagePath" />
                                 </columns>
                               </TableView>
                               <ImageView fitHeight="30.0" fitWidth="30.0" layoutY="297.0" pickOnBounds="true" preserveRatio="true">
@@ -75,7 +75,7 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                <Tab fx:id="studentListPane" text="Student List">
+                <Tab fx:id="studentListPane" onSelectionChanged="#HandleStudentListPaneSelected" text="Student List">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -124,7 +124,7 @@
                            </children></AnchorPane>
                   </content>
                 </Tab>
-                  <Tab fx:id="issueBookListPane" text="Issue Book List">
+                  <Tab fx:id="issueBookListPane" onSelectionChanged="#HandleIssueBookListPaneSelected" text="Issue Book List">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -174,7 +174,7 @@
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab fx:id="returnBookListPane" text="Return Book List">
+                  <Tab fx:id="returnBookListPane" onSelectionChanged="#HandleReturnBookListPaneSelected" text="Return Book List">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>

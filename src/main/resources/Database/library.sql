@@ -74,5 +74,4 @@ create table ReturnBook
     IssueDate   DATE NOT NULL,
     ReturnDate  DATE NOT NULL,
     Days        INTEGER NOT NULL,
-    FOREIGN KEY (IssueID) REFERENCES IssueBook(IssueID) ON UPDATE CASCADE
 );

@@ -278,7 +278,7 @@ public class IssueBookPageController implements Initializable {
                     pst.setDate(6, Date.valueOf(issueDate.getValue()));
 
                     pst.execute();
-                    pst.close();
+                    conn.commit();
                     msgLabel.setText("Successfully Issued");
                 } catch  (SQLException e) {
                     e.printStackTrace();
