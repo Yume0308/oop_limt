@@ -21,6 +21,7 @@ module com.limt {
     requires com.google.zxing;
     requires com.google.zxing.javase;
     requires org.slf4j;
+    requires opencv;
 
     opens com.limt.Controllers to javafx.fxml;
     exports com.limt;

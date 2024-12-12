@@ -20,6 +20,8 @@ create table BOOK
     Publisher     VARCHAR(100) DEFAULT 'Unknown',
     Quantity      INTEGER DEFAULT 0,
     ImagePath     VARCHAR(255) DEFAULT 'Unknown',
+    Qr            BLOB NOT NULL,
+    QrContent     VARCHAR(255) NOT NULL,
     PRIMARY KEY (ID, ISBN)
 );
 

@@ -79,10 +79,11 @@ public class ScanISBNPageController implements Initializable {
         });
     }
 
+
     void StopWebcam() {
         if (webcam != null) {
             webcam.close();
-        imageView.setImage(null);
+            imageView.setImage(null);
         }
     }
 
@@ -112,13 +113,13 @@ public class ScanISBNPageController implements Initializable {
                             Platform.runLater(() -> {
                                 ISBN = result.getText();
                                 System.out.println(ISBN);
+                                StopWebcam();
                                 Stage stage = (Stage) imageView.getScene().getWindow();
                                 stage.close();
                             });
                             StopWebcam();
                         }
                     } catch (Exception e) {
-                        e.printStackTrace();
                     }
                     Platform.runLater(() -> imageView.setImage(SwingFXUtils.toFXImage(image, null)));
                 }

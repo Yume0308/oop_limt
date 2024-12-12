@@ -1,10 +1,14 @@
 package com.limt.Controllers;
 
+import com.limt.Lib.Utils;
 import com.limt.dbms.DatabaseManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -19,37 +23,28 @@ import java.util.ResourceBundle;
 
 public class IssueBookPageController implements Initializable {
     @FXML
-    private Button close;
-
-    @FXML
-    private Button minimize;
-
-    @FXML
-    private Button backBtn;
-
-    @FXML
-    private TextField bookAuthorField;
-
-    @FXML
-    private TextField bookCategoryField;
-
-    @FXML
     private TextField bookIDField;
 
     @FXML
     private TextField bookISBNField;
 
     @FXML
-    private TextField bookImagePathField;
+    private TextField bookTitleField;
+
+    @FXML
+    private TextField bookAuthorField;
 
     @FXML
     private TextField bookPublisherField;
 
     @FXML
+    private TextField bookCategoryField;
+
+    @FXML
     private TextField bookQuantityField;
 
     @FXML
-    private TextField bookTitleField;
+    private TextField bookImagePathField;
 
     @FXML
     private Button clearBookField;
@@ -58,16 +53,28 @@ public class IssueBookPageController implements Initializable {
     private Button clearStudentFIeld;
 
     @FXML
+    private Button close;
+
+    @FXML
     private Button issueBookBtn;
 
     @FXML
     private DatePicker issueDate;
 
     @FXML
+    private Button minimize;
+
+    @FXML
     private Label msgLabel;
 
     @FXML
+    private Button scanBookBtn;
+
+    @FXML
     private Button searchBookBtn;
+
+    @FXML
+    private Button searchBookBtn1;
 
     @FXML
     private TextField searchBookID;
@@ -117,7 +124,6 @@ public class IssueBookPageController implements Initializable {
         bookAuthorField.clear();
         bookCategoryField.clear();
         bookPublisherField.clear();
-        bookQuantityField.clear();
         bookImagePathField.clear();
         HandleSetBehaviourAllBookField(bookSearchStatus);
     }
@@ -257,7 +263,7 @@ public class IssueBookPageController implements Initializable {
 
         String query1 = "select * from book where ID = " + bId + "";
         String query2 = "select * from student where StudentID = " + sId + "";
-        String query = "INSERT INTO Issuebook (BookID, BookISBN, BookTitle, StudentID, StudentName, IssueDate) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Issuebook (BookID, BookISBN, BookTitle, StudentID, StudentName, IssuedDate) VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
             pst1 = conn.prepareStatement(query1);
@@ -296,6 +302,11 @@ public class IssueBookPageController implements Initializable {
     }
 
     @FXML
+    void HandleScanQrBook(ActionEvent event) throws IOException {
+        openScanner();
+    }
+
+    @FXML
     public void HandleClose(ActionEvent actionEvent) {
         ((Stage) close.getScene().getWindow()).close();
     }
@@ -309,5 +320,36 @@ public class IssueBookPageController implements Initializable {
         HandleClearMsgLabel();
         searchBookID.setText(null);
         searchStudentID.setText(null);
+    }
+
+    public void openScanner() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ScanQRPage.fxml"));
+        Parent root = loader.load();
+        ScanQRPageController scanController = loader.getController();
+
+        scanController.setOnBookScannedCallback(book -> {
+            bookIDField.setText(String.valueOf(book.getID()));
+            bookISBNField.setText(book.getISBN());
+            bookTitleField.setText(book.getTitle());
+            bookAuthorField.setText(book.getAuthor());
+            bookPublisherField.setText(book.getPublisher());
+            bookCategoryField.setText(book.getCategory());
+            bookQuantityField.setText(String.valueOf(book.getQuantity()));
+            bookImagePathField.setText(book.getImagePath());
+        });
+
+        scanController.setOnStudentScannedCallback(student -> {
+            studentIDField.setText(String.valueOf(student.getStudentID()));
+            studentNameField.setText(student.getStudentName());
+            studentSchoolField.setText(student.getSchool());
+            studentEmailField.setText(student.getEmail());
+            studentPhoneNumberField.setText(student.getPhoneNumber());
+            studentAddressLineField.setText(student.getAddressLine());
+        });
+
+        // Show scanner window
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 }

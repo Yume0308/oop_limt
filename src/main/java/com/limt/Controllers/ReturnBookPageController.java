@@ -115,7 +115,7 @@ public class ReturnBookPageController implements Initializable {
                 bookTitleField.setText(rs.getString("BookTitle"));
                 studentIDField.setText(String.valueOf(rs.getInt("StudentID")));
                 studentNameField.setText(rs.getString("StudentName"));
-                issueDate.setValue(rs.getDate("IssueDate").toLocalDate());
+                issueDate.setValue(rs.getDate("IssuedDate").toLocalDate());
                 HandleSetDefaultDateReturn();
                 msgLabel.setText("Issue ID is Exits");
 

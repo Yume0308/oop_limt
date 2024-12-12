@@ -1,5 +1,6 @@
 package com.limt.Controllers;
 
+import com.limt.Lib.Utils;
 import com.limt.Models.Book;
 import com.limt.Models.IssueBook;
 import com.limt.Models.ReturnBook;
@@ -11,17 +12,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -202,6 +201,9 @@ public class StatisticsPageController implements Initializable {
 
     @FXML
     private Button studentListDeleteSelectedItem;
+
+    @FXML
+    private Button bookListShowQRBtn;
 
     @FXML
     private TableColumn<Student, String> studentListEmailCol;
@@ -757,6 +759,62 @@ public class StatisticsPageController implements Initializable {
         ((Stage) close.getScene().getWindow()).close();
     }
 
+    public static Integer ID;
+    @FXML
+    public void HandleShowQrBook() throws IOException {
+        Book selectedBook = bookListTableView.getSelectionModel().getSelectedItem();
+        if(selectedBook != null) {
+            Integer BookID = selectedBook.getID();
+            ID = BookID;
+            String queryFindBook = "SELECT * FROM Book WHERE ID = " + BookID;
+            Connection connection = DatabaseManager.connect();
+            assert connection != null;
+            PreparedStatement preparedStatement = null;
+            ResultSet resultSet = null;
+            try {
+                preparedStatement = connection.prepareStatement(queryFindBook);
+                resultSet = preparedStatement.executeQuery();
+                if(resultSet.next()) {
+                    byte[] imageBytes = resultSet.getBytes("Qr");
+                    ByteArrayInputStream bais = new ByteArrayInputStream(imageBytes);
+                    Image image = new Image(bais);
+                    System.out.println(image);
+                    Utils.HandleAddPage("/fxml/ShowQRPage.fxml");
+                }
+            } catch (SQLException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+    @FXML
+    public void HandleShowQrStudent() throws IOException {
+        Student selectedStudent = studentListTableView.getSelectionModel().getSelectedItem();
+        if(selectedStudent != null) {
+            Integer studentID = selectedStudent.getStudentID();
+            ID = studentID;
+            String queryFindBook = "SELECT * FROM Student WHERE StudentID = " + studentID;
+            Connection connection = DatabaseManager.connect();
+            assert connection != null;
+            PreparedStatement preparedStatement = null;
+            ResultSet resultSet = null;
+            try {
+                preparedStatement = connection.prepareStatement(queryFindBook);
+                resultSet = preparedStatement.executeQuery();
+                if(resultSet.next()) {
+                    byte[] imageBytes = resultSet.getBytes("Qr");
+                    ByteArrayInputStream bais = new ByteArrayInputStream(imageBytes);
+                    Image image = new Image(bais);
+                    System.out.println(image);
+                    Utils.HandleAddPage("/fxml/ShowQRPage.fxml");
+                }
+            } catch (SQLException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         String []filterSearch;
@@ -790,4 +848,6 @@ public class StatisticsPageController implements Initializable {
         LoadAllReturnBookListData();
         LoadAllStudentListData();
     }
+
+
 }

@@ -19,6 +19,9 @@ import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+import static com.limt.Lib.QR.generateQRCode;
+import static com.limt.Lib.QR.saveQRCode;
+
 public class AddStudentPageController implements Initializable {
 
     @FXML
@@ -78,7 +81,7 @@ public class AddStudentPageController implements Initializable {
             String StudentAddress = studentAddressLineField.getText();
             LocalDate Birthday = studentBirthdayField.getValue();
 
-            String query = "INSERT INTO Student VALUES(? ,? , ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO Student VALUES(? ,? , ?, ?, ?, ?, ?, ?, ?)";
             preparedStatement = connection.prepareStatement(query);
 
             preparedStatement.setInt(1, DashboardPageController.getCurrentUserID());
@@ -89,7 +92,7 @@ public class AddStudentPageController implements Initializable {
             preparedStatement.setString(6, PhoneNumber);
             preparedStatement.setString(7, StudentAddress);
             preparedStatement.setDate(8, Date.valueOf(Birthday));
-
+            preparedStatement.setBytes(9, saveQRCode(generateQRCode("Student,"+StudentID+","+StudentName, 250, 250)));
             preparedStatement.execute();
             connection.commit();
             msgLabel.setText("Successfully Added Student");
@@ -123,5 +126,6 @@ public class AddStudentPageController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         HandleClearAllField(null);
+        System.out.println(DashboardPageController.getCurrentUserID());
     }
 }

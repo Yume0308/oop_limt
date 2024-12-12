@@ -5,7 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="300" prefWidth="300" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.limt.Controllers.ScanISBNPageController">
+<AnchorPane prefHeight="300" prefWidth="300" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.limt.Controllers.ScanQRPageController">
     <children>
         <Button fx:id="minimize" layoutX="206.0" mnemonicParsing="false" onAction="#HandleMinimize" prefHeight="30.0" prefWidth="45.0" style="-fx-background-color: transparent;">
             <graphic>

@@ -42,6 +42,11 @@
                                           <Insets left="45.0" top="2.0" />
                                        </HBox.margin>
                                     </Button>
+                                    <Button fx:id="bookListShowQRBtn" mnemonicParsing="false" onAction="#HandleShowQrBook" text="Show QR">
+                                       <HBox.margin>
+                                          <Insets left="25.0" top="2.0" />
+                                       </HBox.margin>
+                                    </Button>
                                  </children>
                               </HBox>
                               <TableView fx:id="bookListTableView" layoutY="44.0" prefHeight="245.0" prefWidth="758.0">
@@ -94,6 +99,11 @@
                                     <Button fx:id="studentListFindBtn" mnemonicParsing="false" onAction="#HandleFindStudent" text="Find">
                                        <HBox.margin>
                                           <Insets left="45.0" top="2.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button fx:id="studentListShowQRBtn" mnemonicParsing="false" onAction="#HandleShowQrStudent" text="Show QR">
+                                       <HBox.margin>
+                                          <Insets left="25.0" top="2.0" />
                                        </HBox.margin>
                                     </Button>
                                  </children>

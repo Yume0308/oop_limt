@@ -91,8 +91,9 @@
                </font>
             </Label>
             <Label fx:id="msgLabel" layoutX="103.0" layoutY="437.0" prefHeight="18.0" prefWidth="276.0" textFill="#b96909" />
-            <Button fx:id="searchBookBtn" layoutX="314.0" layoutY="30.0" mnemonicParsing="false" onAction="#HandleSearchBook" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #bfbfc7;" text="Search" />
+            <Button fx:id="searchBookBtn" layoutX="314.0" layoutY="20.0" mnemonicParsing="false" onAction="#HandleSearchBook" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #bfbfc7;" text="Search" />
             <Button fx:id="clearBookField" layoutX="16.0" layoutY="433.0" mnemonicParsing="false" onAction="#HandleClearAllBookField" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #bfbfc7;" text="Clear" />
+            <Button fx:id="scanBookBtn" layoutX="314.0" layoutY="56.0" mnemonicParsing="false" onAction="#HandleScanQrBook" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #bfbfc7;" text="Scan" />
          </children>
       </AnchorPane>
       <Label layoutX="417.0" layoutY="32.0" text="Enter ID :">

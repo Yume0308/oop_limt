@@ -21,6 +21,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import static com.limt.Lib.QR.generateQRCode;
+import static com.limt.Lib.QR.saveQRCode;
 
 public class AddBookPageController implements Initializable {
 
@@ -78,7 +80,7 @@ public class AddBookPageController implements Initializable {
             Integer BookQuantity = Integer.parseInt(bookQuantityField.getText());
             String BookImagePath = bookImagePathField.getText();
 
-            String query = "INSERT INTO Book VALUES(? ,? , ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO Book VALUES(? ,? , ?, ?, ?, ?, ?, ?, ?)";
             preparedStatement = connection.prepareStatement(query);
 
             preparedStatement.setInt(1, BookID);
@@ -89,7 +91,7 @@ public class AddBookPageController implements Initializable {
             preparedStatement.setString(6, BookPublisher);
             preparedStatement.setInt(7, BookQuantity);
             preparedStatement.setString(8, BookImagePath);
-
+            preparedStatement.setBytes(9, saveQRCode(generateQRCode("Book,"+BookID+","+BookISBN, 250, 250)));
             preparedStatement.execute();
             connection.commit();
             msgLabel.setText("Successfully Added Book");

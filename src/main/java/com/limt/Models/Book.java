@@ -1,6 +1,7 @@
 package com.limt.Models;
 
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Hyperlink;
 
 public class Book {
     private final CheckBox CheckBox;
